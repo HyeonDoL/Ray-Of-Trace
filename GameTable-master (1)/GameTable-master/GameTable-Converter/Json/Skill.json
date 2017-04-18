@@ -1,0 +1,338 @@
+[
+    {
+        "id": "SKI0001",
+        "name": "아쳐스킬1",
+        "mp": 100,
+        "isTargeting": true,
+        "SkillEffect": [
+            {
+                "id": "SKE0001",
+                "type": "일반공격",
+                "value": 0,
+                "valueRate": 1.3,
+                "description": "1.3배로 일반공격",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 0,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 0,
+                        "addValueRate": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 0,
+                        "addValueRate": 0.2
+                    }
+                ]
+            },
+            {
+                "id": "SKE0002",
+                "type": "출혈",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 출혐뎀",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0002",
+        "name": "아쳐스킬2",
+        "mp": 200,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0003",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            },
+            {
+                "id": "SKE0004",
+                "type": "이동속도 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 이동속도 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0003",
+        "name": "아쳐스킬3",
+        "mp": 300,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0005",
+                "type": "일반공격",
+                "value": 4,
+                "valueRate": 1.5,
+                "description": "1.5배의 공격을 4명에게",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0.1
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0.2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0004",
+        "name": "전사스킬1",
+        "mp": 100,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0006",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0005",
+        "name": "전사스킬2",
+        "mp": 200,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0007",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0006",
+        "name": "전사스킬3",
+        "mp": 300,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0008",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0007",
+        "name": "마법사스킬1",
+        "mp": 100,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0009",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0008",
+        "name": "마법사스킬2",
+        "mp": 200,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0010",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": "SKI0009",
+        "name": "마법사스킬3",
+        "mp": 300,
+        "isTargeting": false,
+        "SkillEffect": [
+            {
+                "id": "SKE0011",
+                "type": "방어력 감소",
+                "value": 100,
+                "valueRate": 0,
+                "description": "100의 방어력 감소",
+                "SkillEffectUpgrade": [
+                    {
+                        "level": 1,
+                        "addvalue": 10,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 2,
+                        "addvalue": 20,
+                        "addValueRate": 0
+                    },
+                    {
+                        "level": 3,
+                        "addvalue": 30,
+                        "addValueRate": 0
+                    }
+                ]
+            }
+        ]
+    }
+]

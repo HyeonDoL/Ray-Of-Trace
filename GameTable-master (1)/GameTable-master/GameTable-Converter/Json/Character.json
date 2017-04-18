@@ -1,0 +1,50 @@
+[
+    {
+        "id": "CHA0001",
+        "name": "캐릭터1",
+        "class": "아처",
+        "SkillGroup": [
+            {
+                "skillId": "SKI0001"
+            },
+            {
+                "skillId": "SKI0002"
+            },
+            {
+                "skillId": "SKI0003"
+            }
+        ]
+    },
+    {
+        "id": "CHA0002",
+        "name": "캐릭터2",
+        "class": "ww",
+        "SkillGroup": [
+            {
+                "skillId": "SKI0004"
+            },
+            {
+                "skillId": "SKI0005"
+            },
+            {
+                "skillId": "SKI0006"
+            }
+        ]
+    },
+    {
+        "id": "CHA0003",
+        "name": "캐릭터3",
+        "class": "eee",
+        "SkillGroup": [
+            {
+                "skillId": "SKI0007"
+            },
+            {
+                "skillId": "SKI0008"
+            },
+            {
+                "skillId": "SKI0009"
+            }
+        ]
+    }
+]
