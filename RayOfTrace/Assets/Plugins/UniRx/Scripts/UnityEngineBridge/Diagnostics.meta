@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 4069e18321a586546a07b088d97de003
+folderAsset: yes
+timeCreated: 1495548408
+=======
 guid: 0f927d11810bba34f807bbff42c70a7f
 folderAsset: yes
 timeCreated: 1495547653
+>>>>>>> parent of 256af23... 응 삭제
 licenseType: Free
 DefaultImporter:
   userData: 
