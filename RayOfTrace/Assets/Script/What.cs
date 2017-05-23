@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 public class What : MonoBehaviour {
 
 	// Use this for initialization
@@ -14,3 +15,33 @@ public class What : MonoBehaviour {
 		
 	}
 }
+=======
+public class What : MonoBehaviour
+{
+    void Update()
+    {
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+        GameObject.Find("AAAA").GetComponent<What>();
+    }
+}
+>>>>>>> 99e3a2560776ae14e3ecf4805790d04b3b2d8bac
