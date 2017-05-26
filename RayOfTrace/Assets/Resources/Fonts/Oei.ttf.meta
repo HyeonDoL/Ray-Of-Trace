@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 171ae967dee31e8469bfcbdb3bea650f
+timeCreated: 1495641162
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Oei
+  fontNames:
+  - Oei
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
