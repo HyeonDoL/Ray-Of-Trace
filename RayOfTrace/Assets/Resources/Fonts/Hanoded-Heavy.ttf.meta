@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3c181c8ab1508ef46a1d01118ee60e13
+timeCreated: 1495965397
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Hanoded
+  fontNames:
+  - Hanoded
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
