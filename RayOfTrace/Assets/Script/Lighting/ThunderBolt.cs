@@ -7,21 +7,34 @@ public class ThunderBolt : MonoBehaviour
     private Light light;
 
     [SerializeField]
+    private int lightingCount;
+
+    [SerializeField]
     private float time;
+
+    [SerializeField]
+    private float delay;
 
     public IEnumerator Lighting()
     {
         float t = 0f;
 
-        while(t < 1f)
+        for (int count = 0; count < lightingCount; count++)
         {
-            t += Time.deltaTime / time;
+            while (t < 1f)
+            {
+                t += Time.deltaTime / time;
 
-            light.enabled = true;
+                light.enabled = true;
 
-            yield return null;
+                yield return null;
+            }
+
+            t = 0f;
+
+            light.enabled = false;
+
+            yield return new WaitForSeconds(delay);
         }
-
-        light.enabled = false;
     }
 }
