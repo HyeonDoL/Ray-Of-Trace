@@ -21,11 +21,11 @@ public class ThunderBolt : MonoBehaviour
 
         for (int count = 0; count < lightingCount; count++)
         {
+            light.enabled = true;
+
             while (t < 1f)
             {
                 t += Time.deltaTime / time;
-
-                light.enabled = true;
 
                 yield return null;
             }
