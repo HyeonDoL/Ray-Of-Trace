@@ -76,18 +76,6 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
       
     }
 
-    void Update()
-    {
-
-        if (DisDrag)
-        {
-
-
-       
-        }
-
-
-
-    }
+  
 }
 
