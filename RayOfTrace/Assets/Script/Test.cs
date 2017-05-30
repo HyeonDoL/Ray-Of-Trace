@@ -1,39 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Test : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _object;
+    private IrregularLight irregularLight;
 
     [SerializeField]
-    private MeshRenderer mr;
+    private ThunderBolt thunder;
 
     [SerializeField]
-    private Color testColor = Color.white;
+    private PlayerDataContainer container;
 
-    [SerializeField]
-    private float testAlpha;
+    private Transform playerTrans;
 
-    [SerializeField]
-    private float time = 0.5f;
+    private void Awake()
+    {
+        playerTrans = container.PlayerTrans;
+
+        StartCoroutine(irregularLight.Lighting());
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-            StartCoroutine(Tween.TweenTransform.Position(this.transform, _object.transform.position, time));
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(thunder.Lighting());
+            PlayerChangePosition();
+        }
+    }
 
-        if (Input.GetKeyDown(KeyCode.W))
-            StartCoroutine(Tween.TweenTransform.Rotation(this.transform, _object.transform.rotation, time));
+    private void PlayerChangePosition()
+    {
+        Vector3 temp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.E))
-            StartCoroutine(Tween.TweenTransform.LocalScale(this.transform, _object.transform.localScale, time));
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            StartCoroutine(Tween.TweenMaterial.TweenColor(mr.material, testColor, time));
-
-        if (Input.GetKeyDown(KeyCode.C))
-            StartCoroutine(Tween.TweenMaterial.TweenAlpha(mr.material, testAlpha, time));
+        playerTrans.position = new Vector3(temp.x, playerTrans.position.y, 0);
     }
 }

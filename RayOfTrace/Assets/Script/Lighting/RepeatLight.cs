@@ -1,14 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GentleLight : MonoBehaviour
+public class RepeatLight : MonoBehaviour
 {
     [SerializeField]
     private Light light;
-
-    [SerializeField]
-    private float startIntensity;
 
     [SerializeField]
     private float maxIntensity;
@@ -16,14 +12,19 @@ public class GentleLight : MonoBehaviour
     [SerializeField]
     private float time;
 
-    private void Awake()
+    public float LightIntensity
     {
-        light.intensity = startIntensity;
-
-        StartCoroutine(GentleLighting());
+        get
+        {
+            return this.light.intensity;
+        }
+        set
+        {
+            light.intensity = value;
+        }
     }
 
-    private IEnumerator GentleLighting()
+    public IEnumerator Lighting()
     {
         int isLighting = 1;
 
