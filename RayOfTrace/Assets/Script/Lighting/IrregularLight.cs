@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class IrregularLight : MonoBehaviour
+public class IrregularLight : LightBehaviour
 {
-    [SerializeField]
-    private Light light;
-
     [SerializeField]
     [Range(1, 100)]
     private int blinkProbability;
@@ -19,11 +16,11 @@ public class IrregularLight : MonoBehaviour
     [SerializeField]
     private float blinkDelay;
 
-    public IEnumerator Lighting()
+    public override IEnumerator Lighting()
     {
         while(true)
         {
-            int random = Random.Range(1, 100);
+            int random = Random.Range(1, 100) + 1;
 
             if(random > blinkProbability)
             {

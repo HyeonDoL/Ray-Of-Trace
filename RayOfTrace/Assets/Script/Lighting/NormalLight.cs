@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class NormalLight : MonoBehaviour
+public class NormalLight : LightBehaviour
 {
     private enum NormalLightType
     {
         Glow,
         Dim
     }
-
-    [SerializeField]
-    private Light light;
 
     [SerializeField]
     private NormalLightType type;
@@ -24,19 +21,7 @@ public class NormalLight : MonoBehaviour
     [SerializeField]
     private float time;
 
-    public float LightIntensity
-    {
-        get
-        {
-            return this.light.intensity;
-        }
-        set
-        {
-            light.intensity = value;
-        }
-    }
-
-    public IEnumerator Lighting()
+    public override IEnumerator Lighting()
     {
         float t = 0f;
 

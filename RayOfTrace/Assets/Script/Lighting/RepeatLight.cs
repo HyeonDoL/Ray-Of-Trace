@@ -1,30 +1,15 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class RepeatLight : MonoBehaviour
+public class RepeatLight : LightBehaviour
 {
-    [SerializeField]
-    private Light light;
-
     [SerializeField]
     private float maxIntensity;
 
     [SerializeField]
     private float time;
 
-    public float LightIntensity
-    {
-        get
-        {
-            return this.light.intensity;
-        }
-        set
-        {
-            light.intensity = value;
-        }
-    }
-
-    public IEnumerator Lighting()
+    public override IEnumerator Lighting()
     {
         int isLighting = 1;
 

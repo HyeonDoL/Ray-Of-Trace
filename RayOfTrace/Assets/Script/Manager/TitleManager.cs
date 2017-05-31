@@ -9,11 +9,6 @@ public class TitleManager : MonoBehaviour
     [SerializeField]
     private RepeatLight repeatLight;
 
-    private void Awake()
-    {
-        StartCoroutine(repeatLight.Lighting());
-    }
-
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))

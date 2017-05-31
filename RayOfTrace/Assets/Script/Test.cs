@@ -3,9 +3,6 @@
 public class Test : MonoBehaviour
 {
     [SerializeField]
-    private IrregularLight irregularLight;
-
-    [SerializeField]
     private ThunderBolt thunder;
 
     [SerializeField]
@@ -16,9 +13,7 @@ public class Test : MonoBehaviour
     private void Awake()
     {
         playerTrans = container.PlayerTrans;
-
-        StartCoroutine(irregularLight.Lighting());
-    }
+   }
 
     private void Update()
     {
