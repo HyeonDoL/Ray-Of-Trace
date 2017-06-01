@@ -1,11 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ThunderBolt : MonoBehaviour
+public class ThunderBolt : LightBehaviour
 {
-    [SerializeField]
-    private Light light;
-
     [SerializeField]
     private int lightingCount;
 
@@ -15,7 +12,7 @@ public class ThunderBolt : MonoBehaviour
     [SerializeField]
     private float delay;
 
-    public IEnumerator Lighting()
+    public override IEnumerator Lighting()
     {
         float t = 0f;
 
