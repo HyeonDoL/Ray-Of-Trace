@@ -52,6 +52,6 @@ public class ChapterManager : MonoBehaviour {
     {
         ChangeWindow();
         PlayerPrefs.SetInt("ChapterNum", index);
-        SceneChange.Change(SceneType.InGame);
+        SceneChange.Change(SceneType.Loading);
     }
 }

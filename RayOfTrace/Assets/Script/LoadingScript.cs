@@ -7,11 +7,14 @@ public class LoadingScript : MonoBehaviour
     public Slider slider;
     bool IsDone = false;
     float fTime = 0f;
+    int m_chapternum;
     AsyncOperation async_operation;
 
     void Start()
     {
-        StartCoroutine(StartLoad("Scene3"));
+        m_chapternum = PlayerPrefs.GetInt("ChapterNum");
+       
+        StartCoroutine(StartLoad(SceneType.InGame));
     }
 
     void Update()
@@ -19,7 +22,7 @@ public class LoadingScript : MonoBehaviour
         fTime += Time.deltaTime;
         slider.value = fTime;
 
-        if (fTime >= 5)
+        if (fTime >= 2)
         {
             async_operation.allowSceneActivation = true;
         }

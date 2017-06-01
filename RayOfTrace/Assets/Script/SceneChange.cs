@@ -12,4 +12,5 @@ public struct SceneType
 {
     public static string Title = "Title";
     public static string InGame = "InGame";
+    public static string Loading = "Loading";
 }
