@@ -9,7 +9,10 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField]
     private NormalLight dimLight;
     [SerializeField]
+    private NormalLight normalLight;
+    [SerializeField]
     private RepeatLight repeatLight;
+
     [SerializeField] private GameObject ChapterWindow;
     [SerializeField] private GameObject OptionWindow;
     [SerializeField] private GameObject ShopWindow;
@@ -17,33 +20,38 @@ public class ChapterManager : MonoBehaviour {
 
     private IEnumerator ChangeWindow()
     {
+   
         repeatLight.gameObject.SetActive(false);
 
-        dimLight.LightIntensity = repeatLight.LightIntensity;
-        yield return StartCoroutine(glowLight.Lighting());
+        normalLight.LightIntensity = repeatLight.LightIntensity;
 
-       
+        yield return StartCoroutine(normalLight.Lighting());
 
-     
     }
     public void OptionButton()
     {
-        ChangeWindow();
+       
         ChapterWindow.SetActive(false);
         OptionWindow.SetActive(true);
     }
     public void ShopButton()
     {
-        ChangeWindow();
+      
         ChapterWindow.SetActive(false);
         ShopWindow.SetActive(true);
     }
     public void BackButton()
     {
-        ChangeWindow();
+       
         OptionWindow.SetActive(false);
         ShopWindow.SetActive(false);
         ChapterWindow.SetActive(true);
        
+    }
+    public void ChpaterButton(int index)
+    {
+        ChangeWindow();
+        PlayerPrefs.SetInt("ChapterNum", index);
+        SceneChange.Change(SceneType.InGame);
     }
 }
