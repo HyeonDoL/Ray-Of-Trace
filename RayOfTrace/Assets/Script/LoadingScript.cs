@@ -8,13 +8,18 @@ public class LoadingScript : MonoBehaviour
     bool IsDone = false;
     float fTime = 0f;
     int m_chapternum;
+    int m_istomain;
     AsyncOperation async_operation;
 
     void Start()
     {
         m_chapternum = PlayerPrefs.GetInt("ChapterNum");
-       
-        StartCoroutine(StartLoad(SceneType.InGame));
+        m_istomain = PlayerPrefs.GetInt("IsTomain");
+        Debug.Log(m_istomain);
+        if(m_istomain == 0)
+            StartCoroutine(StartLoad(SceneType.InGame));
+        else if (m_istomain == 1)
+            StartCoroutine(StartLoad(SceneType.Title));
     }
 
     void Update()
@@ -30,6 +35,7 @@ public class LoadingScript : MonoBehaviour
 
     public IEnumerator StartLoad(string strSceneName)
     {
+       
         async_operation = Application.LoadLevelAsync(strSceneName);
         async_operation.allowSceneActivation = false;
 
@@ -40,7 +46,7 @@ public class LoadingScript : MonoBehaviour
             while (async_operation.progress < 0.9f)
             {
                 slider.value = async_operation.progress;
-
+                Debug.Log("isLoad?");
                 yield return true;
             }
         }

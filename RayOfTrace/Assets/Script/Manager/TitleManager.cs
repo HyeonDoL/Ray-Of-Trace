@@ -15,11 +15,27 @@ public class TitleManager : MonoBehaviour
     private GameObject TitleWindow;
     [SerializeField]
     private GameObject BackGround;
+
+    private int m_istomain;
     private void Awake()
     {
+        m_istomain = PlayerPrefs.GetInt("IsTomain", 0);
         StartCoroutine(repeatLight.Lighting());
+
     }
 
+    private void Start()
+    {
+        if (m_istomain == 1)
+        {
+            PlayerPrefs.SetInt("IsTomain", 0);
+            TitleWindow.SetActive(false);
+            repeatLight.gameObject.SetActive(true);
+            ChapterWindow.SetActive(true);
+            BackGround.SetActive(true);
+            this.gameObject.GetComponent<TitleManager>().enabled = false;
+        }
+    }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))

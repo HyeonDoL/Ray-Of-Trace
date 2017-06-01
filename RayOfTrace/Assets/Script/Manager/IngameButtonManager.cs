@@ -140,6 +140,8 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void Ison_tomainscene()
     {
-
+        Time.timeScale = 1;
+        PlayerPrefs.SetInt("IsTomain", 1);
+        SceneChange.Change(SceneType.Loading);
     }
 }
