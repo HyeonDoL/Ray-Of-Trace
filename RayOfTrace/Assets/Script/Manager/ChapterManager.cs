@@ -7,7 +7,7 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField]
     private NormalLight glowLight;
     [SerializeField]
-    private RepeatLight dimLight;
+    private NormalLight dimLight;
     [SerializeField]
     private RepeatLight repeatLight;
     [SerializeField] private GameObject ChapterWindow;
