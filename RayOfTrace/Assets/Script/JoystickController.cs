@@ -17,8 +17,8 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
     private Vector3 InputVector;
     private Vector3 StartVector;
 
-    private Vector3 NowVector;
-    private Vector3 Direction;
+   [SerializeField] private Vector3 NowVector;
+   [SerializeField] private Vector3 Direction;
     
 
 
@@ -56,7 +56,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
 
 
             JoystickImg.rectTransform.anchoredPosition =
-                new Vector3(InputVector.x * (PedImg.rectTransform.sizeDelta.x / 3), InputVector.z * (PedImg.rectTransform.sizeDelta.y / 3));
+                new Vector3(InputVector.x * (PedImg.rectTransform.sizeDelta.x / 2.5f), InputVector.z * (PedImg.rectTransform.sizeDelta.y / 2.5f));
         }
         NowVector = JoystickImg.transform.localPosition;
         Direction = (NowVector - StartVector).normalized;
