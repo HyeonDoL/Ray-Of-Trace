@@ -3,13 +3,14 @@ using UniRx;
 
 public class FollowPlayer : MonoBehaviour
 {
-    [SerializeField]
     private PlayerDataContainer container;
 
     private Transform playerTrans;
     
     private void Awake()
     {
+        container = InGameManager.Instance.PlayerDataContainer_readonly;
+
         playerTrans = container.PlayerTrans;
 
         Observable.EveryUpdate()

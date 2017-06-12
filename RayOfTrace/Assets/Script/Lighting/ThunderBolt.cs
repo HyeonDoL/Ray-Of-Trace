@@ -18,7 +18,7 @@ public class ThunderBolt : LightBehaviour
 
         for (int count = 0; count < lightingCount; count++)
         {
-            light.enabled = true;
+            LightObject.SetActive(true);
 
             while (t < 1f)
             {
@@ -29,7 +29,7 @@ public class ThunderBolt : LightBehaviour
 
             t = 0f;
 
-            light.enabled = false;
+            LightObject.SetActive(false);
 
             yield return new WaitForSeconds(delay);
         }

@@ -20,7 +20,7 @@ public class IrregularLight : LightBehaviour
     {
         while(true)
         {
-            int random = Random.Range(1, 100) + 1;
+            int random = Random.Range(0, 100) + 1;
 
             if(random > blinkProbability)
             {
@@ -28,11 +28,11 @@ public class IrregularLight : LightBehaviour
 
                 for (int count = 0; count < randomCount; count++)
                 {
-                    light.enabled = false;
+                    LightObject.SetActive(false);
 
                     yield return new WaitForSeconds(blinkDelay);
 
-                    light.enabled = true;
+                    LightObject.SetActive(true);
 
                     yield return new WaitForSeconds(blinkDelay);
                 }
