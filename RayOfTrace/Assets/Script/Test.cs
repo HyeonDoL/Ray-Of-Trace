@@ -5,13 +5,14 @@ public class Test : MonoBehaviour
     [SerializeField]
     private ThunderBolt thunder;
 
-    [SerializeField]
     private PlayerDataContainer container;
 
     private Transform playerTrans;
 
     private void Awake()
     {
+        container = InGameManager.Instance.PlayerDataContainer_readonly;
+
         playerTrans = container.PlayerTrans;
    }
 

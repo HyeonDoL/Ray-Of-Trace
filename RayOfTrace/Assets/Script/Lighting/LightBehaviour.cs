@@ -7,6 +7,9 @@ public abstract class LightBehaviour : MonoBehaviour
     protected Light light;
 
     [SerializeField]
+    protected GameObject lightObject;
+
+    [SerializeField]
     private bool playOnAwake;
 
     private void Awake()
@@ -24,6 +27,14 @@ public abstract class LightBehaviour : MonoBehaviour
         set
         {
             this.light.intensity = value;
+        }
+    }
+
+    public GameObject LightObject
+    {
+        get
+        {
+            return this.lightObject;
         }
     }
 

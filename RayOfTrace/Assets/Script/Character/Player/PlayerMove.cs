@@ -4,7 +4,6 @@ using UniRx;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
     private PlayerDataContainer container;
 
     [SerializeField]
@@ -14,6 +13,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        container = InGameManager.Instance.PlayerDataContainer_readonly;
+
         playerRigid = container.PlayerRigid;
 
         var horizontalStream = Observable.EveryUpdate()
