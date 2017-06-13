@@ -19,10 +19,10 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private Text Money;
 
     private int money;
-
     private void Start()
     {
-        money = PlayerPrefs.GetInt("Money", 999999999);
+       
+        money = PlayerPrefs.GetInt(Prefstype.Money,999999999);
         Money.text = "" + money;
     }
     private IEnumerator ChangeWindow()
