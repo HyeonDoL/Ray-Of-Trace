@@ -12,6 +12,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject JumpActionButton;
     [SerializeField]
+    private GameObject ItemRange;
+    [SerializeField]
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
@@ -52,11 +54,11 @@ public class IngameButtonManager : MonoBehaviour
                 if (m_isaction)
                 {
                         //action
-                    }
+                }
                 else
                 {
                         //jump
-                    }
+                }
 
                 m_JumpActionButton = false;
                 m_istouchbutton = false;
@@ -66,9 +68,9 @@ public class IngameButtonManager : MonoBehaviour
         clickStream
          .Where(_ => m_ItemButton1 == true)
          .Subscribe(_ => {
-                 //item1
-
-                 m_ItemButton1 = false;
+             //item1
+             ItemRange.SetActive(true);
+             m_ItemButton1 = false;
              m_istouchbutton = false;
          });
 
@@ -76,9 +78,9 @@ public class IngameButtonManager : MonoBehaviour
         clickStream
          .Where(_ => m_ItemButton2 == true)
          .Subscribe(_ => {
-                 //item2
-
-                 m_ItemButton2 = false;
+             //item2
+             ItemRange.SetActive(true);
+             m_ItemButton2 = false;
              m_istouchbutton = false;
          });
 
@@ -118,11 +120,13 @@ public class IngameButtonManager : MonoBehaviour
     {
         m_ItemButton1 = true;
         m_istouchbutton = true;
+       
     }
     public void Ison_item2()
     {
         m_ItemButton2 = true;
         m_istouchbutton = true;
+     
     }
     public void Ison_pausebutton()
     {
