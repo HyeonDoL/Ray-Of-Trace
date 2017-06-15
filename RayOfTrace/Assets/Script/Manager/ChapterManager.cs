@@ -83,4 +83,19 @@ public class ChapterManager : MonoBehaviour {
         MoveWindow.SetActive(true);
         MoveButton.SetActive(true);
     }
+    public void Init_JoyPad()
+    {
+        PlayerPrefs.SetInt(Prefstype.JoystickxPos, -624);
+        PlayerPrefs.SetInt(Prefstype.JoystickyPos, -284);
+        PlayerPrefs.SetInt(Prefstype.JumpButtonxPos, 634);
+        PlayerPrefs.SetInt(Prefstype.JumpButtonyPos, -300);
+        PlayerPrefs.SetInt(Prefstype.Item1xPos, 439);
+        PlayerPrefs.SetInt(Prefstype.Item1yPos, -175);
+        PlayerPrefs.SetInt(Prefstype.Item2xPos, 629);
+        PlayerPrefs.SetInt(Prefstype.Item2yPos, -61);
+    }
+    public void Set_JoyPad()
+    {
+        MoveButton.GetComponent<MoveButtonScript>().ChangeButtonPos();
+    }
 }

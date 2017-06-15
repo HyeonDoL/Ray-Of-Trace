@@ -1,15 +1,7 @@
 ﻿using UnityEngine;
 public static class DataChange
 {
-   //public static void SetPrefs(string prefsname,int index)
-   // {
-   //     PlayerPrefs.SetInt(prefsname, index);
-   // }
 
-   // public static int GetPrefs(string prefsname)
-   // {
-   //    return PlayerPrefs.GetInt(prefsname);
-   // }
 }
 public struct Prefstype
 {
@@ -17,4 +9,12 @@ public struct Prefstype
     public static string ChapterNum = "ChapterNum";
     public static string IsToMain = "IsTomain";
     public static string IsFirstStart = "IsFirstStat";
+    public static string JoystickxPos = "JoystickxPos";
+    public static string JoystickyPos = "JoystickyPos";
+    public static string JumpButtonxPos = "JumpButtonxPos";
+    public static string JumpButtonyPos = "JumpButtonyPos";
+    public static string Item1xPos = "Item1xPos";
+    public static string Item1yPos = "Item1yPos";
+    public static string Item2xPos = "Item2xPos";
+    public static string Item2yPos = "Item2yPos";
 }
