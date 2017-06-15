@@ -15,6 +15,7 @@ public class MoveButtonScript : MonoBehaviour, IDragHandler, IPointerUpHandler, 
     Image Item2;
     private GameObject target;
     private bool DisDrag;
+    private bool isDrag = false;
     private void Start()
     {
         Joystick.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
@@ -32,16 +33,20 @@ public class MoveButtonScript : MonoBehaviour, IDragHandler, IPointerUpHandler, 
 
 
         DisDrag = true;
-      
-            Vector3 mousePosition
-        = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
-            target.transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
-
+        
+        if (target != null)
+        {
+            isDrag = true;
+             Vector3 mousePosition
+         = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10);
+              target.transform.position = Camera.main.ScreenToWorldPoint(mousePosition);
+        }
         
 
     }
     public virtual void OnPointerDown(PointerEventData ped)
     {
+        
         CastRay(ped);
        
     }

@@ -4,7 +4,23 @@ using UniRx;
 
 public class IngameButtonManager : MonoBehaviour
 {
+    public static IngameButtonManager instance = null;
+    public static IngameButtonManager Instance
+    {
+        get
+        {
+            if (instance)
+                return instance;
+            else
+                return instance = new GameObject("*Manager").AddComponent<IngameButtonManager>();
+        }
+    }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+    
     [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
@@ -107,7 +123,7 @@ public class IngameButtonManager : MonoBehaviour
              {
                  ItemRange.SetActive(true);
                  m_ItemButton2active = true;
-                 m_whatitem = 1;
+                 m_whatitem = 2;
              }
              else if (m_ItemButton2active == true)
              {
@@ -115,7 +131,7 @@ public class IngameButtonManager : MonoBehaviour
                  m_ItemButton2active = false;
                  m_whatitem = 0;
              }
-             ItemRange.SetActive(true);
+             
              m_ItemButton2 = false;
              m_istouchbutton = false;
          });
@@ -145,8 +161,6 @@ public class IngameButtonManager : MonoBehaviour
 
 
     }
-
-
     public void Ison_jumpaction()
     {
         m_JumpActionButton = true;
@@ -184,8 +198,13 @@ public class IngameButtonManager : MonoBehaviour
         PlayerPrefs.SetInt("IsTomain", 1);
         SceneChange.Change(SceneType.Loading);
     }
-
-    void init_buttonPos()
+    public void Disable_ItemRange()
+    {
+        m_ItemButton1active = false;
+        m_ItemButton2active = false;
+        m_whatitem = 0;
+    }
+    private void init_buttonPos()
     {
         Joystick.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
                                                 PlayerPrefs.GetInt(Prefstype.JoystickyPos, -284), 0.0f);

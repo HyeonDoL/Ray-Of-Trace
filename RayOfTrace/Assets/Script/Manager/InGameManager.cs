@@ -10,7 +10,7 @@ public class InGameManager : MonoBehaviour
             if (instance)
                 return instance;
             else
-                return instance = new GameObject("InGameManager").AddComponent<InGameManager>();
+                return instance = new GameObject("*Manager").AddComponent<InGameManager>();
         }
     }
 
