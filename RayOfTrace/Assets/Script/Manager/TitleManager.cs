@@ -5,10 +5,8 @@ public class TitleManager : MonoBehaviour
 {
     [SerializeField]
     private NormalLight normalLight;
-
     [SerializeField]
     private RepeatLight repeatLight;
-
     [SerializeField]
     private GameObject ChapterWindow;
     [SerializeField]
@@ -19,7 +17,9 @@ public class TitleManager : MonoBehaviour
     private int m_istomain;
     private void Awake()
     {
-        m_istomain = PlayerPrefs.GetInt("IsTomain", 0);
+
+        PlayerPrefs.SetInt(Prefstype.IsToMain, 0);
+        m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain);
         StartCoroutine(repeatLight.Lighting());
 
     }
@@ -28,7 +28,7 @@ public class TitleManager : MonoBehaviour
     {
         if (m_istomain == 1)
         {
-            PlayerPrefs.SetInt("IsTomain", 0);
+            PlayerPrefs.SetInt(Prefstype.IsToMain, 0);
             TitleWindow.SetActive(false);
             repeatLight.gameObject.SetActive(true);
             ChapterWindow.SetActive(true);
@@ -45,9 +45,7 @@ public class TitleManager : MonoBehaviour
     private IEnumerator ChangeScene()
     {
         repeatLight.gameObject.SetActive(false);
-
         normalLight.LightIntensity = repeatLight.LightIntensity;
-
        yield return StartCoroutine(normalLight.Lighting());
         
         TitleWindow.SetActive(false);
@@ -56,6 +54,5 @@ public class TitleManager : MonoBehaviour
         BackGround.SetActive(true);
         this.gameObject.GetComponent<TitleManager>().enabled= false;
 
-       // SceneChange.Change(SceneType.InGame);
     }
 }
