@@ -110,12 +110,14 @@ public class IngameButtonManager : MonoBehaviour
              if (m_ItemButton1active == false && m_ItemButton2active == false) // 활성화
              {
                  ItemRange.SetActive(true);
+                 Joystick.SetActive(false);
                  m_ItemButton1active = true;
                  m_whatitem = 1;
              }
              else if (m_ItemButton1active == true)
              {
                  ItemRange.SetActive(false);
+                 Joystick.SetActive(true);
                  m_ItemButton1active = false;
                  m_whatitem = 0;
              }
@@ -131,12 +133,14 @@ public class IngameButtonManager : MonoBehaviour
              if (m_ItemButton2active == false && m_ItemButton1active == false)  //활성화
              {
                  ItemRange.SetActive(true);
+                 Joystick.SetActive(false);
                  m_ItemButton2active = true;
                  m_whatitem = 2;
              }
              else if (m_ItemButton2active == true)
              {
                  ItemRange.SetActive(false);
+                 Joystick.SetActive(true);
                  m_ItemButton2active = false;
                  m_whatitem = 0;
              }
@@ -199,6 +203,7 @@ public class IngameButtonManager : MonoBehaviour
         m_ItemButton1active = false;
         m_ItemButton2active = false;
         ItemRange.SetActive(false);
+        Joystick.SetActive(true);
         m_whatitem = 0;
 
     }
