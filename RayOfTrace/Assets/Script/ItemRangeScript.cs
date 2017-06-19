@@ -7,8 +7,9 @@ public class ItemRangeScript : MonoBehaviour {
     private GameObject target;
     private RaycastHit hit;
     private Ray ray;
-  
-    void CastRay()
+    private Vector3 postion;
+    public bool ison = false;
+    public void CastRay()
     {
         target = null;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition); //마우스 포인트 근처 좌표를 만든다. 
@@ -16,7 +17,13 @@ public class ItemRangeScript : MonoBehaviour {
         {
 
             target = hit.collider.gameObject;
-           
+            postion = Input.mousePosition;
+            ison = true;
+            //터치 포지션 과 아이템이 사용됬다라는 사실 전달
         }
+    }
+    public Vector3 ItemPosition()
+    {
+        return postion;
     }
 }

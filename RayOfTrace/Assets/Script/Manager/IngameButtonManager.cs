@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UniRx;
 
 public class IngameButtonManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class IngameButtonManager : MonoBehaviour
     {
         instance = this;
     }
-    
+
     [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
@@ -41,8 +42,9 @@ public class IngameButtonManager : MonoBehaviour
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
-
-
+    [SerializeField]
+    private ItemRangeScript ItemRange_script;
+    private Vector3 m_itemUsePosition;
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
     private bool m_ItemButton1 = false;
@@ -52,13 +54,16 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_isaction = false;
     private bool m_ItemButton1active = false;
     private bool m_ItemButton2active = false;
+    private bool m_isitemUse = false;
     void Start()
     {
         init_buttonPos();
+        var itemStream = Observable.EveryUpdate()
+                .Where(_ => Input.GetMouseButtonDown(0) && 
+                            m_whatitem !=0);
         var clickStream = Observable.EveryUpdate()
          .Where(_ => m_istouchbutton);
         var isAction = clickStream;
-
         // 이미지 변경
         isAction
             .Where(_ => m_isaction == true)
@@ -72,7 +77,11 @@ public class IngameButtonManager : MonoBehaviour
             {
                 JumpActionButton.GetComponent<Image>().sprite = Jump;
             });
-
+        itemStream
+            .Subscribe(_ =>
+            {
+                ItemUse();
+            });
 
 
         // 점프 , 액션 버튼 눌렀을때
@@ -82,11 +91,11 @@ public class IngameButtonManager : MonoBehaviour
 
                 if (m_isaction)
                 {
-                        //action
+                    //action
                 }
                 else
                 {
-                        //jump
+                    //jump
                 }
 
                 m_JumpActionButton = false;
@@ -98,13 +107,13 @@ public class IngameButtonManager : MonoBehaviour
          .Where(_ => m_ItemButton1 == true)
          .Subscribe(_ => {
              //item1
-             if(m_ItemButton1active == false && m_ItemButton2active == false) // 활성화
+             if (m_ItemButton1active == false && m_ItemButton2active == false) // 활성화
              {
                  ItemRange.SetActive(true);
                  m_ItemButton1active = true;
                  m_whatitem = 1;
              }
-             else if(m_ItemButton1active == true)
+             else if (m_ItemButton1active == true)
              {
                  ItemRange.SetActive(false);
                  m_ItemButton1active = false;
@@ -131,11 +140,10 @@ public class IngameButtonManager : MonoBehaviour
                  m_ItemButton2active = false;
                  m_whatitem = 0;
              }
-             
+
              m_ItemButton2 = false;
              m_istouchbutton = false;
          });
-
         // 일시정지 버튼 눌렀을때
         clickStream
          .Where(_ => m_PauseButton == true)
@@ -161,6 +169,39 @@ public class IngameButtonManager : MonoBehaviour
 
 
     }
+    private void ItemUse()
+    {
+        // 아이템 사용되는곳
+        if (m_whatitem !=0)
+        {
+            ItemRange_script.CastRay();
+            m_itemUsePosition = ItemRange_script.ItemPosition();
+            m_isitemUse = ItemRange_script.ison;
+            //item1
+            if (m_whatitem == 1 && m_isitemUse == true)  //item1 use
+            {
+                Debug.Log(m_itemUsePosition);
+                ItemUsed();
+            }
+            else if (m_whatitem == 2 && m_isitemUse == true) // item2 use
+            {
+                Debug.Log(m_itemUsePosition);
+                ItemUsed();
+            }
+           
+        }
+
+    }
+    private void ItemUsed()
+    {
+        m_isitemUse = false;
+        ItemRange_script.ison = false;
+        m_ItemButton1active = false;
+        m_ItemButton2active = false;
+        ItemRange.SetActive(false);
+        m_whatitem = 0;
+
+    }
     public void Ison_jumpaction()
     {
         m_JumpActionButton = true;
@@ -170,13 +211,13 @@ public class IngameButtonManager : MonoBehaviour
     {
         m_ItemButton1 = true;
         m_istouchbutton = true;
-        
+
     }
     public void Ison_item2()
     {
         m_ItemButton2 = true;
         m_istouchbutton = true;
-        
+
     }
     public void Ison_pausebutton()
     {
@@ -215,6 +256,6 @@ public class IngameButtonManager : MonoBehaviour
         Item2.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.Item2xPos, 629),
                                                PlayerPrefs.GetInt(Prefstype.Item2yPos, -61), 0.0f);
     }
-  
-    
+
+
 }

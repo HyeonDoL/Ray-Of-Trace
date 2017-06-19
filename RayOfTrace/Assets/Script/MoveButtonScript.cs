@@ -58,13 +58,24 @@ public class MoveButtonScript : MonoBehaviour, IDragHandler, IPointerUpHandler, 
     public void ChangeButtonPos()
     {
         PlayerPrefs.SetInt(Prefstype.JoystickxPos, (int)Joystick.transform.localPosition.x);
-        PlayerPrefs.SetInt(Prefstype.JoystickyPos, (int)Joystick.transform.localPosition.z);
+        PlayerPrefs.SetInt(Prefstype.JoystickyPos, (int)Joystick.transform.localPosition.y);
         PlayerPrefs.SetInt(Prefstype.JumpButtonxPos, (int)JumpButton.transform.localPosition.x);
-        PlayerPrefs.SetInt(Prefstype.JumpButtonyPos, (int)JumpButton.transform.localPosition.z);
+        PlayerPrefs.SetInt(Prefstype.JumpButtonyPos, (int)JumpButton.transform.localPosition.y);
         PlayerPrefs.SetInt(Prefstype.Item1xPos, (int)Item1.transform.localPosition.x);
-        PlayerPrefs.SetInt(Prefstype.Item1yPos, (int)Item1.transform.localPosition.z);
+        PlayerPrefs.SetInt(Prefstype.Item1yPos, (int)Item1.transform.localPosition.y);
         PlayerPrefs.SetInt(Prefstype.Item2xPos, (int)Item2.transform.localPosition.x);
-        PlayerPrefs.SetInt(Prefstype.Item2yPos, (int)Item2.transform.localPosition.z);
+        PlayerPrefs.SetInt(Prefstype.Item2yPos, (int)Item2.transform.localPosition.y);
+    }
+    public void Setjoypadposition()
+    {
+        Joystick.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
+                                                PlayerPrefs.GetInt(Prefstype.JoystickyPos, -284), 0.0f);
+        JumpButton.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.JumpButtonxPos, 634),
+                                                    PlayerPrefs.GetInt(Prefstype.JumpButtonyPos, -300), 0.0f);
+        Item1.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.Item1xPos, 439),
+                                               PlayerPrefs.GetInt(Prefstype.Item1yPos, -175), 0.0f);
+        Item2.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.Item2xPos, 629),
+                                               PlayerPrefs.GetInt(Prefstype.Item2yPos, -61), 0.0f);
     }
     void CastRay(PointerEventData ped)  
     {
@@ -78,4 +89,5 @@ public class MoveButtonScript : MonoBehaviour, IDragHandler, IPointerUpHandler, 
             OnDrag(ped);
         }
     }
+
 }
