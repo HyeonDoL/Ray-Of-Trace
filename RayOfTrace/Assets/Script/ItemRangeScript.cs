@@ -5,18 +5,24 @@ using UnityEngine;
 public class ItemRangeScript : MonoBehaviour {
 
     private GameObject target;
-    private RaycastHit hit;
-    private Ray ray;
-  
-    void CastRay()
+    private RaycastHit2D hit;
+    private Vector3 postion;
+    public bool ison = false;
+    public void CastRay()
     {
         target = null;
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition); //마우스 포인트 근처 좌표를 만든다. 
-        if (true == (Physics.Raycast(ray.origin, ray.direction * 10, out hit)))   //마우스 근처에 오브젝트가 있는지 확인
-        {
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        hit = Physics2D.Raycast(pos, Vector2.zero, 0f);
 
+        if (hit.collider != null)
+        {
             target = hit.collider.gameObject;
-           
+            postion = Input.mousePosition;
+            ison = true;
         }
+    }
+    public Vector3 ItemPosition()
+    {
+        return postion;
     }
 }

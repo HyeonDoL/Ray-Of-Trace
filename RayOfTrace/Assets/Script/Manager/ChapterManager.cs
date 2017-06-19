@@ -8,7 +8,7 @@ public class ChapterManager : MonoBehaviour {
    
     [SerializeField] private NormalLight normalLight;
     [SerializeField] private RepeatLight repeatLight;
-
+    [SerializeField] private MoveButtonScript m_Movebuttonscript;
     [SerializeField] private GameObject ChapterWindow;
     [SerializeField] private GameObject OptionWindow;
     [SerializeField] private GameObject ShopWindow;
@@ -82,6 +82,7 @@ public class ChapterManager : MonoBehaviour {
         OptionWindow.SetActive(false);
         MoveWindow.SetActive(true);
         MoveButton.SetActive(true);
+        m_Movebuttonscript.Setjoypadposition();
     }
     public void Init_JoyPad()
     {
@@ -93,9 +94,12 @@ public class ChapterManager : MonoBehaviour {
         PlayerPrefs.SetInt(Prefstype.Item1yPos, -175);
         PlayerPrefs.SetInt(Prefstype.Item2xPos, 629);
         PlayerPrefs.SetInt(Prefstype.Item2yPos, -61);
+        m_Movebuttonscript.Setjoypadposition();
     }
     public void Set_JoyPad()
     {
-        MoveButton.GetComponent<MoveButtonScript>().ChangeButtonPos();
+        m_Movebuttonscript.ChangeButtonPos();
+        m_Movebuttonscript.Setjoypadposition();
     }
+   
 }
