@@ -58,8 +58,15 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
+
+
+    [SerializeField]
+    private PlayerManager playerManager;
+
     void Start()
     {
+        playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
+
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -100,7 +107,7 @@ public class IngameButtonManager : MonoBehaviour
                 }
                 else
                 {
-                    //jump
+                    playerManager.Jump();
                 }
 
                 m_JumpActionButton = false;

@@ -1,11 +1,7 @@
 ﻿using UnityEngine;
 
-using UniRx;
-
 public class PlayerMove : MonoBehaviour
 {
-    private PlayerDataContainer container;
-
     [SerializeField]
     private float speed;
 
@@ -13,26 +9,13 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
-        container = InGameManager.Instance.PlayerDataContainer_readonly;
+        playerRigid = InGameManager.Instance.PlayerDataContainer_readonly.PlayerRigid;
+    }
 
-        playerRigid = container.PlayerRigid;
+    public void Move(Vector2 direction)
+    {
+        direction.Normalize();
 
-        var horizontalStream = Observable.EveryUpdate()
-            .Select(_ => Input.GetAxis("Horizontal"))
-            .Select(horizontal => horizontal == 0 ? 0 : (horizontal > 0 ? 1 : -1));
-
-        var moveStream = horizontalStream
-            .Select(horizontal => new Vector2(horizontal * speed * Time.deltaTime, 0))
-            .Subscribe(movement => playerRigid.MovePosition((Vector2)transform.position + movement));
-
-        var flipStream = horizontalStream
-            .Where(horizontal => horizontal != 0)
-            .DistinctUntilChanged()
-            .Subscribe(_ =>
-            {
-                this.transform.localScale = new Vector3(this.transform.localScale.x * -1,
-                                                                    this.transform.localScale.y,
-                                                                    this.transform.localScale.z);
-            });
+        playerRigid.MovePosition((Vector2)this.transform.position + direction * speed * Time.deltaTime);
     }
 }
