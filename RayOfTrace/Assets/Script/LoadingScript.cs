@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LoadingScript : MonoBehaviour
 {
@@ -36,7 +37,8 @@ public class LoadingScript : MonoBehaviour
     public IEnumerator StartLoad(string strSceneName)
     {
        
-        async_operation = Application.LoadLevelAsync(strSceneName);
+        async_operation = SceneManager.LoadSceneAsync(strSceneName); 
+       
         async_operation.allowSceneActivation = false;
 
         if (IsDone == false)
@@ -46,7 +48,6 @@ public class LoadingScript : MonoBehaviour
             while (async_operation.progress < 0.9f)
             {
                 slider.value = async_operation.progress;
-                Debug.Log("isLoad?");
                 yield return true;
             }
         }
