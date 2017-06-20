@@ -80,7 +80,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (DisDrag)
             playerManager.Move(Direction);
