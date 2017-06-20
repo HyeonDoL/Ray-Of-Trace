@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UniRx;
 
 public class IngameButtonManager : MonoBehaviour
@@ -55,29 +55,32 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton1active = false;
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
+    private bool m_isitemUsed = false;
     void Start()
     {
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
-                .Where(_ => Input.GetMouseButtonDown(0) && 
-                            m_whatitem !=0);
+                .Where(_ => Input.GetMouseButtonUp(0) && 
+                            m_whatitem !=0 &&
+                            !m_PauseButton);
         var clickStream = Observable.EveryUpdate()
          .Where(_ => m_istouchbutton);
         var isAction = clickStream;
         // 이미지 변경
         isAction
-            .Where(_ => m_isaction == true)
+            .Where(_ => !m_isaction)
             .Subscribe(_ =>
             {
                 JumpActionButton.GetComponent<Image>().sprite = Action;
             });
         isAction
-            .Where(_ => m_isaction == false)
+            .Where(_ => !m_isaction)
             .Subscribe(_ =>
             {
                 JumpActionButton.GetComponent<Image>().sprite = Jump;
             });
         itemStream
+            .Where(_=> !m_isitemUsed)
             .Subscribe(_ =>
             {
                 ItemUse();
@@ -86,7 +89,7 @@ public class IngameButtonManager : MonoBehaviour
 
         // 점프 , 액션 버튼 눌렀을때
         clickStream
-            .Where(_ => m_JumpActionButton == true)
+            .Where(_ => m_JumpActionButton)
             .Subscribe(_ => {
 
                 if (m_isaction)
@@ -104,53 +107,66 @@ public class IngameButtonManager : MonoBehaviour
 
         // 아이템1 버튼 눌렀을때
         clickStream
-         .Where(_ => m_ItemButton1 == true)
+         .Where(_ => m_ItemButton1)
          .Subscribe(_ => {
              //item1
-             if (m_ItemButton1active == false && m_ItemButton2active == false) // 활성화
+             if (!m_ItemButton1active) // 활성화
              {
                  ItemRange.SetActive(true);
                  Joystick.SetActive(false);
+                 JumpActionButton.SetActive(false);
+                 Item1.SetActive(false);
+                 Item2.SetActive(false);
                  m_ItemButton1active = true;
                  m_whatitem = 1;
              }
-             else if (m_ItemButton1active == true)
-             {
-                 ItemRange.SetActive(false);
-                 Joystick.SetActive(true);
-                 m_ItemButton1active = false;
-                 m_whatitem = 0;
-             }
+             //else if (m_ItemButton1active == true)
+             //{
+
+             //    ItemRange.SetActive(false);
+             //    Joystick.SetActive(true);
+             //    JumpActionButton.SetActive(true);
+             //    Item1.SetActive(true);
+             //    Item2.SetActive(true);
+             //    m_ItemButton1active = false;
+             //    m_whatitem = 0;
+             //}
              m_ItemButton1 = false;
              m_istouchbutton = false;
          });
 
         // 아이템2 버튼 눌렀을때
         clickStream
-         .Where(_ => m_ItemButton2 == true)
+         .Where(_ => m_ItemButton2)
          .Subscribe(_ => {
              //item2
-             if (m_ItemButton2active == false && m_ItemButton1active == false)  //활성화
+             if (!m_ItemButton2active)
              {
                  ItemRange.SetActive(true);
                  Joystick.SetActive(false);
+                 JumpActionButton.SetActive(false);
+                 Item1.SetActive(false);
+                 Item2.SetActive(false);
                  m_ItemButton2active = true;
                  m_whatitem = 2;
              }
-             else if (m_ItemButton2active == true)
-             {
-                 ItemRange.SetActive(false);
-                 Joystick.SetActive(true);
-                 m_ItemButton2active = false;
-                 m_whatitem = 0;
-             }
+             //else if (m_ItemButton2active == true)
+             //{
+             //    ItemRange.SetActive(false);
+             //    Joystick.SetActive(true);
+             //    JumpActionButton.SetActive(true);
+             //    Item1.SetActive(true);
+             //    Item2.SetActive(true);
+             //    m_ItemButton2active = false;
+             //    m_whatitem = 0;
+             //}
 
              m_ItemButton2 = false;
              m_istouchbutton = false;
          });
         // 일시정지 버튼 눌렀을때
         clickStream
-         .Where(_ => m_PauseButton == true)
+         .Where(_ => m_PauseButton)
          .Subscribe(_ => {
 
              PauseWindow.SetActive(true);
@@ -160,19 +176,21 @@ public class IngameButtonManager : MonoBehaviour
          });
         // 게임으로 돌아가기
         clickStream
-         .Where(_ => m_PauseButton == false)
+         .Where(_ => !m_PauseButton)
          .Subscribe(_ => {
-
+            
              PauseWindow.SetActive(false);
              Buttons.SetActive(true);
-             Time.timeScale = 1;
              m_istouchbutton = false;
+             Time.timeScale = 1;
+            
          });
 
 
 
-
+       
     }
+    
     private void ItemUse()
     {
         // 아이템 사용되는곳
@@ -182,17 +200,18 @@ public class IngameButtonManager : MonoBehaviour
             m_itemUsePosition = ItemRange_script.ItemPosition();
             m_isitemUse = ItemRange_script.ison;
             //item1
-            if (m_whatitem == 1 && m_isitemUse == true)  //item1 use
+            if (m_whatitem == 1 && m_isitemUse)  //item1 use
             {
                 Debug.Log(m_itemUsePosition);
                 ItemUsed();
             }
-            else if (m_whatitem == 2 && m_isitemUse == true) // item2 use
+            else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
                 ItemUsed();
             }
-           
+            else if (!m_isitemUse)
+                ItemUsed();
         }
 
     }
@@ -204,6 +223,9 @@ public class IngameButtonManager : MonoBehaviour
         m_ItemButton2active = false;
         ItemRange.SetActive(false);
         Joystick.SetActive(true);
+        Item1.SetActive(true);
+        Item2.SetActive(true);
+        JumpActionButton.SetActive(true);
         m_whatitem = 0;
 
     }
@@ -233,15 +255,18 @@ public class IngameButtonManager : MonoBehaviour
     {
         m_PauseButton = false;
         m_istouchbutton = true;
+
     }
     public void Ison_retrybutton()
     {
-
+        Time.timeScale = 1;
+        PlayerPrefs.SetInt(Prefstype.IsToMain, 0);
+        SceneChange.Change(SceneType.Loading);
     }
     public void Ison_tomainscene()
     {
         Time.timeScale = 1;
-        PlayerPrefs.SetInt("IsTomain", 1);
+        PlayerPrefs.SetInt(Prefstype.IsToMain, 1);
         SceneChange.Change(SceneType.Loading);
     }
     public void Disable_ItemRange()
@@ -252,15 +277,20 @@ public class IngameButtonManager : MonoBehaviour
     }
     private void init_buttonPos()
     {
-        Joystick.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
-                                                PlayerPrefs.GetInt(Prefstype.JoystickyPos, -284), 0.0f);
-        JumpButton.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.JumpButtonxPos, 634),
-                                                    PlayerPrefs.GetInt(Prefstype.JumpButtonyPos, -300), 0.0f);
-        Item1.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.Item1xPos, 439),
-                                               PlayerPrefs.GetInt(Prefstype.Item1yPos, -175), 0.0f);
-        Item2.transform.localPosition = new Vector3(PlayerPrefs.GetInt(Prefstype.Item2xPos, 629),
-                                               PlayerPrefs.GetInt(Prefstype.Item2yPos, -61), 0.0f);
+        Joystick.transform.localPosition = 
+            new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
+                        PlayerPrefs.GetInt(Prefstype.JoystickyPos, -284), 0.0f);
+        JumpButton.transform.localPosition = 
+            new Vector3(PlayerPrefs.GetInt(Prefstype.JumpButtonxPos, 634),
+                        PlayerPrefs.GetInt(Prefstype.JumpButtonyPos, -300), 0.0f);
+        Item1.transform.localPosition = 
+            new Vector3(PlayerPrefs.GetInt(Prefstype.Item1xPos, 439),
+                        PlayerPrefs.GetInt(Prefstype.Item1yPos, -175), 0.0f);
+        Item2.transform.localPosition = 
+            new Vector3(PlayerPrefs.GetInt(Prefstype.Item2xPos, 629),
+                        PlayerPrefs.GetInt(Prefstype.Item2yPos, -61), 0.0f);
     }
 
 
 }
+
