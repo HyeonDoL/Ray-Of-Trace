@@ -65,7 +65,7 @@ public class ChapterManager : MonoBehaviour {
     public void ChpaterButton(int index)
     {
         ChangeWindow();
-        PlayerPrefs.SetInt("ChapterNum", index);
+        PlayerPrefs.SetInt(Prefstype.ChapterNum, index);
         SceneChange.Change(SceneType.Loading);
     }
     public void BuySkin(int index)

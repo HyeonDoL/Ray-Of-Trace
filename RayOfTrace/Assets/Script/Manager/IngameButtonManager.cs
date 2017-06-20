@@ -23,6 +23,8 @@ public class IngameButtonManager : MonoBehaviour
     }
 
     [SerializeField]
+    private JoystickController m_joystickController;
+    [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
     private GameObject Buttons;
@@ -60,7 +62,7 @@ public class IngameButtonManager : MonoBehaviour
     {
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
-                .Where(_ => Input.GetMouseButtonUp(0) && 
+                .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
                             m_whatitem !=0 &&
                             !m_PauseButton);
         var clickStream = Observable.EveryUpdate()
@@ -227,7 +229,7 @@ public class IngameButtonManager : MonoBehaviour
         Item2.SetActive(true);
         JumpActionButton.SetActive(true);
         m_whatitem = 0;
-
+        m_joystickController.InitPos();
     }
     public void Ison_jumpaction()
     {
@@ -250,12 +252,13 @@ public class IngameButtonManager : MonoBehaviour
     {
         m_PauseButton = true;
         m_istouchbutton = true;
+        ItemUsed();
     }
     public void Ison_closepausebutton()
     {
         m_PauseButton = false;
         m_istouchbutton = true;
-
+        m_joystickController.InitPos();
     }
     public void Ison_retrybutton()
     {

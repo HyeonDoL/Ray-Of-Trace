@@ -13,8 +13,8 @@ public class LoadingScript : MonoBehaviour
 
     void Start()
     {
-        m_chapternum = PlayerPrefs.GetInt("ChapterNum");
-        m_istomain = PlayerPrefs.GetInt("IsTomain");
+        m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
+        m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain);
         Debug.Log(m_istomain);
         if(m_istomain == 0)
             StartCoroutine(StartLoad(SceneType.InGame));
