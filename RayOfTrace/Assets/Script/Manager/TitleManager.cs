@@ -17,11 +17,8 @@ public class TitleManager : MonoBehaviour
     private int m_istomain;
     private void Awake()
     {
-
-        PlayerPrefs.SetInt(Prefstype.IsToMain, 0);
-        m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain);
+        m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain,0);
         StartCoroutine(repeatLight.Lighting());
-
     }
 
     private void Start()

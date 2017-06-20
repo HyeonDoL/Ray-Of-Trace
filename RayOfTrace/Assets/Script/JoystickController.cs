@@ -19,16 +19,12 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
 
    [SerializeField] private Vector3 NowVector;
    [SerializeField] private Vector3 Direction;
+
     
-
-
-    void Awake()
+    void Start()
     {
 
-
-    
-
-
+        
     }
 
 
@@ -73,9 +69,15 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         DisDrag = false;
         InputVector = Vector3.zero;
         JoystickImg.rectTransform.anchoredPosition = Vector3.zero;
-      
+
     }
 
-  
+    public void InitPos()
+    {
+        DisDrag = false;
+        InputVector = Vector3.zero;
+        JoystickImg.rectTransform.anchoredPosition = Vector3.zero;
+
+    }
 }
 
