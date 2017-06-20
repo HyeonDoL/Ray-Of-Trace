@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerDataContainer : MonoBehaviour
 {
@@ -9,6 +7,9 @@ public class PlayerDataContainer : MonoBehaviour
 
     [SerializeField]
     private Rigidbody2D playerRigid;
+
+    [SerializeField]
+    private PlayerManager manager;
 
     public GameObject Player
     {
@@ -22,19 +23,9 @@ public class PlayerDataContainer : MonoBehaviour
         }
     }
 
-    public Transform PlayerTrans
-    {
-        get
-        {
-            return this.player.transform;
-        }
-    }
+    public Transform PlayerTrans { get { return player.transform; } }
 
-    public Rigidbody2D PlayerRigid
-    {
-        get
-        {
-            return this.playerRigid;
-        }
-    }
+    public Rigidbody2D PlayerRigid { get { return playerRigid; } }
+
+    public PlayerManager _PlayerManager { get { return manager; } }
 }

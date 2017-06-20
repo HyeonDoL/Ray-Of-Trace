@@ -20,13 +20,12 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
    [SerializeField] private Vector3 NowVector;
    [SerializeField] private Vector3 Direction;
 
-    
-    void Start()
+    private PlayerManager playerManager;
+
+    private void Awake()
     {
-
-        
+        playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
     }
-
 
     public virtual void OnDrag(PointerEventData ped)
     {
@@ -57,6 +56,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         NowVector = JoystickImg.transform.localPosition;
         Direction = (NowVector - StartVector).normalized;
 
+        Direction.y = 0;
     }
     public virtual void OnPointerDown(PointerEventData ped)
     {
@@ -79,5 +79,10 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         JoystickImg.rectTransform.anchoredPosition = Vector3.zero;
 
     }
-}
 
+    private void Update()
+    {
+        if (DisDrag)
+            playerManager.Move(Direction);
+    }
+}
