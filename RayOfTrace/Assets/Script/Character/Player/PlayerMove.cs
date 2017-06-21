@@ -15,5 +15,6 @@ public class PlayerMove : MonoBehaviour
     public void Move(Vector2 direction)
     {
         playerTrans.Translate(direction * speed * Time.deltaTime);
+       
     }
 }

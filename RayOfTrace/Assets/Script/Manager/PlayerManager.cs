@@ -24,8 +24,16 @@ public class PlayerManager : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
+        if(direction.x < 0 )
+        {
+            this.transform.localScale = new Vector3 (-0.13f,0.13f);
+        }
+        else
+        {
+            this.transform.localScale = new Vector3(0.13f, 0.13f);
+        }
         playerMove.Move(direction);
-
+        
         playerAni.ChangeAni(PlayerState.Move);
     }
 
