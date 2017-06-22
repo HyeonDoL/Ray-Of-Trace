@@ -59,9 +59,7 @@ public class AI : MonoBehaviour {
                 ChangeAnimation(MonsterState.Walk);
                 Move(Vector3.left);
                 this.transform.localScale = new Vector3(1, 1, 1);
-            }
-         
-           
+            } 
         }
         else
         {
@@ -75,7 +73,6 @@ public class AI : MonoBehaviour {
     public void Move(Vector3 direction)
     {
         MonsterTrans.Translate(direction * speed * Time.deltaTime);
-
   
     }
 
