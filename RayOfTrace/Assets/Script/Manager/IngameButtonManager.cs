@@ -66,7 +66,7 @@ public class IngameButtonManager : MonoBehaviour
     {
         if (!m_isaction)
         {
-            if (Input.GetKeyDown(KeyCode.W) && playerManager.IsGround)
+            if (Input.GetKeyDown(KeyCode.W)/* && playerManager.IsGround*/)
             {
 
                 playerManager.Jump();

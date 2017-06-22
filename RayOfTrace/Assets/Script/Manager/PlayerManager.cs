@@ -22,20 +22,12 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private PlayerAnimation playerAni;
 
+    [SerializeField]
+    private PlayerInteraction playerInteraction;
+
     private BoxCollider2D m_playerBoxcollider;
   
-<<<<<<< HEAD
     public bool IsGround { get { return playerJump.IsGround; } }
-
-    public bool Getjump()
-    {
-        return playerJump.IsGround;
-    }
-=======
-
-    public bool IsGround { get { return playerJump.IsGround; } }
-
->>>>>>> da0649a37771bdfa32f79117242e0a8764250973
 
     public void Idle()
     {
@@ -55,5 +47,10 @@ public class PlayerManager : MonoBehaviour
         playerJump.Jump();
 
         playerAni.ChangeAni(PlayerState.Jump);
+    }
+
+    public void Interaction()
+    {
+        playerInteraction.Interaction();
     }
 }
