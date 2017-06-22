@@ -102,7 +102,7 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
-      //  Inkrigid = Ink.GetComponent<Rigidbody2D>();
+        Inkrigid = Ink.GetComponent<Rigidbody2D>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -143,11 +143,11 @@ public class IngameButtonManager : MonoBehaviour
                     playerManager.Interaction();
 
                     //action
-                    if (!m_ishaveJem)
+                    if (m_ishaveJem)
                     {
                         //Fucking No jem
                         Jem.SetActive(true);
-                        m_ishaveJem = true;
+                        
                     }
                     else
                     {
@@ -267,13 +267,17 @@ public class IngameButtonManager : MonoBehaviour
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
-             //   Inkrigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
+                Ink.SetActive(true);
                 playerManager.Throw();
                 ItemUsed();
             }
             else if (!m_isitemUse)
                 ItemUsed();
         }
+
+    }
+    public void useInk()
+    {
 
     }
     private void ItemUsed()
@@ -339,7 +343,11 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void ClearAnimation()
     {
+        Inkrigid.simulated = true;
         playerManager.Idle();
+        Ink.transform.position = m_itemUsePosition;
+        
+       
     }
     private void init_buttonPos()
     {
