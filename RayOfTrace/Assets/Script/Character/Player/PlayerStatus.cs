@@ -6,4 +6,8 @@ public class PlayerStatus : MonoBehaviour
 {
     public bool IsCrystal { set; get; }
 
+    private void Awake()
+    {
+        IsCrystal = false;
+    }
 }

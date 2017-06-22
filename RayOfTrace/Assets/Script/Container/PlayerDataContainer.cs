@@ -11,6 +11,9 @@ public class PlayerDataContainer : MonoBehaviour
     [SerializeField]
     private PlayerManager manager;
 
+    [SerializeField]
+    private PlayerStatus playerStatus;
+
     public GameObject Player
     {
         get
@@ -28,4 +31,6 @@ public class PlayerDataContainer : MonoBehaviour
     public Rigidbody2D PlayerRigid { get { return playerRigid; } }
 
     public PlayerManager _PlayerManager { get { return manager; } }
+
+    public PlayerStatus _PlayerStatus { get { return playerStatus; } }
 }
