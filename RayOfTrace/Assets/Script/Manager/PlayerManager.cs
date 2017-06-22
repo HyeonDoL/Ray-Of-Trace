@@ -22,26 +22,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private PlayerAnimation playerAni;
     private BoxCollider2D m_playerBoxcollider;
-    [SerializeField]
-    public bool m_isground = false;
-    public void Start()
+  
+    public bool Getjump()
     {
-        m_playerBoxcollider = this.GetComponent<BoxCollider2D>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            m_isground = true;
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            m_isground = false;
-        }
+        return playerJump.Getjump();
     }
     public void Idle()
     {

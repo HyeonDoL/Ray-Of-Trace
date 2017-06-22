@@ -61,17 +61,17 @@ public class IngameButtonManager : MonoBehaviour
 
     [SerializeField]
     private PlayerManager playerManager;
-   
+  
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)&& playerManager.m_isground)
+        if (Input.GetKeyDown(KeyCode.W)&& playerManager.Getjump())
         {
 
             playerManager.Jump();
 
 
         }
-        if (playerManager.m_isground)
+        if (playerManager.Getjump())
         {
             JumpActionButton.GetComponent<Image>().sprite = state.highlightedSprite;
         }
