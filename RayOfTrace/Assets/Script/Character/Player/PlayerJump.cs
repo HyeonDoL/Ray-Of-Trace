@@ -9,7 +9,7 @@ public class PlayerJump : MonoBehaviour
 
     private PlayerManager playerManager;
     
-    public bool IsGround { private set; get; }
+    public bool IsGround { set; get; }
 
     private void Awake()
     {

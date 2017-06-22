@@ -25,10 +25,11 @@ public class PlayerManager : MonoBehaviour
   
     public bool Getjump()
     {
-        return playerJump.Getjump();
+        return playerJump.IsGround;
     }
     public void Idle()
     {
+        playerJump.IsGround = true;
         playerAni.ChangeAni(PlayerState.Idle);
     }
 
