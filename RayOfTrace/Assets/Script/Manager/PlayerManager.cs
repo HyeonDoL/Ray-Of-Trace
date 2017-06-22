@@ -24,15 +24,10 @@ public class PlayerManager : MonoBehaviour
 
     private BoxCollider2D m_playerBoxcollider;
   
-<<<<<<< HEAD
+
     public bool IsGround { get { return playerJump.IsGround; } }
 
-=======
-    public bool Getjump()
-    {
-        return playerJump.IsGround;
-    }
->>>>>>> e402a8b2a712da88ba7b0a7ee9e17b2c7073d55b
+
     public void Idle()
     {
         playerJump.IsGround = true;
