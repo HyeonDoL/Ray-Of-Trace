@@ -7,11 +7,11 @@ public class Ink : MonoBehaviour
     [SerializeField]
     private Transform handTrans;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-            return;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //        return;
 
-        Destroy(this.gameObject);
-    }
+    //    Destroy(this.gameObject);
+    //}
 }

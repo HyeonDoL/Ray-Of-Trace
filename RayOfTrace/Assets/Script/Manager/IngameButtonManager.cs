@@ -25,6 +25,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private JoystickController m_joystickController;
     [SerializeField]
+    private GameObject Ink;
+    [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
     private GameObject Buttons;
@@ -47,6 +49,7 @@ public class IngameButtonManager : MonoBehaviour
  
     [SerializeField]
     private ItemRangeScript ItemRange_script;
+    private Rigidbody2D Inkrigid;
     private Vector3 m_itemUsePosition;
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
@@ -59,7 +62,6 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
-<<<<<<< HEAD
 
     public bool IsAction
     {
@@ -69,9 +71,8 @@ public class IngameButtonManager : MonoBehaviour
         }
     }
 
-=======
     private bool m_ishaveJem = false;
->>>>>>> 630fc665ba7567329a949ebebe0b5dc094dbf3c7
+
     public SpriteState state;
 
     [SerializeField]
@@ -101,7 +102,7 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
-
+        Inkrigid = Ink.GetComponent<Rigidbody2D>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -138,9 +139,9 @@ public class IngameButtonManager : MonoBehaviour
 
                 if (m_isaction)
                 {
-<<<<<<< HEAD
+
                     playerManager.Interaction();
-=======
+
                     //action
                     if (!m_ishaveJem)
                     {
@@ -152,7 +153,7 @@ public class IngameButtonManager : MonoBehaviour
                     {
                         // clear
                     }
->>>>>>> 630fc665ba7567329a949ebebe0b5dc094dbf3c7
+
                 }
                 else
                 {
@@ -266,6 +267,7 @@ public class IngameButtonManager : MonoBehaviour
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
+                Inkrigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
                 playerManager.Throw();
                 ItemUsed();
             }
