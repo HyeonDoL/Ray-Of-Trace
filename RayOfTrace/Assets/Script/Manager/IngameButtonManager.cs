@@ -102,7 +102,7 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
-        Inkrigid = Ink.GetComponent<Rigidbody2D>();
+      //  Inkrigid = Ink.GetComponent<Rigidbody2D>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -267,7 +267,7 @@ public class IngameButtonManager : MonoBehaviour
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
-                Inkrigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
+             //   Inkrigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
                 playerManager.Throw();
                 ItemUsed();
             }
