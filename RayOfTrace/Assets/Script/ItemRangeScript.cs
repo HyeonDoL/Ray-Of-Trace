@@ -17,7 +17,7 @@ public class ItemRangeScript : MonoBehaviour {
         if (hit.collider != null)
         {
             target = hit.collider.gameObject;
-            postion = Input.mousePosition;
+            postion = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             ison = true;
         }
     }

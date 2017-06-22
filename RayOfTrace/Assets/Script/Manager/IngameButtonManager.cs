@@ -262,6 +262,7 @@ public class IngameButtonManager : MonoBehaviour
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
+                playerManager.Throw();
                 ItemUsed();
             }
             else if (!m_isitemUse)
@@ -329,6 +330,10 @@ public class IngameButtonManager : MonoBehaviour
         m_ItemButton1active = false;
         m_ItemButton2active = false;
         m_whatitem = 0;
+    }
+    public void ClearAnimation()
+    {
+        playerManager.Idle();
     }
     private void init_buttonPos()
     {

@@ -48,7 +48,10 @@ public class PlayerManager : MonoBehaviour
 
         playerAni.ChangeAni(PlayerState.Jump);
     }
-
+    public void Throw()
+    {
+        playerAni.ChangeAni(PlayerState.ShadowItem);
+    }
     public void Interaction()
     {
         playerInteraction.Interaction();
