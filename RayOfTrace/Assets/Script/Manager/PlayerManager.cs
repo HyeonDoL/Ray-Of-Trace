@@ -2,7 +2,7 @@
 
 public enum PlayerState
 {
-    Idle,
+    Idle = 0,
     Move,
     Jump,
     Damage,
@@ -21,6 +21,11 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     private PlayerAnimation playerAni;
+
+    public void Idle()
+    {
+        playerAni.ChangeAni(PlayerState.Idle);
+    }
 
     public void Move(Vector2 direction)
     {

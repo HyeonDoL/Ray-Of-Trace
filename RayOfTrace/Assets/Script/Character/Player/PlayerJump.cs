@@ -7,13 +7,38 @@ public class PlayerJump : MonoBehaviour
 
     private Rigidbody2D playerRigid;
 
+    private PlayerManager playerManager;
+    
+    private bool isGround;
+
     private void Awake()
     {
         playerRigid = InGameManager.Instance.PlayerDataContainer_readonly.PlayerRigid;
+
+        playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
     }
 
     public void Jump()
     {
+        isGround = false;
+
         playerRigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isGround)
+        {
+            RaycastHit2D hitInfo;
+
+            hitInfo = Physics2D.Raycast((Vector2)this.transform.position + new Vector2(0, -0.1f), this.transform.up * -1, 5f);
+
+            if(hitInfo.collider == null)
+            {
+                isGround = true;
+
+                playerManager.Idle();
+            }
+        }
     }
 }

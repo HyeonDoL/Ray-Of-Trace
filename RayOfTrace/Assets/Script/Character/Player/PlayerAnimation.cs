@@ -14,59 +14,36 @@ public class PlayerAnimation : MonoBehaviour
         if (prevState == state)
             return;
 
-        switch(state)
-        {
-            case PlayerState.Idle:
-                break;
-
-            case PlayerState.Move:
-                break;
-
-            case PlayerState.Jump:
-                break;
-
-            case PlayerState.LightItem:
-                break;
-
-            case PlayerState.ShadowItem:
-                break;
-
-            case PlayerState.Die:
-                break;
-
-            default:
-                Debug.LogError("Switch / Out of Range");
-                break;
-        }
+        playerAni.SetInteger("PlayerState", (int)state);
 
         prevState = state;
     }
 
-    public void StopAni()
-    {
-        switch (prevState)
-        {
-            case PlayerState.Idle:
-                break;
+    //public void StopAni()
+    //{
+    //    switch (prevState)
+    //    {
+    //        case PlayerState.Idle:
+    //            break;
 
-            case PlayerState.Move:
-                break;
+    //        case PlayerState.Move:
+    //            break;
 
-            case PlayerState.Jump:
-                break;
+    //        case PlayerState.Jump:
+    //            break;
 
-            case PlayerState.LightItem:
-                break;
+    //        case PlayerState.LightItem:
+    //            break;
 
-            case PlayerState.ShadowItem:
-                break;
+    //        case PlayerState.ShadowItem:
+    //            break;
 
-            case PlayerState.Die:
-                break;
+    //        case PlayerState.Die:
+    //            break;
 
-            default:
-                Debug.LogError("Switch / Out of Range");
-                break;
-        }
-    }
+    //        default:
+    //            Debug.LogError("Switch / Out of Range");
+    //            break;
+    //    }
+    //}
 }
