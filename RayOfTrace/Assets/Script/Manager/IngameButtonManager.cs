@@ -64,20 +64,23 @@ public class IngameButtonManager : MonoBehaviour
   
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)&& playerManager.IsGround)
+        if (!m_isaction)
         {
+            if (Input.GetKeyDown(KeyCode.W) && playerManager.IsGround)
+            {
 
-            playerManager.Jump();
+                playerManager.Jump();
 
 
-        }
-        if (playerManager.IsGround)
-        {
-            JumpActionButton.GetComponent<Image>().sprite = state.highlightedSprite;
-        }
-        else
-        {
-            JumpActionButton.GetComponent<Image>().sprite = state.pressedSprite;
+            }
+            if (playerManager.IsGround)
+            {
+                JumpActionButton.GetComponent<Image>().sprite = state.highlightedSprite;
+            }
+            else
+            {
+                JumpActionButton.GetComponent<Image>().sprite = state.pressedSprite;
+            }
         }
     }
     void Start()
@@ -94,7 +97,7 @@ public class IngameButtonManager : MonoBehaviour
         var isAction = clickStream;
         // 이미지 변경
         isAction
-            .Where(_ => !m_isaction)
+            .Where(_ => m_isaction)
             .Subscribe(_ =>
             {
                 JumpActionButton.GetComponent<Image>().sprite = Action;
