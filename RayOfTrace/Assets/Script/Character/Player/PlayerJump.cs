@@ -9,7 +9,7 @@ public class PlayerJump : MonoBehaviour
 
     private PlayerManager playerManager;
     
-    private bool isGround;
+    public bool IsGround { private set; get; }
 
     private void Awake()
     {
@@ -20,14 +20,14 @@ public class PlayerJump : MonoBehaviour
 
     public void Jump()
     {
-        isGround = false;
+        IsGround = false;
 
         playerRigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
     {
-        if (!isGround)
+        if (!IsGround)
         {
             RaycastHit2D hitInfo;
 
@@ -35,7 +35,7 @@ public class PlayerJump : MonoBehaviour
 
             if(hitInfo.collider == null)
             {
-                isGround = true;
+                IsGround = true;
 
                 playerManager.Idle();
             }
