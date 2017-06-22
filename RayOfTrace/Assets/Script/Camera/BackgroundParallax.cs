@@ -3,13 +3,20 @@ using System.Collections;
 
 public class BackgroundParallax : MonoBehaviour
 {
-    public Transform[] backgrounds;       
-    public float parallaxScale;                
-    public float parallaxReductionFactor;  
-    public float smoothing;                   
+    [SerializeField]
+    private Transform[] backgrounds;
 
+    [SerializeField]
+    private float parallaxScale;
 
-    private Transform cam;                   
+    [SerializeField]
+    private float parallaxReductionFactor;
+
+    [SerializeField]
+    private float smoothing;
+
+    private Transform cam;
+
     private Vector3 previousCamPos;                                     
 
 

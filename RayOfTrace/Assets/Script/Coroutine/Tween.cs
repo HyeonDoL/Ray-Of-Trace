@@ -5,6 +5,52 @@ public static class Tween
 {
     private static readonly AnimationCurve defaultCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
+    public static class TweenSprite
+    {
+        public static IEnumerator TweenColor(SpriteRenderer target, Color end, float time, AnimationCurve curve = null)
+        {
+            float t = 0f;
+
+            Color start = target.color;
+
+            if (curve == null)
+                curve = defaultCurve;
+
+            while (t < 1f)
+            {
+                t += Time.deltaTime / time;
+
+                target.color = Color.Lerp(start, end, curve.Evaluate(t));
+
+                yield return null;
+            }
+        }
+
+        public static IEnumerator TweenAlpha(SpriteRenderer target, float alphaEnd, float time, AnimationCurve curve = null)
+        {
+            float t = 0f;
+
+            Color color = target.color;
+
+            Color start = color;
+            Color end = color;
+
+            end.a = alphaEnd;
+
+            if (curve == null)
+                curve = defaultCurve;
+
+            while (t < 1f)
+            {
+                t += Time.deltaTime / time;
+
+                target.color = Color.Lerp(start, end, curve.Evaluate(t));
+
+                yield return null;
+            }
+        }
+    }
+
     public static class TweenMaterial
     {
         public static IEnumerator TweenColor(Material target, Color end, float time, AnimationCurve curve = null)
