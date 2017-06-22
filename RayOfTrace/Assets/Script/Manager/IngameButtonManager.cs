@@ -21,18 +21,7 @@ public class IngameButtonManager : MonoBehaviour
     {
         instance = this;
     }
-   [SerializeField]
-    private PlayerManager man;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-          
-            man.Jump();
-          
 
-        }
-    }
     [SerializeField]
     private JoystickController m_joystickController;
     [SerializeField]
@@ -45,8 +34,6 @@ public class IngameButtonManager : MonoBehaviour
     private GameObject ItemRange;
     [SerializeField]
     private GameObject Joystick;
-    [SerializeField]
-    private GameObject JumpButton;
     [SerializeField]
     private GameObject Item1;
     [SerializeField]
@@ -70,10 +57,29 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
 
+    public SpriteState state;
 
     [SerializeField]
     private PlayerManager playerManager;
+   
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W)&& playerManager.m_isground)
+        {
 
+            playerManager.Jump();
+
+
+        }
+        if (playerManager.m_isground)
+        {
+            JumpActionButton.GetComponent<Image>().sprite = state.highlightedSprite;
+        }
+        else
+        {
+            JumpActionButton.GetComponent<Image>().sprite = state.pressedSprite;
+        }
+    }
     void Start()
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
@@ -301,7 +307,7 @@ public class IngameButtonManager : MonoBehaviour
         Joystick.transform.localPosition = 
             new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
                         PlayerPrefs.GetInt(Prefstype.JoystickyPos, -284), 0.0f);
-        JumpButton.transform.localPosition = 
+        JumpActionButton.transform.localPosition = 
             new Vector3(PlayerPrefs.GetInt(Prefstype.JumpButtonxPos, 634),
                         PlayerPrefs.GetInt(Prefstype.JumpButtonyPos, -300), 0.0f);
         Item1.transform.localPosition = 
