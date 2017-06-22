@@ -64,14 +64,14 @@ public class IngameButtonManager : MonoBehaviour
   
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)&& playerManager.Getjump())
+        if (Input.GetKeyDown(KeyCode.W)&& playerManager.IsGround)
         {
 
             playerManager.Jump();
 
 
         }
-        if (playerManager.Getjump())
+        if (playerManager.IsGround)
         {
             JumpActionButton.GetComponent<Image>().sprite = state.highlightedSprite;
         }

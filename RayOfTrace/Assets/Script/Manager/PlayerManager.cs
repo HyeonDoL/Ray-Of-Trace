@@ -21,12 +21,11 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField]
     private PlayerAnimation playerAni;
+
     private BoxCollider2D m_playerBoxcollider;
   
-    public bool Getjump()
-    {
-        return playerJump.Getjump();
-    }
+    public bool IsGround { get { return playerJump.IsGround; } }
+
     public void Idle()
     {
         playerAni.ChangeAni(PlayerState.Idle);
