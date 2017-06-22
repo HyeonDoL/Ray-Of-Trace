@@ -21,7 +21,18 @@ public class IngameButtonManager : MonoBehaviour
     {
         instance = this;
     }
+   [SerializeField]
+    private PlayerManager man;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+          
+            man.Jump();
+          
 
+        }
+    }
     [SerializeField]
     private JoystickController m_joystickController;
     [SerializeField]
