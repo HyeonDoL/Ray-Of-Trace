@@ -39,9 +39,12 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject Item2;
     [SerializeField]
+    private GameObject Jem;
+    [SerializeField]
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
+ 
     [SerializeField]
     private ItemRangeScript ItemRange_script;
     private Vector3 m_itemUsePosition;
@@ -56,7 +59,7 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
-
+    private bool m_ishaveJem = false;
     public SpriteState state;
 
     [SerializeField]
@@ -124,6 +127,16 @@ public class IngameButtonManager : MonoBehaviour
                 if (m_isaction)
                 {
                     //action
+                    if (!m_ishaveJem)
+                    {
+                        //Fucking No jem
+                        Jem.SetActive(true);
+                        m_ishaveJem = true;
+                    }
+                    else
+                    {
+                        // clear
+                    }
                 }
                 else
                 {
