@@ -59,7 +59,19 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
+<<<<<<< HEAD
+
+    public bool IsAction
+    {
+        set
+        {
+            m_isaction = value;
+        }
+    }
+
+=======
     private bool m_ishaveJem = false;
+>>>>>>> 630fc665ba7567329a949ebebe0b5dc094dbf3c7
     public SpriteState state;
 
     [SerializeField]
@@ -97,7 +109,7 @@ public class IngameButtonManager : MonoBehaviour
                             !m_PauseButton);
         var clickStream = Observable.EveryUpdate()
          .Where(_ => m_istouchbutton);
-        var isAction = clickStream;
+        var isAction = Observable.EveryUpdate();
         // 이미지 변경
         isAction
             .Where(_ => m_isaction)
@@ -126,6 +138,9 @@ public class IngameButtonManager : MonoBehaviour
 
                 if (m_isaction)
                 {
+<<<<<<< HEAD
+                    playerManager.Interaction();
+=======
                     //action
                     if (!m_ishaveJem)
                     {
@@ -137,6 +152,7 @@ public class IngameButtonManager : MonoBehaviour
                     {
                         // clear
                     }
+>>>>>>> 630fc665ba7567329a949ebebe0b5dc094dbf3c7
                 }
                 else
                 {
