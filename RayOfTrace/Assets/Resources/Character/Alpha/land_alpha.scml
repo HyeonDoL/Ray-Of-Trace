@@ -802,7 +802,7 @@
                     <object_ref id="7" parent="6" timeline="3" key="2" z_index="7"/>
                     <object_ref id="8" parent="0" timeline="1" key="2" z_index="8"/>
                     <object_ref id="9" parent="1" timeline="2" key="2" z_index="9"/>
-                    <object_ref id="10" parent="3" timeline="23" key="2" z_index="10"/>
+                    <object_ref id="10" parent="3" timeline="23" key="1" z_index="10"/>
                     <object_ref id="11" parent="2" timeline="0" key="2" z_index="11"/>
                 </key>
             </mainline>
@@ -811,7 +811,7 @@
                     <object folder="0" file="3" x="17.898434" y="0.539501" angle="94.934164"/>
                 </key>
                 <key id="1" time="450" spin="0">
-                    <object folder="0" file="3" x="17.898434" y="0.539501" pivot_x="0.406722" pivot_y="0.616604" angle="94.934164"/>
+                    <object folder="0" file="3" x="17.898434" y="0.539501" angle="94.934164"/>
                 </key>
                 <key id="2" time="1248" spin="0">
                     <object folder="0" file="3" x="17.898434" y="0.539501" pivot_x="0.406722" pivot_y="0.616604" angle="94.934164"/>
@@ -1139,12 +1139,9 @@
             </timeline>
             <timeline id="23" name="5">
                 <key id="0" time="450" spin="0">
-                    <object folder="0" file="5" x="2.48875" y="3.598453" angle="111.830671"/>
+                    <object folder="0" file="5" x="-13.759311" y="1.386125" pivot_x="0.419708" pivot_y="0.453711" angle="111.830671"/>
                 </key>
                 <key id="1" time="1248" spin="0">
-                    <object folder="0" file="5" x="2.488985" y="3.598369" pivot_x="0.410027" pivot_y="0.415659" angle="111.830671"/>
-                </key>
-                <key id="2" time="1248" spin="0">
                     <object folder="0" file="5" x="-13.759311" y="1.386125" pivot_x="0.419708" pivot_y="0.453711" angle="111.830671"/>
                 </key>
             </timeline>
