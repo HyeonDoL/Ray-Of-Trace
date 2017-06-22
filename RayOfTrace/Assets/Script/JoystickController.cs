@@ -70,6 +70,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
         InputVector = Vector3.zero;
         JoystickImg.rectTransform.anchoredPosition = Vector3.zero;
 
+        playerManager.Idle();
     }
 
     public void InitPos()
