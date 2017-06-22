@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[Serializable]
-public struct TextBox
-{
-    public TextMesh textMesh;
-    public Light light;
-}
+﻿using UnityEngine;
 
 public class Npc : MonoBehaviour, InteractionObject
 {
@@ -16,7 +6,7 @@ public class Npc : MonoBehaviour, InteractionObject
     private string name;
 
     [SerializeField]
-    private TextBox chatBox;
+    private TextMesh chat;
 
     [SerializeField]
     private NpcSheet npcSheet;
@@ -41,17 +31,19 @@ public class Npc : MonoBehaviour, InteractionObject
         }
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
+            IngameButtonManager.Instance.IsAction = true;
+
             playerInteraction = col.gameObject.GetComponent<PlayerInteraction>();
 
             playerInteraction._InteractionObject = npcComponent;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
@@ -64,10 +56,12 @@ public class Npc : MonoBehaviour, InteractionObject
         }
     }
 
-    void OnTriggerExit(Collider col)
+    void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
+            IngameButtonManager.Instance.IsAction = false;
+
             playerInteraction._InteractionObject = null;
 
             SetupMessageBox(false);
@@ -78,17 +72,13 @@ public class Npc : MonoBehaviour, InteractionObject
     {
         if (isSetup)
         {
-            chatBox.light.enabled = true;
-
-            chatBox.textMesh.text = npcSheet.m_data[npcIndex].chat[count];
+            chat.text = npcSheet.m_data[npcIndex].chat[count];
 
             if (count < npcSheet.m_data[npcIndex].chat.Count - 1)
                 count++;
         }
         else
         {
-            chatBox.light.enabled = false;
-
             count = 0;
         }
     }
