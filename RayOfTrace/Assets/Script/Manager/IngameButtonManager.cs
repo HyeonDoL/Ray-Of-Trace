@@ -27,6 +27,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject Ink;
     [SerializeField]
+    private GameObject InkPosition;
+    [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
     private GameObject Buttons;
@@ -80,24 +82,7 @@ public class IngameButtonManager : MonoBehaviour
   
     private void Update()
     {
-        if (!m_isaction)
-        {
-            if (Input.GetKeyDown(KeyCode.W)/* && playerManager.IsGround*/)
-            {
-
-                playerManager.Jump();
-
-
-            }
-            if (playerManager.IsGround)
-            {
-                JumpActionButton.GetComponent<Image>().sprite = state.highlightedSprite;
-            }
-            else
-            {
-                JumpActionButton.GetComponent<Image>().sprite = state.pressedSprite;
-            }
-        }
+       
     }
     void Start()
     {
@@ -267,6 +252,7 @@ public class IngameButtonManager : MonoBehaviour
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
+                Ink.transform.position = InkPosition.transform.position;
                 Ink.SetActive(true);
                 playerManager.Throw();
                 ItemUsed();
