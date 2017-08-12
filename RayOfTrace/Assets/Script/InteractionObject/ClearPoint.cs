@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class Crystal : MonoBehaviour, InteractionObject
+public class ClearPoint : MonoBehaviour, InteractionObject
 {
     [SerializeField]
-    private Crystal component;
+    private ClearPoint component;
+
+    [SerializeField]
+    private GameObject crystal;
 
     private PlayerInteraction playerInteraction;
 
@@ -44,10 +48,9 @@ public class Crystal : MonoBehaviour, InteractionObject
 
     void InteractionObject.Interaction()
     {
-        InGameManager.Instance.PlayerDataContainer_readonly._PlayerStatus.IsCrystal = true;
-
-        IngameButtonManager.Instance.IsAction = false;
-
-        Destroy(this.gameObject);
+        if(InGameManager.Instance.PlayerDataContainer_readonly._PlayerStatus.IsCrystal)
+        {
+            crystal.SetActive(true);
+        }        
     }
 }

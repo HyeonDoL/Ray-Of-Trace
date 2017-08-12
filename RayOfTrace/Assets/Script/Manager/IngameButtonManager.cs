@@ -46,7 +46,7 @@ public class IngameButtonManager : MonoBehaviour
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
- 
+
     [SerializeField]
     private ItemRangeScript ItemRange_script;
     private Rigidbody2D Inkrigid;
@@ -73,11 +73,23 @@ public class IngameButtonManager : MonoBehaviour
 
     private bool m_ishaveJem = false;
 
+    public bool IsHaveJem
+    {
+        set
+        {
+            m_ishaveJem = true;
+        }
+        get
+        {
+            return m_ishaveJem;
+        }
+    }
+
     public SpriteState state;
 
     [SerializeField]
     private PlayerManager playerManager;
-  
+
     private void Update()
     {
         if (!m_isaction)
@@ -102,11 +114,11 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
-      //  Inkrigid = Ink.GetComponent<Rigidbody2D>();
+        Inkrigid = Ink.GetComponent<Rigidbody2D>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
-                .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
-                            m_whatitem !=0 &&
+                .Where(_ => (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)) &&
+                            m_whatitem != 0 &&
                             !m_PauseButton);
         var clickStream = Observable.EveryUpdate()
          .Where(_ => m_istouchbutton);
@@ -125,7 +137,7 @@ public class IngameButtonManager : MonoBehaviour
                 JumpActionButton.GetComponent<Image>().sprite = Jump;
             });
         itemStream
-            .Where(_=> !m_isitemUsed)
+            .Where(_ => !m_isitemUsed)
             .Subscribe(_ =>
             {
                 ItemUse();
@@ -142,12 +154,9 @@ public class IngameButtonManager : MonoBehaviour
 
                     playerManager.Interaction();
 
-                    //action
-                    if (!m_ishaveJem)
+                    if (m_ishaveJem)
                     {
-                        //Fucking No jem
                         Jem.SetActive(true);
-                        m_ishaveJem = true;
                     }
                     else
                     {
@@ -237,23 +246,23 @@ public class IngameButtonManager : MonoBehaviour
         clickStream
          .Where(_ => !m_PauseButton)
          .Subscribe(_ => {
-            
+
              PauseWindow.SetActive(false);
              Buttons.SetActive(true);
              m_istouchbutton = false;
              Time.timeScale = 1;
-            
+
          });
 
 
 
-       
+
     }
-    
+
     private void ItemUse()
     {
         // 아이템 사용되는곳
-        if (m_whatitem !=0)
+        if (m_whatitem != 0)
         {
             ItemRange_script.CastRay();
             m_itemUsePosition = ItemRange_script.ItemPosition();
@@ -267,13 +276,17 @@ public class IngameButtonManager : MonoBehaviour
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
                 Debug.Log(m_itemUsePosition);
-             //   Inkrigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
+                Ink.SetActive(true);
                 playerManager.Throw();
                 ItemUsed();
             }
             else if (!m_isitemUse)
                 ItemUsed();
         }
+
+    }
+    public void useInk()
+    {
 
     }
     private void ItemUsed()
@@ -339,24 +352,27 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void ClearAnimation()
     {
+        Inkrigid.simulated = true;
         playerManager.Idle();
+
+
+        Inkrigid.AddForce(m_itemUsePosition.normalized, ForceMode2D.Impulse);
     }
     private void init_buttonPos()
     {
-        Joystick.transform.localPosition = 
+        Joystick.transform.localPosition =
             new Vector3(PlayerPrefs.GetInt(Prefstype.JoystickxPos, -624),
                         PlayerPrefs.GetInt(Prefstype.JoystickyPos, -284), 0.0f);
-        JumpActionButton.transform.localPosition = 
+        JumpActionButton.transform.localPosition =
             new Vector3(PlayerPrefs.GetInt(Prefstype.JumpButtonxPos, 634),
                         PlayerPrefs.GetInt(Prefstype.JumpButtonyPos, -300), 0.0f);
-        Item1.transform.localPosition = 
+        Item1.transform.localPosition =
             new Vector3(PlayerPrefs.GetInt(Prefstype.Item1xPos, 439),
                         PlayerPrefs.GetInt(Prefstype.Item1yPos, -175), 0.0f);
-        Item2.transform.localPosition = 
+        Item2.transform.localPosition =
             new Vector3(PlayerPrefs.GetInt(Prefstype.Item2xPos, 629),
                         PlayerPrefs.GetInt(Prefstype.Item2yPos, -61), 0.0f);
     }
 
 
 }
-

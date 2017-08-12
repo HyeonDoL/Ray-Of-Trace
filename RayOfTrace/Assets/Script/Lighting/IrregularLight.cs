@@ -28,11 +28,11 @@ public class IrregularLight : LightBehaviour
 
                 for (int count = 0; count < randomCount; count++)
                 {
-                    LightObject.SetActive(false);
+                    light.enabled = false;
 
                     yield return new WaitForSeconds(blinkDelay);
 
-                    LightObject.SetActive(true);
+                    light.enabled = true;
 
                     yield return new WaitForSeconds(blinkDelay);
                 }
