@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    public bool IsCrystal { set; get; }
+    public bool IsCrystal
+    {
+        set
+        {
+            IngameButtonManager.Instance.IsHaveJem = value;            
+        }
+        get
+        {
+            return IngameButtonManager.Instance.IsHaveJem;
+        }
+    }
 
     private void Awake()
     {

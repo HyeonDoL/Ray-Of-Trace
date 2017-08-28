@@ -9,6 +9,9 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField]
     private bool followY = true;
 
+    [SerializeField]
+    private Vector2 addPos = Vector2.one;
+
     private PlayerDataContainer container;
 
     private Transform playerTrans;
@@ -24,6 +27,6 @@ public class FollowPlayer : MonoBehaviour
                                              followY ? playerTrans.position.y : this.transform.position.y,
                                              this.transform.position.z))
             .DistinctUntilChanged()
-            .Subscribe(position => this.transform.position = position);
+            .Subscribe(position => this.transform.position = position + (Vector3)addPos);
     }
 }

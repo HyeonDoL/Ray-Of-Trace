@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c8d402d88169f804b942974317816b42
+timeCreated: 1498142447
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Typo_Dodam
+  fontNames:
+  - Typo_Dodam
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
