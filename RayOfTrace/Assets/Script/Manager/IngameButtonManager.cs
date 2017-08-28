@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+    게임 버튼 매니저
+    버튼을 눌러서 동작하는 기능들이 들어 있는 스크립트
+    아이템 사용, 점프, 일시정지 버튼이 여기 해당함
+                -by 이희찬
+*/
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
@@ -45,6 +51,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject Jem;
     [SerializeField]
+    private GameObject LeftHand;
+    [SerializeField]
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
@@ -52,7 +60,9 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private ItemRangeScript ItemRange_script;
     private Rigidbody2D Inkrigid;
+    private BoxCollider2D Inkcolide;
     private Vector3 m_itemUsePosition;
+    
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
     private bool m_ItemButton1 = false;
@@ -75,7 +85,7 @@ public class IngameButtonManager : MonoBehaviour
 
     private bool m_ishaveJem = false;
 
-    public SpriteState state;
+
 
     [SerializeField]
     private PlayerManager playerManager;
@@ -88,6 +98,7 @@ public class IngameButtonManager : MonoBehaviour
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
         Inkrigid = Ink.GetComponent<Rigidbody2D>();
+        Inkcolide = Ink.GetComponent<BoxCollider2D>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -241,7 +252,9 @@ public class IngameButtonManager : MonoBehaviour
         if (m_whatitem !=0)
         {
             ItemRange_script.CastRay();
-            m_itemUsePosition = ItemRange_script.ItemPosition();
+            m_itemUsePosition = new Vector3(ItemRange_script.ItemPosition().x,
+                                            ItemRange_script.ItemPosition().y,
+                                            Ink.transform.position.z);
             m_isitemUse = ItemRange_script.ison;
             //item1
             if (m_whatitem == 1 && m_isitemUse)  //item1 use
@@ -330,10 +343,15 @@ public class IngameButtonManager : MonoBehaviour
     public void ClearAnimation()
     {
         Inkrigid.simulated = true;
+        Inkcolide.isTrigger = false;
         playerManager.Idle();
+        Ink.transform.parent = null;
         Ink.transform.position = m_itemUsePosition;
-        
-       
+
+        /////////여기아래는 효과 이후로 옮길것/////////
+        //Inkrigid.simulated = false;
+        //Inkcolide.isTrigger = true;
+        //Ink.transform.parent = LeftHand.transform;
     }
     private void init_buttonPos()
     {
