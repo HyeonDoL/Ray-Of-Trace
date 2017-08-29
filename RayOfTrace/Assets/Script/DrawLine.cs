@@ -28,7 +28,7 @@ public class DrawLine : MonoBehaviour {
                 if (line == null)
                     createLine();
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousepos.z = 0;
+                mousepos.z = 100;
                 newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
                 line.SetPosition(0, mousepos);
                 line.SetPosition(1, mousepos);
@@ -41,7 +41,7 @@ public class DrawLine : MonoBehaviour {
             if (line)
             {
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousepos.z = 0;
+                mousepos.z = 100;
                 endPos = mousepos;
                 col.points = newVerticies.ToArray();
                 line = null;
@@ -56,7 +56,7 @@ public class DrawLine : MonoBehaviour {
             {
                 line.positionCount = n + 1;
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousepos.z = 0;
+                mousepos.z = 100;
                 line.SetPosition(n, mousepos);
                 newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
                 n++;
@@ -76,7 +76,7 @@ public class DrawLine : MonoBehaviour {
         line = new GameObject("Line").AddComponent<LineRenderer>();
         line.material = new Material(Shader.Find("Diffuse"));
         col = GameObject.Find("Line").AddComponent<EdgeCollider2D>();
-        col.edgeRadius = 0.1f;
+        col.edgeRadius = 0.001f;
         line.startWidth = 0.1f;
         line.startColor = Color.black;
         line.useWorldSpace = true;
