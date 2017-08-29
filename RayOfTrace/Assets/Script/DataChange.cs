@@ -17,4 +17,6 @@ public struct Prefstype
     public static string Item1yPos = "Item1yPos";
     public static string Item2xPos = "Item2xPos";
     public static string Item2yPos = "Item2yPos";
+    public static string Item1Use = "Item1Use";
+    public static string Item2Use = "Item2Use";
 }

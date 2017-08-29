@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2017.1.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -87,7 +89,6 @@
     <Compile Include="Assets\Script\AI.cs" />
     <Compile Include="Assets\Script\Camera\BackgroundParallax.cs" />
     <Compile Include="Assets\Script\Camera\MoveCamera.cs" />
-    <Compile Include="Assets\Script\ChangeIdle.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerAnimation.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerInteraction.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerJump.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\Script\FollowPlayer.cs" />
     <Compile Include="Assets\Script\FPS\FPSCounter.cs" />
     <Compile Include="Assets\Script\FPS\FPSDisplay.cs" />
+    <Compile Include="Assets\Script\InteractionObject\ClearPoint.cs" />
     <Compile Include="Assets\Script\InteractionObject\Crystal.cs" />
     <Compile Include="Assets\Script\InteractionObject\Npc.cs" />
     <Compile Include="Assets\Script\ItemRangeScript.cs" />

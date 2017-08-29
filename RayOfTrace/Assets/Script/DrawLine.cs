@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawLine : MonoBehaviour {
+    public int Max;
     private LineRenderer line;
     private Vector3 mousepos;
     private Vector3 startpos;
@@ -10,7 +11,7 @@ public class DrawLine : MonoBehaviour {
     public List<Vector2> newVerticies = new List<Vector2>();
     private Vector2[] colvec = new Vector2[0];
     private EdgeCollider2D col;
-    private bool ison = true;
+    private int ison = 0;
     int n = 1;
     bool lline = false;
     void Start () {
@@ -19,19 +20,23 @@ public class DrawLine : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if(Input.GetMouseButtonDown(0)&& ison)
+        ison = PlayerPrefs.GetInt(Prefstype.Item2Use);
+		if(Input.GetMouseButtonDown(0)&& ison == 1)
         {
-            if (line == null)
-                createLine();
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousepos.z = 0;
-            newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
-            line.SetPosition(0, mousepos);
-            line.SetPosition(1, mousepos);
-            
-            startpos = mousepos;
+            if (Max > n)
+            {
+                if (line == null)
+                    createLine();
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousepos.z = 0;
+                newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
+                line.SetPosition(0, mousepos);
+                line.SetPosition(1, mousepos);
+                startpos = mousepos;
+            }
+
         }
-        else if(Input.GetMouseButtonUp(0)&& line && ison)
+        else if(Input.GetMouseButtonUp(0)&& line && ison == 1)
         {
             if (line)
             {
@@ -40,19 +45,22 @@ public class DrawLine : MonoBehaviour {
                 endPos = mousepos;
                 col.points = newVerticies.ToArray();
                 line = null;
-                ison = false;
+                PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
                 n = 1;
             }
         }
-        else if(Input.GetMouseButton(0)&& ison)
+        else if(Input.GetMouseButton(0)&& ison == 1)
         {
-            line.positionCount = n+1;
-         
-            mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousepos.z = 0;
-            line.SetPosition(n, mousepos);
-            newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
-            n++;
+
+            if (Max > n)
+            {
+                line.positionCount = n + 1;
+                mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousepos.z = 0;
+                line.SetPosition(n, mousepos);
+                newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
+                n++;
+            }
         }
 
         if (lline)

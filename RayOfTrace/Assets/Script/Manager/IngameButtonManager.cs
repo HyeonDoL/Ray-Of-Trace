@@ -31,17 +31,11 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private JoystickController m_joystickController;
     [SerializeField]
-    private GameObject Ink;
-    [SerializeField]
-    private GameObject InkPosition;
-    [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
     private GameObject Buttons;
     [SerializeField]
     private GameObject JumpActionButton;
-    [SerializeField]
-    private GameObject ItemRange;
     [SerializeField]
     private GameObject Joystick;
     [SerializeField]
@@ -57,11 +51,7 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private Sprite Action;
  
-    [SerializeField]
-    private ItemRangeScript ItemRange_script;
-    private Rigidbody2D Inkrigid;
-    private BoxCollider2D Inkcolide;
-    private Vector3 m_itemUsePosition;
+   
     
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
@@ -74,6 +64,7 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
+    private bool m_ishaveJem = false;
 
     public bool IsAction
     {
@@ -82,9 +73,19 @@ public class IngameButtonManager : MonoBehaviour
             m_isaction = value;
         }
     }
+    public bool IsHaveJem
+    {
+        get
+        {
+            return m_ishaveJem;
+        }
+        set
+        {
+            m_ishaveJem = IsHaveJem;
+        }
+    }
 
-    private bool m_ishaveJem = false;
-
+    
 
 
     [SerializeField]
@@ -97,8 +98,6 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
-        Inkrigid = Ink.GetComponent<Rigidbody2D>();
-        Inkcolide = Ink.GetComponent<BoxCollider2D>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -167,7 +166,7 @@ public class IngameButtonManager : MonoBehaviour
              //item1
              if (!m_ItemButton1active) // 활성화
              {
-                 ItemRange.SetActive(true);
+           
                  Joystick.SetActive(false);
                  JumpActionButton.SetActive(false);
                  Item1.SetActive(false);
@@ -175,17 +174,7 @@ public class IngameButtonManager : MonoBehaviour
                  m_ItemButton1active = true;
                  m_whatitem = 1;
              }
-             //else if (m_ItemButton1active == true)
-             //{
-
-             //    ItemRange.SetActive(false);
-             //    Joystick.SetActive(true);
-             //    JumpActionButton.SetActive(true);
-             //    Item1.SetActive(true);
-             //    Item2.SetActive(true);
-             //    m_ItemButton1active = false;
-             //    m_whatitem = 0;
-             //}
+         
              m_ItemButton1 = false;
              m_istouchbutton = false;
          });
@@ -197,7 +186,7 @@ public class IngameButtonManager : MonoBehaviour
              //item2
              if (!m_ItemButton2active)
              {
-                 ItemRange.SetActive(true);
+                 PlayerPrefs.SetInt(Prefstype.Item2Use, 1);
                  Joystick.SetActive(false);
                  JumpActionButton.SetActive(false);
                  Item1.SetActive(false);
@@ -205,16 +194,7 @@ public class IngameButtonManager : MonoBehaviour
                  m_ItemButton2active = true;
                  m_whatitem = 2;
              }
-             //else if (m_ItemButton2active == true)
-             //{
-             //    ItemRange.SetActive(false);
-             //    Joystick.SetActive(true);
-             //    JumpActionButton.SetActive(true);
-             //    Item1.SetActive(true);
-             //    Item2.SetActive(true);
-             //    m_ItemButton2active = false;
-             //    m_whatitem = 0;
-             //}
+       
 
              m_ItemButton2 = false;
              m_istouchbutton = false;
@@ -251,23 +231,17 @@ public class IngameButtonManager : MonoBehaviour
         // 아이템 사용되는곳
         if (m_whatitem !=0)
         {
-            ItemRange_script.CastRay();
-            m_itemUsePosition = new Vector3(ItemRange_script.ItemPosition().x,
-                                            ItemRange_script.ItemPosition().y,
-                                            Ink.transform.position.z);
-            m_isitemUse = ItemRange_script.ison;
+        
+           // m_isitemUse = ItemRange_script.ison;
             //item1
             if (m_whatitem == 1 && m_isitemUse)  //item1 use
             {
-                Debug.Log(m_itemUsePosition);
+           
                 ItemUsed();
             }
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
-                Debug.Log(m_itemUsePosition);
-                Ink.transform.position = InkPosition.transform.position;
-                Ink.SetActive(true);
-                playerManager.Throw();
+   
                 ItemUsed();
             }
             else if (!m_isitemUse)
@@ -282,10 +256,8 @@ public class IngameButtonManager : MonoBehaviour
     private void ItemUsed()
     {
         m_isitemUse = false;
-        ItemRange_script.ison = false;
         m_ItemButton1active = false;
         m_ItemButton2active = false;
-        ItemRange.SetActive(false);
         Joystick.SetActive(true);
         Item1.SetActive(true);
         Item2.SetActive(true);
@@ -339,19 +311,6 @@ public class IngameButtonManager : MonoBehaviour
         m_ItemButton1active = false;
         m_ItemButton2active = false;
         m_whatitem = 0;
-    }
-    public void ClearAnimation()
-    {
-        Inkrigid.simulated = true;
-        Inkcolide.isTrigger = false;
-        playerManager.Idle();
-        Ink.transform.parent = null;
-        Ink.transform.position = m_itemUsePosition;
-
-        /////////여기아래는 효과 이후로 옮길것/////////
-        //Inkrigid.simulated = false;
-        //Inkcolide.isTrigger = true;
-        //Ink.transform.parent = LeftHand.transform;
     }
     private void init_buttonPos()
     {
