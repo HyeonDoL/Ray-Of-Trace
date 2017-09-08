@@ -10,7 +10,8 @@ public class DrawLine : MonoBehaviour {
     private Vector3 endPos;
     public List<Vector2> newVerticies = new List<Vector2>();
     private Vector2[] colvec = new Vector2[0];
-    private EdgeCollider2D col;
+    private BoxCollider2D col2;
+    private Rigidbody2D rid;
     private int ison = 0;
     int n = 1;
     bool lline = false;
@@ -28,7 +29,12 @@ public class DrawLine : MonoBehaviour {
                 if (line == null)
                     createLine();
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousepos.z = 100;
+                mousepos.z = 0;
+                col2 = new GameObject("col").AddComponent<BoxCollider2D>();
+                col2.size = new Vector2(0.1f, 0.1f);
+                col2.transform.position = mousepos;
+                col2.transform.parent = line.transform;
+         
                 newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
                 line.SetPosition(0, mousepos);
                 line.SetPosition(1, mousepos);
@@ -41,10 +47,11 @@ public class DrawLine : MonoBehaviour {
             if (line)
             {
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousepos.z = 100;
+                mousepos.z = 0;
                 endPos = mousepos;
-                col.points = newVerticies.ToArray();
+                rid.simulated = true;
                 line = null;
+                
                 PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
                 n = 1;
             }
@@ -56,30 +63,34 @@ public class DrawLine : MonoBehaviour {
             {
                 line.positionCount = n + 1;
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousepos.z = 100;
+                mousepos.z = 0;
+                col2 = new GameObject("col").AddComponent<BoxCollider2D>();
+                col2.size = new Vector2(0.1f, 0.1f);
+                col2.transform.position = mousepos;
+                col2.transform.parent = line.transform;
                 line.SetPosition(n, mousepos);
                 newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
                 n++;
             }
         }
 
-        if (lline)
-        {
-           for(int i = 0; i<=n;++i)
-            {
-                line.SetPosition(n, col.points[n]);
-            }
-        }
+     
     }
     private void createLine()
     {
         line = new GameObject("Line").AddComponent<LineRenderer>();
         line.material = new Material(Shader.Find("Diffuse"));
-        col = GameObject.Find("Line").AddComponent<EdgeCollider2D>();
-        col.edgeRadius = 0.001f;
+
+
+        rid = GameObject.Find("Line").AddComponent<Rigidbody2D>();
+      
+  
         line.startWidth = 0.1f;
         line.startColor = Color.black;
-        line.useWorldSpace = true;
+        line.useWorldSpace = false;
+      
+        rid.simulated = false;
+    
     }
     private void addColliderToLine()
     {
