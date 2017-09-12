@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private InteractionObject interactionObject = null;
+    private Interactive interactionObject = null;
 
-    public InteractionObject _InteractionObject
+    public Interactive _InteractionObject
     {
         set
         {
@@ -33,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
     }
 }
 
-public interface InteractionObject
+public interface Interactive
 {
     void Interaction();
 }

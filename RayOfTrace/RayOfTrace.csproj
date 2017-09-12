@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2017.1.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -78,6 +76,15 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Facebook.Unity.Settings">
+      <HintPath>Library\FacebookSDK\Facebook.Unity.Settings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="RayOfTrace.Plugins.csproj">
@@ -104,9 +111,10 @@
     <Compile Include="Assets\Script\FollowPlayer.cs" />
     <Compile Include="Assets\Script\FPS\FPSCounter.cs" />
     <Compile Include="Assets\Script\FPS\FPSDisplay.cs" />
-    <Compile Include="Assets\Script\InteractionObject\ClearPoint.cs" />
-    <Compile Include="Assets\Script\InteractionObject\Crystal.cs" />
-    <Compile Include="Assets\Script\InteractionObject\Npc.cs" />
+    <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\ClearPoint.cs" />
+    <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\Crystal.cs" />
+    <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\InteractionObject.cs" />
+    <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\Npc.cs" />
     <Compile Include="Assets\Script\ItemRangeScript.cs" />
     <Compile Include="Assets\Script\JoystickController.cs" />
     <Compile Include="Assets\Script\Lighting\IrregularLight.cs" />

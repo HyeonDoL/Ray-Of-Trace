@@ -66,7 +66,7 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_isitemUsed = false;
     private bool m_ishaveJem = false;
 
-    public bool IsAction
+    public bool canAction
     {
         set
         {
