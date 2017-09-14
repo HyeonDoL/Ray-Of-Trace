@@ -11,7 +11,7 @@ using UniRx;
 
 public class IngameButtonManager : MonoBehaviour
 {
-    public static IngameButtonManager instance = null;
+    private static IngameButtonManager instance = null;
     public static IngameButtonManager Instance
     {
         get

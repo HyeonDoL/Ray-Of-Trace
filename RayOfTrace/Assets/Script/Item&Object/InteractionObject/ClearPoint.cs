@@ -11,6 +11,6 @@ public class ClearPoint : InteractionObject, Interactive
         if(InGameManager.Instance.PlayerDataContainer_readonly._PlayerStatus.IsCrystal)
         {
             crystal.SetActive(true);
-        }        
+        }
     }
 }

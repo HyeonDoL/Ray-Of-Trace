@@ -115,6 +115,8 @@
     <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\Crystal.cs" />
     <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\InteractionObject.cs" />
     <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\Npc.cs" />
+    <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\Teleport\TeleportEntrance.cs" />
+    <Compile Include="Assets\Script\Item&amp;Object\InteractionObject\Teleport\TeleportExit.cs" />
     <Compile Include="Assets\Script\ItemRangeScript.cs" />
     <Compile Include="Assets\Script\JoystickController.cs" />
     <Compile Include="Assets\Script\Lighting\IrregularLight.cs" />
