@@ -11,7 +11,7 @@ using UniRx;
 
 public class IngameButtonManager : MonoBehaviour
 {
-    public static IngameButtonManager instance = null;
+    private static IngameButtonManager instance = null;
     public static IngameButtonManager Instance
     {
         get
@@ -66,7 +66,7 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_isitemUsed = false;
     private bool m_ishaveJem = false;
 
-    public bool IsAction
+    public bool canAction
     {
         set
         {
