@@ -15,6 +15,7 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private GameObject SoundWindow;
     [SerializeField] private GameObject MoveWindow;
     [SerializeField] private GameObject MoveButton;
+    [SerializeField] private GameObject MainWindow;
 
     [SerializeField] private Text Money;
 
@@ -38,13 +39,18 @@ public class ChapterManager : MonoBehaviour {
     public void OptionButton()
     {
 
-        ChapterWindow.SetActive(false);
+        MainWindow.SetActive(false);
         OptionWindow.SetActive(true);
+    }
+    public void StartBack()
+    {
+        ChapterWindow.SetActive(false);
+        MainWindow.SetActive(true);
     }
     public void ShopButton()
     {
 
-        ChapterWindow.SetActive(false);
+        MainWindow.SetActive(false);
         ShopWindow.SetActive(true);
     }
     public void BackButton()
@@ -52,7 +58,7 @@ public class ChapterManager : MonoBehaviour {
 
         OptionWindow.SetActive(false);
         ShopWindow.SetActive(false);
-        ChapterWindow.SetActive(true);
+        MainWindow.SetActive(true);
 
     }
     public void OptionBackButton()
@@ -83,6 +89,11 @@ public class ChapterManager : MonoBehaviour {
         MoveWindow.SetActive(true);
         MoveButton.SetActive(true);
         m_Movebuttonscript.Setjoypadposition();
+    }
+    public void StartButton()
+    {
+        MainWindow.SetActive(false);
+        ChapterWindow.SetActive(true);
     }
     public void Init_JoyPad()
     {

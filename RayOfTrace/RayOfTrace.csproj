@@ -84,6 +84,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Doozy\GIP_BD\Example\Scripts\SetSprite.cs" />
     <Compile Include="Assets\Script\AI.cs" />
     <Compile Include="Assets\Script\Camera\BackgroundParallax.cs" />
     <Compile Include="Assets\Script\Camera\MoveCamera.cs" />
