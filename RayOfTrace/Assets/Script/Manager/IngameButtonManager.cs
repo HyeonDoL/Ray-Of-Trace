@@ -148,7 +148,7 @@ public class IngameButtonManager : MonoBehaviour
                     }
 
                 }
-                else
+                else if(playerManager.IsGround == true)
                 {
                     playerManager.Jump();
                 }

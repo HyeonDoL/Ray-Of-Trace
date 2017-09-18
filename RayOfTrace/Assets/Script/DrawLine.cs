@@ -13,22 +13,34 @@ public class DrawLine : MonoBehaviour {
     private BoxCollider2D col2;
     private Rigidbody2D rid;
     private int ison;
+    private int linenum;
+    private float time;
     int n;
   
     void Start () {
         PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
         n = 1;
+        linenum = 0;
+        time = 0;
     }
 
     // Update is called once per frame
     void Update () {
         ison = PlayerPrefs.GetInt(Prefstype.Item2Use);
+        time += Time.deltaTime;
+        if(time > 15)
+        {
+            Destroy(GameObject.Find("Line" + (linenum-1)));
+        }
 		if(Input.GetMouseButtonDown(0)&& ison == 1)
         {
             if (Max > n)
             {
+                time = 0;
                 if (line == null)
                     createLine();
+                if (linenum > 0)
+                    Destroy(GameObject.Find("Line" + (linenum - 1) ));
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousepos.z = 0;
                 col2 = new GameObject("col").AddComponent<BoxCollider2D>();
@@ -52,9 +64,10 @@ public class DrawLine : MonoBehaviour {
                 endPos = mousepos;
                 rid.simulated = true;
                 line = null;
-                
                 PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
+                linenum++;
                 n = 1;
+                time = 0;
             }
         }
         else if(Input.GetMouseButton(0)&& ison == 1)
@@ -79,27 +92,21 @@ public class DrawLine : MonoBehaviour {
     }
     private void createLine()
     {
-        line = new GameObject("Line").AddComponent<LineRenderer>();
-        line.material = new Material(Shader.Find("Diffuse"));
+        line = new GameObject("Line"+linenum).AddComponent<LineRenderer>();
+        line.material = new Material(Shader.Find("Unlit/Texture"));
 
 
-        rid = GameObject.Find("Line").AddComponent<Rigidbody2D>();
+        rid = GameObject.Find("Line"+linenum).AddComponent<Rigidbody2D>();
       
   
         line.startWidth = 0.1f;
-        line.startColor = Color.black;
+       
+        line.startColor = Color.white;
         line.useWorldSpace = false;
       
         rid.simulated = false;
     
     }
-    private void addColliderToLine()
-    {
-      
+
   
-  
-
-
-    }
-
 }

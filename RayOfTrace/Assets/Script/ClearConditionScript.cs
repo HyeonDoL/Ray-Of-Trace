@@ -9,7 +9,7 @@ public class ClearConditionScript : MonoBehaviour {
     [SerializeField]
     private Image HpGuage;
     [SerializeField]
-    private Slider InkGuage;
+    private Image InkGuage;
     private float m_time;
     private int m_hp;
     private int m_ink;
