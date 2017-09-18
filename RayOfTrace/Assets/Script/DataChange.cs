@@ -19,4 +19,10 @@ public struct Prefstype
     public static string Item2yPos = "Item2yPos";
     public static string Item1Use = "Item1Use";
     public static string Item2Use = "Item2Use";
+    public static string C1_1 = "C1_1";
+    public static string C1_2 = "C1_2";
+    public static string C1_3 = "C1_3";
+    public static string C2Unlock = "C2Unlock";
+    public static string C3Unlock = "C3Unlock";
+    public static string C4Unlock = "C4Unlock";
 }

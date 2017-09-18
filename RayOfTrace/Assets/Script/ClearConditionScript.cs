@@ -16,15 +16,17 @@ public class ClearConditionScript : MonoBehaviour {
     private int m_hour;
     private int m_min;
     private int m_sec;
-
+    private int m_chapternum;
     [SerializeField]
     private DrawLine line;
+    [SerializeField]
+    private IngameButtonManager button;
 	void Start () {
         line = this.GetComponent<DrawLine>();
         m_time = 0;
         m_hp = 100;
         m_ink = line.Max;
-
+        m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
     }
 
 	void Update () {
@@ -38,6 +40,16 @@ public class ClearConditionScript : MonoBehaviour {
         else
             time.text = "" + m_hour + m_min + " : " + m_sec;
         InkGuage.fillAmount = m_ink * 0.01f;
-       
+        HpGuage.fillAmount = m_hp * 0.01f;
+
+        if(m_chapternum == 1)
+        {
+            //if (hit  == 0)
+            //   PlayerPrefs.SetInt(Prefstype.C1_1, 1);
+            if(button.Itemusenum < 10)
+                PlayerPrefs.SetInt(Prefstype.C1_2,1);
+            if(m_time<=180)
+                PlayerPrefs.SetInt(Prefstype.C1_3,1);
+        }
     }
 }

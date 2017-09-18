@@ -48,9 +48,9 @@ public class IngameButtonManager : MonoBehaviour
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
- 
-   
-    
+
+
+    public int Itemusenum;
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
     private bool m_ItemButton1 = false;
@@ -63,7 +63,7 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
     private bool m_ishaveJem = false;
-
+   
     public bool canAction
     {
         set
@@ -95,6 +95,7 @@ public class IngameButtonManager : MonoBehaviour
     }
     void Start()
     {
+        Itemusenum = 0;
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
@@ -234,7 +235,7 @@ public class IngameButtonManager : MonoBehaviour
             //item1
             if (m_whatitem == 1 && m_isitemUse)  //item1 use
             {
-           
+            
                 ItemUsed();
             }
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
@@ -262,6 +263,7 @@ public class IngameButtonManager : MonoBehaviour
         JumpActionButton.SetActive(true);
         m_whatitem = 0;
         m_joystickController.InitPos();
+        Itemusenum ++;
     }
     public void Ison_jumpaction()
     {
