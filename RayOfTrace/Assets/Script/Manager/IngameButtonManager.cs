@@ -45,6 +45,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject LeftHand;
     [SerializeField]
+    private GameObject OptionButton;
+    [SerializeField]
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
@@ -170,6 +172,7 @@ public class IngameButtonManager : MonoBehaviour
                  JumpActionButton.SetActive(false);
                  Item1.SetActive(false);
                  Item2.SetActive(false);
+                 OptionButton.SetActive(false);
                  m_ItemButton1active = true;
                  m_whatitem = 1;
              }
@@ -190,6 +193,7 @@ public class IngameButtonManager : MonoBehaviour
                  JumpActionButton.SetActive(false);
                  Item1.SetActive(false);
                  Item2.SetActive(false);
+                 OptionButton.SetActive(false);
                  m_ItemButton2active = true;
                  m_whatitem = 2;
              }
@@ -260,6 +264,7 @@ public class IngameButtonManager : MonoBehaviour
         Joystick.SetActive(true);
         Item1.SetActive(true);
         Item2.SetActive(true);
+        OptionButton.SetActive(true);
         JumpActionButton.SetActive(true);
         m_whatitem = 0;
         m_joystickController.InitPos();
