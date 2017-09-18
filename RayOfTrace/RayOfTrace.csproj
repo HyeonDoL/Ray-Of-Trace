@@ -76,15 +76,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Facebook.Unity.Settings">
-      <HintPath>Library\FacebookSDK\Facebook.Unity.Settings.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="RayOfTrace.Plugins.csproj">
@@ -101,6 +92,7 @@
     <Compile Include="Assets\Script\Character\Player\PlayerJump.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerMove.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerStatus.cs" />
+    <Compile Include="Assets\Script\ClearConditionScript.cs" />
     <Compile Include="Assets\Script\Container\GameDataContainer.cs" />
     <Compile Include="Assets\Script\Container\PlayerDataContainer.cs" />
     <Compile Include="Assets\Script\Coroutine\Tween.cs" />
@@ -124,6 +116,7 @@
     <Compile Include="Assets\Script\Lighting\NormalLight.cs" />
     <Compile Include="Assets\Script\Lighting\RepeatLight.cs" />
     <Compile Include="Assets\Script\Lighting\ThunderBolt.cs" />
+    <Compile Include="Assets\Script\LineScript.cs" />
     <Compile Include="Assets\Script\LoadingScript.cs" />
     <Compile Include="Assets\Script\Manager\ChapterManager.cs" />
     <Compile Include="Assets\Script\Manager\IngameButtonManager.cs" />

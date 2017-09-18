@@ -12,11 +12,12 @@ public class DrawLine : MonoBehaviour {
     private Vector2[] colvec = new Vector2[0];
     private BoxCollider2D col2;
     private Rigidbody2D rid;
-    private int ison = 0;
-    int n = 1;
-    bool lline = false;
+    private int ison;
+    int n;
+  
     void Start () {
-        
+        PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
+        n = 1;
     }
 
     // Update is called once per frame

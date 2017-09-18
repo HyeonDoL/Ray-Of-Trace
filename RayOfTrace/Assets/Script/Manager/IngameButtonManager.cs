@@ -43,8 +43,6 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject Item2;
     [SerializeField]
-    private GameObject Jem;
-    [SerializeField]
     private GameObject LeftHand;
     [SerializeField]
     private Sprite Jump;
@@ -141,7 +139,7 @@ public class IngameButtonManager : MonoBehaviour
                     if (m_ishaveJem)
                     {
                         //Fucking No jem
-                        Jem.SetActive(true);
+                   
                         
                     }
                     else
@@ -305,12 +303,6 @@ public class IngameButtonManager : MonoBehaviour
         Time.timeScale = 1;
         PlayerPrefs.SetInt(Prefstype.IsToMain, 1);
         SceneChange.Change(SceneType.Loading);
-    }
-    public void Disable_ItemRange()
-    {
-        m_ItemButton1active = false;
-        m_ItemButton2active = false;
-        m_whatitem = 0;
     }
     private void init_buttonPos()
     {
