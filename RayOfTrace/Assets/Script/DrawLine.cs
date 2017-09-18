@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DrawLine : MonoBehaviour {
     public int Max;
+    public int n;
     private LineRenderer line;
     private Vector3 mousepos;
     private Vector3 startpos;
@@ -15,10 +16,12 @@ public class DrawLine : MonoBehaviour {
     private int ison;
     private int linenum;
     private float time;
-    int n;
-  
+   
+    [SerializeField]
+    private ClearConditionScript clearcondition;
     void Start () {
         PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
+        clearcondition = this.GetComponent<ClearConditionScript>();
         n = 1;
         linenum = 0;
         time = 0;
@@ -31,6 +34,7 @@ public class DrawLine : MonoBehaviour {
         if(time > 15)
         {
             Destroy(GameObject.Find("Line" + (linenum-1)));
+            n = 1;
         }
 		if(Input.GetMouseButtonDown(0)&& ison == 1)
         {
@@ -40,7 +44,10 @@ public class DrawLine : MonoBehaviour {
                 if (line == null)
                     createLine();
                 if (linenum > 0)
-                    Destroy(GameObject.Find("Line" + (linenum - 1) ));
+                {
+                    Destroy(GameObject.Find("Line" + (linenum - 1)));
+                    n = 1;
+                }
                 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousepos.z = 0;
                 col2 = new GameObject("col").AddComponent<BoxCollider2D>();
@@ -66,7 +73,6 @@ public class DrawLine : MonoBehaviour {
                 line = null;
                 PlayerPrefs.SetInt(Prefstype.Item2Use, 0);
                 linenum++;
-                n = 1;
                 time = 0;
             }
         }

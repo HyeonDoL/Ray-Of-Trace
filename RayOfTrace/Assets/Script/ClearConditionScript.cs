@@ -17,13 +17,18 @@ public class ClearConditionScript : MonoBehaviour {
     private int m_min;
     private int m_sec;
 
+    [SerializeField]
+    private DrawLine line;
 	void Start () {
+        line = this.GetComponent<DrawLine>();
         m_time = 0;
         m_hp = 100;
-        m_ink = this.GetComponent<DrawLine>().Max;
-	}
+        m_ink = line.Max;
+
+    }
 
 	void Update () {
+        m_ink = line.Max - line.n;
         m_time += Time.deltaTime;
         m_hour = (int)m_time / 3600;
         m_min = ((int)m_time / 60)%60;
@@ -32,7 +37,7 @@ public class ClearConditionScript : MonoBehaviour {
             time.text = "" + m_hour + m_min + " : " + 0 + m_sec;
         else
             time.text = "" + m_hour + m_min + " : " + m_sec;
-
+        InkGuage.fillAmount = m_ink * 0.01f;
        
     }
 }
