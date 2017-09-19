@@ -9,6 +9,7 @@ using UnityEditor;
 public class NpcData
 {
     public string name;
+
     [TextArea]
     public List<string> chat;
 }
