@@ -49,9 +49,7 @@ public class ClearConditionScript : MonoBehaviour {
         InkGuage.fillAmount = m_ink * 0.01f;
         HpGuage.fillAmount = m_hp * 0.01f;
         mapcamera.orthographicSize = 6f + (mapslider.value * 10f);
-        mapcamera.transform.position = new Vector3(mapcamera.transform.position.x,
-                                                   mapslider.value * 7f,
-                                                   mapcamera.transform.position.z);
+
         if(m_chapternum == 1)
         {
             //if (hit  == 0)
