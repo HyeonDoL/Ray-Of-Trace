@@ -20,11 +20,11 @@ public class ClearConditionScript : MonoBehaviour {
     private int m_sec;
     private int m_chapternum;
     [SerializeField]
-    private Camera cam;
-    [SerializeField]
     private DrawLine line;
     [SerializeField]
     private IngameButtonManager button;
+    [SerializeField]
+    private Camera mapcamera;
 	void Start () {
         line = this.GetComponent<DrawLine>();
         m_time = 0;
@@ -47,7 +47,7 @@ public class ClearConditionScript : MonoBehaviour {
 
         InkGuage.fillAmount = m_ink * 0.01f;
         HpGuage.fillAmount = m_hp * 0.01f;
-        cam.orthographicSize = 6f + (mapslider.value * 10f);
+        mapcamera.orthographicSize = 6f + (mapslider.value * 10f);
        
         if(m_chapternum == 1)
         {
