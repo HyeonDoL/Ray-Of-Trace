@@ -93,12 +93,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+    <Compile Include="Assets\Doozy\GIP_BD\Example\Scripts\SetSprite.cs" />
     <Compile Include="Assets\Script\Achievement\Achievement.cs" />
     <Compile Include="Assets\Script\Achievement\TimeAttack.cs" />
-=======
-    <Compile Include="Assets\Doozy\GIP_BD\Example\Scripts\SetSprite.cs" />
->>>>>>> 747acae293f99d3e6df1c6970e34945115634d7c
     <Compile Include="Assets\Script\AI.cs" />
     <Compile Include="Assets\Script\Camera\BackgroundParallax.cs" />
     <Compile Include="Assets\Script\Camera\MoveCamera.cs" />
