@@ -10,6 +10,8 @@ public class ClearConditionScript : MonoBehaviour {
     private Image HpGuage;
     [SerializeField]
     private Image InkGuage;
+    [SerializeField]
+    private Slider mapslider;
     private float m_time;
     private int m_hp;
     private int m_ink;
@@ -17,6 +19,8 @@ public class ClearConditionScript : MonoBehaviour {
     private int m_min;
     private int m_sec;
     private int m_chapternum;
+    [SerializeField]
+    private Camera cam;
     [SerializeField]
     private DrawLine line;
     [SerializeField]
@@ -27,6 +31,7 @@ public class ClearConditionScript : MonoBehaviour {
         m_hp = 100;
         m_ink = line.Max;
         m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
+       
     }
 
 	void Update () {
@@ -39,9 +44,11 @@ public class ClearConditionScript : MonoBehaviour {
             time.text = "" + m_hour + m_min + " : " + 0 + m_sec;
         else
             time.text = "" + m_hour + m_min + " : " + m_sec;
+
         InkGuage.fillAmount = m_ink * 0.01f;
         HpGuage.fillAmount = m_hp * 0.01f;
-
+        cam.orthographicSize = 6f + (mapslider.value * 10f);
+       
         if(m_chapternum == 1)
         {
             //if (hit  == 0)
