@@ -18,13 +18,42 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private GameObject MainWindow;
 
     [SerializeField] private Text Money;
-
+    [SerializeField] private Image fade;
     private int money;
+    private float fades;
+    public bool fadetrue
+    {
+        get
+        {
+            return fadetrue;
+        }
+        set
+        {
+            fadetrue = value;
+        }
+    }
     private void Start()
     {
-       
+        fadetrue = true;
         money = PlayerPrefs.GetInt(Prefstype.Money,999999999);
         Money.text = "" + money;
+    }
+    private void Update()
+    {
+    
+        if (!fadetrue) // fadeout
+        {
+            if (fades >= 1.0f)
+            {
+                fades -= 0.01f;
+                fade.color = new Color(0, 0, 0, fades);
+
+            }
+            else if (fades <= 0f)
+            {
+
+            }
+        }
     }
     private IEnumerator ChangeWindow()
     {
@@ -36,6 +65,7 @@ public class ChapterManager : MonoBehaviour {
         yield return StartCoroutine(normalLight.Lighting());
 
     }
+   
     public void OptionButton()
     {
 
