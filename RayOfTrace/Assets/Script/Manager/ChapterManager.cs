@@ -16,42 +16,54 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private GameObject MoveWindow;
     [SerializeField] private GameObject MoveButton;
     [SerializeField] private GameObject MainWindow;
-
+   
     [SerializeField] private Text Money;
     [SerializeField] private Image fade;
     private int money;
-    private float fades;
-    public bool fadetrue
-    {
-        get
-        {
-            return fadetrue;
-        }
-        set
-        {
-            fadetrue = value;
-        }
-    }
+    private float fades= 1.0f;
+    public bool fadeOuttrue = false;
+    public bool fadeIntrue = false;
+
     private void Start()
     {
-        fadetrue = true;
+        
         money = PlayerPrefs.GetInt(Prefstype.Money,999999999);
         Money.text = "" + money;
     }
     private void Update()
     {
     
-        if (!fadetrue) // fadeout
+        if(fadeIntrue)
         {
-            if (fades >= 1.0f)
+           
+            if (fades < 1.0f)
             {
+                fade.raycastTarget = true;
+                fades += 0.01f;
+                fade.color = new Color(0, 0, 0, fades);
+               
+            }
+            else if (fades >= 1.0f)
+            {
+                SceneChange.Change(SceneType.Loading);
+                fadeIntrue = false;
+            }
+           
+        }
+        else if (fadeOuttrue) // fadeout
+        {
+           
+            if (fades >= 0)
+            {
+                fade.raycastTarget = true;
                 fades -= 0.01f;
                 fade.color = new Color(0, 0, 0, fades);
-
+            
             }
-            else if (fades <= 0f)
+            else if (fades <= 0)
             {
-
+                fade.raycastTarget = false;
+                fadeOuttrue = false;
             }
         }
     }
@@ -100,9 +112,9 @@ public class ChapterManager : MonoBehaviour {
     }
     public void ChpaterButton(int index)
     {
-        ChangeWindow();
+      
         PlayerPrefs.SetInt(Prefstype.ChapterNum, index);
-        SceneChange.Change(SceneType.Loading);
+        fadeIntrue = true;
     }
     public void BuySkin(int index)
     {

@@ -10,8 +10,14 @@ public class LoadingScript : MonoBehaviour
     [SerializeField]
     private SpriteRenderer[] backgrounds;
 
+    [SerializeField]
+    private Image fade;
+
+    public bool fadeOuttrue = false;
+    public bool fadeIntrue = false;
     private float changeTime;
     private float linearTime;
+    private float fades = 1.0f;
 
     private int backgroundIndex;
 
@@ -23,6 +29,7 @@ public class LoadingScript : MonoBehaviour
 
     void Start()
     {
+        fadeOuttrue = true;
         m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
         m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain);
         if(m_istomain == 0)
@@ -35,10 +42,39 @@ public class LoadingScript : MonoBehaviour
 
     void Update()
     {
+        if (fadeIntrue) // fadein
+        {
+            if (fades < 1.0f)
+            {
+                fades += 0.02f;
+                fade.color = new Color(0, 0, 0, fades);
+
+            }
+            else if (fades >= 1.0f)
+            {
+                fadeIntrue = false;
+            }
+        }
+        else if (fadeOuttrue) // fadeout
+        {
+
+            if (fades >= 0)
+            {
+                fades -= 0.01f;
+                fade.color = new Color(0, 0, 0, fades);
+
+            }
+            else if (fades <= 0)
+            {
+              
+                fadeOuttrue = false;
+            }
+        }
         fTime += Time.deltaTime;
 
         if (fTime >= minimumTime)
         {
+          
             async_operation.allowSceneActivation = true;
         }
 
@@ -69,7 +105,7 @@ public class LoadingScript : MonoBehaviour
 
             while (async_operation.progress < 0.9f)
             {
-                //currentTime = async_operation.progress;
+                fadeIntrue = true;
                 yield return true;
             }
         }

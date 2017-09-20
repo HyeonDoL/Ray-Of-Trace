@@ -42,26 +42,27 @@ public class TitleManager : MonoBehaviour
     }
     private void Update()
     {
-       
+
         if (Input.GetMouseButtonDown(0))
         {
             fadetrue = true;
             StartCoroutine(ChangeScene());
         }
-        if(fadetrue) // fadein
+        if (fadetrue) // fadein
         {
             if (fades < 1.0f)
             {
+                fade.raycastTarget = true;
                 fades += 0.01f;
                 fade.color = new Color(0, 0, 0, fades);
-             
+
             }
             else if (fades >= 1.0f)
             {
-                chaterManager.fadetrue = false;
+                ChapterWindow.SetActive(true);
+                chaterManager.fadeOuttrue = true;
             }
         }
-       
     }
  
     private IEnumerator ChangeScene()
@@ -72,7 +73,7 @@ public class TitleManager : MonoBehaviour
         
         TitleWindow.SetActive(false);
         repeatLight.gameObject.SetActive(true);
-        ChapterWindow.SetActive(true);
+      
         BackGround.SetActive(true);
         this.gameObject.GetComponent<TitleManager>().enabled= false;
 
