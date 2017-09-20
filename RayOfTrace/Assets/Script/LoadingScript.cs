@@ -4,8 +4,17 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class LoadingScript : MonoBehaviour
 {
+    [SerializeField]
+    private float minimumTime = 3f;
 
-    public Slider slider;
+    [SerializeField]
+    private SpriteRenderer[] backgrounds;
+
+    private float changeTime;
+    private float linearTime;
+
+    private int backgroundIndex;
+
     bool IsDone = false;
     float fTime = 0f;
     int m_chapternum;
@@ -20,22 +29,36 @@ public class LoadingScript : MonoBehaviour
             StartCoroutine(StartLoad(SceneType.InGame));
         else if (m_istomain == 1)
             StartCoroutine(StartLoad(SceneType.Title));
+
+        changeTime = minimumTime / backgrounds.Length;
     }
 
     void Update()
     {
         fTime += Time.deltaTime;
-        slider.value = fTime;
 
-        if (fTime >= 2)
+        if (fTime >= minimumTime)
         {
             async_operation.allowSceneActivation = true;
         }
+
+        SmoothChangeBackground();
+    }
+
+    private void SmoothChangeBackground()
+    {
+        backgroundIndex = (int)(fTime / changeTime);
+
+        if (backgroundIndex + 1 >= backgrounds.Length)
+            return;
+
+        linearTime = Mathf.InverseLerp(0.0f + (changeTime * backgroundIndex), 0.0f + (changeTime * (backgroundIndex + 1)), fTime);
+
+        backgrounds[backgroundIndex + 1].color = new Color(1f, 1f, 1f, linearTime);
     }
 
     public IEnumerator StartLoad(string strSceneName)
-    {
-       
+    {       
         async_operation = SceneManager.LoadSceneAsync(strSceneName); 
        
         async_operation.allowSceneActivation = false;
@@ -46,11 +69,9 @@ public class LoadingScript : MonoBehaviour
 
             while (async_operation.progress < 0.9f)
             {
-                slider.value = async_operation.progress;
+                //currentTime = async_operation.progress;
                 yield return true;
             }
         }
     }
-
-
 }

@@ -89,7 +89,7 @@
     <Compile Include="Assets\Script\Achievement\TimeAttack.cs" />
     <Compile Include="Assets\Script\AI.cs" />
     <Compile Include="Assets\Script\Camera\BackgroundParallax.cs" />
-    <Compile Include="Assets\Script\Camera\MoveCamera.cs" />
+    <Compile Include="Assets\Script\Camera\SmoothCamera.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerAnimation.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerInteraction.cs" />
     <Compile Include="Assets\Script\Character\Player\PlayerJump.cs" />

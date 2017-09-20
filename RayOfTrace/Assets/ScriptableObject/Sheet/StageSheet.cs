@@ -10,7 +10,7 @@ public class StageData
 {
     public int stageLv;
 
-    public List<Achievement> stageAchievementList = new List<Achievement>();
+    public List<Achievement> stageAchievementList;
 }
 
 public class StageSheet : Sheet<StageData>
