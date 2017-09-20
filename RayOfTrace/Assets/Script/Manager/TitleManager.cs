@@ -23,6 +23,7 @@ public class TitleManager : MonoBehaviour
     private bool fadetrue = false;
     private void Awake()
     {
+       
         m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain,0);
         StartCoroutine(repeatLight.Lighting());
     }
@@ -75,7 +76,7 @@ public class TitleManager : MonoBehaviour
         repeatLight.gameObject.SetActive(true);
       
         BackGround.SetActive(true);
-        this.gameObject.GetComponent<TitleManager>().enabled= false;
+        
 
     }
 }

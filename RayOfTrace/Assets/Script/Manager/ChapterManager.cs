@@ -16,7 +16,7 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private GameObject MoveWindow;
     [SerializeField] private GameObject MoveButton;
     [SerializeField] private GameObject MainWindow;
-   
+    [SerializeField] private GameObject AchievementWindow;
     [SerializeField] private Text Money;
     [SerializeField] private Image fade;
     private int money;
@@ -154,5 +154,12 @@ public class ChapterManager : MonoBehaviour {
         m_Movebuttonscript.ChangeButtonPos();
         m_Movebuttonscript.Setjoypadposition();
     }
-   
+    public void AcheivementButton()
+    {
+        AchievementWindow.SetActive(true);
+    }
+    public void AcheivementClose()
+    {
+        AchievementWindow.SetActive(false);
+    }
 }

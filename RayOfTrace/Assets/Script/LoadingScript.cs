@@ -71,7 +71,11 @@ public class LoadingScript : MonoBehaviour
             }
         }
         fTime += Time.deltaTime;
+        if (fTime >= 3.5f)
+        {
 
+            fadeIntrue = true;
+        }
         if (fTime >= minimumTime)
         {
           
