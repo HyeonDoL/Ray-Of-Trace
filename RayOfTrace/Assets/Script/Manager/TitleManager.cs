@@ -60,6 +60,8 @@ public class TitleManager : MonoBehaviour
             else if (fades >= 1.0f)
             {
                 ChapterWindow.SetActive(true);
+                BackGround.SetActive(true);
+                TitleWindow.SetActive(false);
                 chaterManager.fadeOuttrue = true;
             }
         }
@@ -70,11 +72,9 @@ public class TitleManager : MonoBehaviour
         repeatLight.gameObject.SetActive(false);
         normalLight.LightIntensity = repeatLight.LightIntensity;
        yield return StartCoroutine(normalLight.Lighting());
-        
-        TitleWindow.SetActive(false);
+
         repeatLight.gameObject.SetActive(true);
       
-        BackGround.SetActive(true);
         this.gameObject.GetComponent<TitleManager>().enabled= false;
 
     }

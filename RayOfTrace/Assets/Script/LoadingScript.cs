@@ -60,7 +60,7 @@ public class LoadingScript : MonoBehaviour
 
             if (fades >= 0)
             {
-                fades -= 0.01f;
+                fades -= 0.02f;
                 fade.color = new Color(0, 0, 0, fades);
 
             }
@@ -71,7 +71,11 @@ public class LoadingScript : MonoBehaviour
             }
         }
         fTime += Time.deltaTime;
+        if (fTime >= 4f)
+        {
 
+            fadeIntrue = true;
+        }
         if (fTime >= minimumTime)
         {
           
@@ -105,7 +109,7 @@ public class LoadingScript : MonoBehaviour
 
             while (async_operation.progress < 0.9f)
             {
-                fadeIntrue = true;
+           
                 yield return true;
             }
         }

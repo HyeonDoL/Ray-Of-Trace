@@ -90,7 +90,7 @@ public class IngameButtonManager : MonoBehaviour
 
     [SerializeField]
     private PlayerManager playerManager;
-  
+    private PlayerAnimation playerstatus;
     private void Update()
     {
        
@@ -99,6 +99,7 @@ public class IngameButtonManager : MonoBehaviour
     {
         Itemusenum = 0;
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
+        playerstatus = playerManager.GetComponent<PlayerAnimation>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -151,11 +152,14 @@ public class IngameButtonManager : MonoBehaviour
                     }
 
                 }
-                else if(playerManager.IsGround == true)
+                else if(playerstatus.status == PlayerState.Move && playerManager.IsGround == true)
                 {
                     playerManager.Jump();
                 }
-
+                else if (playerstatus.status == PlayerState.Idle && playerManager.IsGround == true)
+                {
+                    playerManager.Jump();
+                }
                 m_JumpActionButton = false;
                 m_istouchbutton = false;
             });

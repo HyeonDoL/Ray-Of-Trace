@@ -8,14 +8,14 @@ public class PlayerAnimation : MonoBehaviour
     private Animator playerAni;
 
     private PlayerState prevState = PlayerState.Idle;
-
+    public PlayerState status;
     public void ChangeAni(PlayerState state)
     {
         if (prevState == state)
             return;
 
         playerAni.SetInteger("PlayerState", (int)state);
-
+        status = state;
         prevState = state;
     }
 
