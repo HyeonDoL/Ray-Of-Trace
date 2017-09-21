@@ -235,6 +235,7 @@ public class IngameButtonManager : MonoBehaviour
     
     private void ItemUse()
     {
+
         // 아이템 사용되는곳
         if (m_whatitem !=0)
         {
@@ -262,6 +263,7 @@ public class IngameButtonManager : MonoBehaviour
     }
     private void ItemUsed()
     {
+        SoundManager.instance.PlaySound();
         m_isitemUse = false;
         m_ItemButton1active = false;
         m_ItemButton2active = false;
@@ -276,41 +278,48 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void Ison_jumpaction()
     {
+        SoundManager.instance.PlaySound();
         m_JumpActionButton = true;
         m_istouchbutton = true;
     }
     public void Ison_item1()
     {
+        SoundManager.instance.PlaySound();
         m_ItemButton1 = true;
         m_istouchbutton = true;
 
     }
     public void Ison_item2()
     {
+        SoundManager.instance.PlaySound();
         m_ItemButton2 = true;
         m_istouchbutton = true;
 
     }
     public void Ison_pausebutton()
     {
+        SoundManager.instance.PlaySound();
         m_PauseButton = true;
         m_istouchbutton = true;
         ItemUsed();
     }
     public void Ison_closepausebutton()
     {
+        SoundManager.instance.PlaySound();
         m_PauseButton = false;
         m_istouchbutton = true;
         m_joystickController.InitPos();
     }
     public void Ison_retrybutton()
     {
+        SoundManager.instance.PlaySound();
         Time.timeScale = 1;
         PlayerPrefs.SetInt(Prefstype.IsToMain, 0);
         SceneChange.Change(SceneType.Loading);
     }
     public void Ison_tomainscene()
     {
+        SoundManager.instance.PlaySound();
         Time.timeScale = 1;
         PlayerPrefs.SetInt(Prefstype.IsToMain, 1);
         SceneChange.Change(SceneType.Loading);
