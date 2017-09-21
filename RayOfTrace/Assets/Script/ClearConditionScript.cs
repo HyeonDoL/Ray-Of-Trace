@@ -27,7 +27,6 @@ public class ClearConditionScript : MonoBehaviour {
     private Camera mapcamera;
 	void Start () {
         line = this.GetComponent<DrawLine>();
-        button = this.GetComponent<IngameButtonManager>();
         m_time = 0;
         m_hp = 100;
         m_ink = line.Max;

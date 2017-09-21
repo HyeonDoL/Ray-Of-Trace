@@ -64,7 +64,7 @@ public class IngameButtonManager : MonoBehaviour
     private bool m_ItemButton2active = false;
     private bool m_isitemUse = false;
     private bool m_isitemUsed = false;
-    private bool m_ishaveJem = false;
+    private bool m_isHavewhite = false;
    
     public bool canAction
     {
@@ -73,23 +73,43 @@ public class IngameButtonManager : MonoBehaviour
             m_isaction = value;
         }
     }
-    public bool IsHaveJem
+    public bool IshaveWhite
     {
         get
         {
-            return m_ishaveJem;
+            return m_isHavewhite;
         }
         set
         {
-            m_ishaveJem = IsHaveJem;
+            m_isHavewhite = IshaveWhite;
         }
     }
-
-    
+    public bool GetWhite
+    {
+        get
+        {
+            return m_isHavewhite;
+        }
+        set
+        {
+            m_isHavewhite = IshaveWhite;
+        }
+    }
+    public int WhatItemUse
+    {
+        get
+        {
+            return m_whatitem;
+        }
+       
+        
+    }
 
 
     [SerializeField]
     private PlayerManager playerManager;
+    [SerializeField]
+    private InGameManager ingameManager;
     private PlayerAnimation playerstatus;
     private void Update()
     {
@@ -98,7 +118,6 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         Itemusenum = 0;
-        playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
         playerstatus = playerManager.GetComponent<PlayerAnimation>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
@@ -137,19 +156,16 @@ public class IngameButtonManager : MonoBehaviour
                 if (m_isaction)
                 {
 
-                    playerManager.Interaction();
+                   // playerManager.Interaction();
 
                     //action
-                    if (m_ishaveJem)
+                    if (!m_isHavewhite)
                     {
                         //Fucking No jem
-                   
+
                         
                     }
-                    else
-                    {
-                        // clear
-                    }
+                  
 
                 }
                 else if(playerstatus.status == PlayerState.Move && playerManager.IsGround == true)
@@ -245,7 +261,6 @@ public class IngameButtonManager : MonoBehaviour
             if (m_whatitem == 1 && m_isitemUse)  //item1 use
             {
             
-                ItemUsed();
             }
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
@@ -261,7 +276,7 @@ public class IngameButtonManager : MonoBehaviour
     {
 
     }
-    private void ItemUsed()
+    public void ItemUsed()
     {
         SoundManager.instance.PlaySound();
         m_isitemUse = false;

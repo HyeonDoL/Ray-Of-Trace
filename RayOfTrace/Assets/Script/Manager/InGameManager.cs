@@ -17,6 +17,8 @@ public class InGameManager : MonoBehaviour
 
     [SerializeField]
     private PlayerDataContainer playerDataContainer;
+    [SerializeField]
+    private IngameButtonManager ingameButtonManager;
 
     private List<Transform> teleportExitTransList = new List<Transform>();
 
@@ -26,22 +28,27 @@ public class InGameManager : MonoBehaviour
     }
 
     private void Update()
-    {        
-        // FIXME : 포탈담는 버튼 눌렀는지 체크
-        if(Input.GetMouseButtonDown(0))
+    {
+        if (ingameButtonManager.WhatItemUse == 1)// 포탈담는 버튼 눌렀는지 체크
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100f);
-
-            if (hit)
+            if (Input.GetMouseButtonDown(0))
             {
-                // TODO : 현재 포탈을 가지고 있는지 없는지 판별
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-                if (hit.transform.CompareTag("TeleportExit"))
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100f);
+
+                if (hit)
                 {
-                    // TODO : 포탈 연동
+                    // TODO : 현재 포탈을 가지고 있는지 없는지 판별
+                    // IshaveWhite 로 가져오셈 트루가 가지고 있는거임
+                    if (hit.transform.CompareTag("TeleportExit"))
+                    {
+                        // TODO : 포탈 연동
+                        ingameButtonManager.IshaveWhite = false;
+                    }
+                    
                 }
+                ingameButtonManager.ItemUsed();
             }
         }
     }

@@ -8,9 +8,9 @@ public class ClearPoint : InteractionObject, Interactive
 
     void Interactive.Interaction()
     {
-        if(InGameManager.Instance.PlayerDataContainer_readonly._PlayerStatus.IsCrystal)
-        {
-            crystal.SetActive(true);
-        }
+        //if(InGameManager.Instance.PlayerDataContainer_readonly._PlayerStatus.IsCrystal)
+        //{
+        //    crystal.SetActive(true);
+        //}
     }
 }
