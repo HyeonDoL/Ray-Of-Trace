@@ -156,7 +156,7 @@ public class IngameButtonManager : MonoBehaviour
                 if (m_isaction)
                 {
 
-                   // playerManager.Interaction();
+                   playerManager.Interaction();
 
                     //action
                     if (!m_isHavewhite)
