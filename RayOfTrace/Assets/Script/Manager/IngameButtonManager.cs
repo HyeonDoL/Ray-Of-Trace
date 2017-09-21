@@ -51,6 +51,7 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private Sprite Action;
 
+    
 
     public int Itemusenum;
     private int m_whatitem = 0;
@@ -81,18 +82,7 @@ public class IngameButtonManager : MonoBehaviour
         }
         set
         {
-            m_isHavewhite = IshaveWhite;
-        }
-    }
-    public bool GetWhite
-    {
-        get
-        {
-            return m_isHavewhite;
-        }
-        set
-        {
-            m_isHavewhite = IshaveWhite;
+            m_isHavewhite = value;
         }
     }
     public int WhatItemUse
@@ -158,13 +148,7 @@ public class IngameButtonManager : MonoBehaviour
 
                    playerManager.Interaction();
 
-                    //action
-                    if (!m_isHavewhite)
-                    {
-                        //Fucking No jem
-
-                        
-                    }
+             
                   
 
                 }
