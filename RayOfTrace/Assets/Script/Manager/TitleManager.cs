@@ -75,7 +75,7 @@ public class TitleManager : MonoBehaviour
 
         repeatLight.gameObject.SetActive(true);
       
-        this.gameObject.GetComponent<TitleManager>().enabled= false;
+    
 
     }
 }

@@ -16,19 +16,24 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private GameObject MoveWindow;
     [SerializeField] private GameObject MoveButton;
     [SerializeField] private GameObject MainWindow;
-   
+    [SerializeField] private GameObject AcheivementWindow;
+    [SerializeField] private TitleManager titlemanager;
     [SerializeField] private Text Money;
     [SerializeField] private Image fade;
     private int money;
+    private int pages;
     private float fades= 1.0f;
+
     public bool fadeOuttrue = false;
     public bool fadeIntrue = false;
-
+    public int PageNum;
     private void Start()
     {
         
         money = PlayerPrefs.GetInt(Prefstype.Money,999999999);
+        pages = 1;
         Money.text = "" + money;
+        titlemanager = this.GetComponent<TitleManager>();
     }
     private void Update()
     {
@@ -55,6 +60,7 @@ public class ChapterManager : MonoBehaviour {
            
             if (fades >= 0)
             {
+                titlemanager.enabled = false;
                 fade.raycastTarget = true;
                 fades -= 0.01f;
                 fade.color = new Color(0, 0, 0, fades);
@@ -154,5 +160,22 @@ public class ChapterManager : MonoBehaviour {
         m_Movebuttonscript.ChangeButtonPos();
         m_Movebuttonscript.Setjoypadposition();
     }
-   
+    public void AcheivementButton()
+    {
+        AcheivementWindow.SetActive(true);
+    }
+    public void AcheivementBack()
+    {
+        AcheivementWindow.SetActive(false);
+    }
+    public void LeftButton()
+    {
+        if (pages > 1)
+            pages--;
+    }
+    public void RightButton()
+    {
+        if (pages < PageNum)
+            pages++;
+    }
 }
