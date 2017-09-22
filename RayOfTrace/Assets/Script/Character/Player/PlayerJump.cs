@@ -41,25 +41,26 @@ public class PlayerJump : MonoBehaviour
             if (fallingTime < checkWaitTime)
                 return;
 
-            RaycastHit2D hitInfo;
-
-            hitInfo = Physics2D.Raycast(this.transform.up * -0.1f, Vector2.down, 0.01f);
-
-            Debug.Log(hitInfo.transform.name);
-
-            if(hitInfo.transform.CompareTag("Ground"))
+            if (!IsGround)
             {
-                IsGround = true;
+                IsGround = Physics2D.OverlapCircle(this.transform.position, 0.1f, LayerMask.GetMask("Ground"));
 
-                fallingTime = 0f;
+                if (IsGround)
+                {
+                    IsGround = true;
 
-                playerManager.Idle();
+                    fallingTime = 0f;
+
+                    playerManager.Idle();
+                }
             }
         }
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        Gizmos.DrawRay(this.transform.up * -1.5f, Vector2.down);
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawSphere(this.transform.position, 0.1f);
     }
 }
