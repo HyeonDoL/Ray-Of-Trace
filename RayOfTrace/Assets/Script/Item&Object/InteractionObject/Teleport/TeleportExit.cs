@@ -32,10 +32,6 @@ public class TeleportExit : MonoBehaviour
             ingameManager.cangetwhite = false;
         }
     }
-    private void Awake()
-    {
-        InGameManager.Instance.SetTeleportExitTrans(this.transform);
-    }
 
     private void OnEnable()
     {
