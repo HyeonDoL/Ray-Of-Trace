@@ -90,8 +90,6 @@ public class DrawLine : MonoBehaviour {
                 col2.transform.position = mousepos;
                 col2.transform.parent = line.transform;
                 col2.gameObject.layer = LayerMask.NameToLayer("Ground");
-
-
                 line.SetPosition(n, mousepos);
                 newVerticies.Add(new Vector2(mousepos.x, mousepos.y));
                 n++;
@@ -104,17 +102,11 @@ public class DrawLine : MonoBehaviour {
     {
         line = new GameObject("Line"+linenum).AddComponent<LineRenderer>();
         line.material = new Material(Shader.Find("Unlit/Texture"));
-
         line.gameObject.layer = LayerMask.NameToLayer("Ground");
-
         rid = GameObject.Find("Line"+linenum).AddComponent<Rigidbody2D>();
-      
-  
         line.startWidth = 0.1f;
-       
         line.startColor = Color.white;
         line.useWorldSpace = false;
-      
         rid.simulated = false;
     
     }

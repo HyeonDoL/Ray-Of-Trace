@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MonsterState
+public enum LandState
 {
     Idle,
+    Walk,
+    Attack
+}
+public enum SkyState
+{
     Walk,
     Attack
 }
@@ -14,8 +19,8 @@ public class AI : MonoBehaviour {
     [SerializeField]
     private Animator MonsterAni;
 
-    private MonsterState prevState = MonsterState.Idle;
-
+    private LandState prevState = LandState.Idle;
+    private SkyState prevState2 = SkyState.Walk;
     private Transform MonsterTrans;
     private Rigidbody2D MonsterRigid;
     private Vector3 SpawnPosition;
@@ -28,6 +33,8 @@ public class AI : MonoBehaviour {
     private float playerx;
     private float monsterx;
     private float dis;
+
+    public int Monster;
     // Use this for initialization
     void Start () {
         MonsterTrans = this.GetComponent<Transform>();
@@ -40,32 +47,63 @@ public class AI : MonoBehaviour {
         playerx = Player.transform.position.x;
         monsterx = this.transform.position.x;
         dis = Vector3.Distance(Player.transform.position, this.transform.position);
-	
-        if (dis <= 1.5) //공격
+        if (Monster == 1)
         {
-            ChangeAnimation(MonsterState.Attack);
-          
-        }
-        else if (dis <= 7) // 추적
-        {
-            if (playerx > monsterx)
+            if (dis <= 1.5) //공격
             {
-                ChangeAnimation(MonsterState.Walk);
-                Move(Vector3.right);
-                this.transform.localScale = new Vector3(-1, 1, 1);
+                ChangeLandAnimation(LandState.Attack);
+
+            }
+            else if (dis <= 7) // 추적
+            {
+                if (playerx > monsterx)
+                {
+                    ChangeLandAnimation(LandState.Walk);
+                    Move(Vector3.right);
+                    this.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    ChangeLandAnimation(LandState.Walk);
+                    Move(Vector3.left);
+                    this.transform.localScale = new Vector3(1, 1, 1);
+                }
             }
             else
             {
-                ChangeAnimation(MonsterState.Walk);
-                Move(Vector3.left);
-                this.transform.localScale = new Vector3(1, 1, 1);
-            } 
+
+                ChangeLandAnimation(LandState.Idle);
+
+            }
         }
-        else
+        else if(Monster == 2)
         {
-          
-            ChangeAnimation(MonsterState.Idle);
-       
+            if (dis <= 3) //공격
+            {
+                ChangeSkyAnimation(SkyState.Attack);
+
+            }
+            else if (dis <= 7) // 추적
+            {
+                if (playerx > monsterx)
+                {
+                    ChangeSkyAnimation(SkyState.Walk);
+                    Move(Vector3.right);
+                    this.transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    ChangeSkyAnimation(SkyState.Walk);
+                    Move(Vector3.left);
+                    this.transform.localScale = new Vector3(1, 1, 1);
+                }
+            }
+            else
+            {
+
+                ChangeSkyAnimation(SkyState.Walk);
+
+            }
         }
     }
 
@@ -78,7 +116,7 @@ public class AI : MonoBehaviour {
 
 
 
-    public void ChangeAnimation(MonsterState state)
+    public void ChangeLandAnimation(LandState state)
     {
         if (prevState == state)
             return;
@@ -86,5 +124,14 @@ public class AI : MonoBehaviour {
         MonsterAni.SetInteger("MonsterState", (int)state);
         
         prevState = state;
+    }
+    public void ChangeSkyAnimation(SkyState state)
+    {
+        if (prevState2 == state)
+            return;
+
+        MonsterAni.SetInteger("MonsterState", (int)state);
+
+        prevState2 = state;
     }
 }
