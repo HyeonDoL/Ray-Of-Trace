@@ -15,7 +15,6 @@ public class ClearConditionScript : MonoBehaviour {
     private float m_time;
     private int m_hp;
     private int m_ink;
-    private int m_hour;
     private int m_min;
     private int m_sec;
     private int m_chapternum;
@@ -37,13 +36,12 @@ public class ClearConditionScript : MonoBehaviour {
 	void Update () {
         m_ink = line.Max - line.n;
         m_time += Time.deltaTime;
-        m_hour = (int)m_time / 3600;
         m_min = ((int)m_time / 60)%60;
         m_sec = (int)m_time % 60;
         if (m_sec < 10)
-            time.text = "" + m_hour + m_min + " : " + 0 + m_sec;
+            time.text = "" + m_min + " : " + 0 + m_sec;
         else
-            time.text = "" + m_hour + m_min + " : " + m_sec;
+            time.text = "" + m_min + " : " + m_sec;
 
         InkGuage.fillAmount = m_ink * 0.01f;
         HpGuage.fillAmount = m_hp * 0.01f;
