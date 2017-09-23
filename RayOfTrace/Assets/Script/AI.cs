@@ -14,8 +14,8 @@ public enum SkyState
     Attack
 }
 public class AI : MonoBehaviour {
-    [SerializeField]
-    GameObject Player;
+  
+  
     [SerializeField]
     private Animator MonsterAni;
 
@@ -24,7 +24,7 @@ public class AI : MonoBehaviour {
     private Transform MonsterTrans;
     private Rigidbody2D MonsterRigid;
     private Vector3 SpawnPosition;
-    
+    private Vector3 PlayerPos;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -40,13 +40,16 @@ public class AI : MonoBehaviour {
         MonsterTrans = this.GetComponent<Transform>();
         MonsterRigid = this.GetComponent<Rigidbody2D>();
         SpawnPosition = this.transform.position;
-	}
+     
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        playerx = Player.transform.position.x;
+        PlayerPos = IngameButtonManager.Instance.playerposition;
+        playerx = PlayerPos.x;
         monsterx = this.transform.position.x;
-        dis = Vector3.Distance(Player.transform.position, this.transform.position);
+        dis = Vector3.Distance(PlayerPos, this.transform.position);
         if (Monster == 1)
         {
             if (dis <= 1.5) //공격

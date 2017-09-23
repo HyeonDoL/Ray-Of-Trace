@@ -51,8 +51,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private Sprite Action;
 
-    
 
+    public Vector3 playerposition;
     public int Itemusenum;
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
@@ -103,7 +103,7 @@ public class IngameButtonManager : MonoBehaviour
     private PlayerAnimation playerstatus;
     private void Update()
     {
-       
+        playerposition = playerManager.gameObject.transform.position;
     }
     void Start()
     {
