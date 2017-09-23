@@ -27,7 +27,7 @@ public class AI : MonoBehaviour {
 
     private float playerx;
     private float monsterx;
-    [SerializeField] private float dis;
+    private float dis;
     // Use this for initialization
     void Start () {
         MonsterTrans = this.GetComponent<Transform>();

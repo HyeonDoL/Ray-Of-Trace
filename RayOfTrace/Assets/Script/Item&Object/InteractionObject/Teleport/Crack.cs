@@ -5,15 +5,14 @@ using UnityEngine;
 public class Crack : MonoBehaviour
 {
     private Transform playerTrans;
-    [SerializeField]
-    private InGameManager ingameManager;
+
   
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            ingameManager.NowCrash = this.gameObject;
-            ingameManager.candeletecrash = true;
+            InGameManager.Instance.NowCrash = this.gameObject;
+            InGameManager.Instance.candeletecrash = true;
         }
     }
 
@@ -22,8 +21,8 @@ public class Crack : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            ingameManager.NowCrash = this.gameObject;
-            ingameManager.candeletecrash = true;
+            InGameManager.Instance.NowCrash = this.gameObject;
+            InGameManager.Instance.candeletecrash = true;
         }
     }
 
@@ -31,8 +30,8 @@ public class Crack : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            ingameManager.NowCrash = null;
-            ingameManager.candeletecrash = false;
+            InGameManager.Instance.NowCrash = null;
+            InGameManager.Instance.candeletecrash = false;
         }
     }
     private void Start()

@@ -2,15 +2,13 @@
 
 public class TeleportExit : MonoBehaviour
 {
-    [SerializeField]
-    private InGameManager ingameManager;
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            ingameManager.NowWhite = this.gameObject;
-            ingameManager.cangetwhite = true;
+            InGameManager.Instance.NowWhite = this.gameObject;
         }
     }
 
@@ -18,9 +16,7 @@ public class TeleportExit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
-            ingameManager.NowWhite = this.gameObject;
-            ingameManager.cangetwhite = true;
+            InGameManager.Instance.NowWhite = this.gameObject;
         }
     }
 
@@ -28,8 +24,7 @@ public class TeleportExit : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            ingameManager.NowWhite = null;
-            ingameManager.cangetwhite = false;
+            InGameManager.Instance.NowWhite = null;
         }
     }
 
