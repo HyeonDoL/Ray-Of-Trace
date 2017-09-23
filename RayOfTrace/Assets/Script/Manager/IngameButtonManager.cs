@@ -171,7 +171,7 @@ public class IngameButtonManager : MonoBehaviour
              //item1
              if (!m_ItemButton1active) // 활성화
              {
-           
+                 PlayerPrefs.SetInt(Prefstype.Item1Use, 1);
                  Joystick.SetActive(false);
                  JumpActionButton.SetActive(false);
                  Item1.SetActive(false);
