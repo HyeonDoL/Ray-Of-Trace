@@ -21,10 +21,10 @@ public class InGameManager : MonoBehaviour
     private IngameButtonManager ingameButtonManager;
 
     private List<Transform> teleportExitTransList = new List<Transform>();
-    private GameObject HavingWhite;
+  [SerializeField]  private GameObject HavingWhite;
     public GameObject NowWhite;
     public GameObject NowCrash;
-    public bool cangetwhite = false;
+  //  public bool cangetwhite = false;
     public bool candeletecrash = false;
     private void Awake()
     {
@@ -45,7 +45,7 @@ public class InGameManager : MonoBehaviour
                 mousepos.z = 0;
                 if (hit)
                 {
-                    if (hit.transform.CompareTag("TeleportExit")&&!ingameButtonManager.IshaveWhite&& cangetwhite)
+                    if (hit.transform.CompareTag("TeleportExit")&&!ingameButtonManager.IshaveWhite)
                     {
                  
                         HavingWhite = NowWhite;
