@@ -32,8 +32,7 @@ public class InGameManager : MonoBehaviour
     }
 
     private void Update()
-    {
-       
+    {       
         if (ingameButtonManager.WhatItemUse == 1)// 포탈담는 버튼 눌렀는지 체크
         {
             if (Input.GetMouseButtonDown(0))

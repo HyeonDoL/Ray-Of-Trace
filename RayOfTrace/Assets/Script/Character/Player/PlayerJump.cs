@@ -43,7 +43,7 @@ public class PlayerJump : MonoBehaviour
 
             if (!IsGround)
             {
-                IsGround = Physics2D.OverlapCircle(this.transform.position, 0.1f, LayerMask.GetMask("Ground"));
+                IsGround = Physics2D.OverlapCircle(this.transform.position - new Vector3(0, 0.1f), 0.1f, LayerMask.GetMask("Ground"));
 
                 if (IsGround)
                 {
@@ -61,6 +61,6 @@ public class PlayerJump : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
 
-        Gizmos.DrawSphere(this.transform.position, 0.1f);
+        Gizmos.DrawSphere(this.transform.position - new Vector3(0, 0.1f), 0.1f);
     }
 }
