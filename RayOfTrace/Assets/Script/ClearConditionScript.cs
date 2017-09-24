@@ -47,7 +47,7 @@ public class ClearConditionScript : MonoBehaviour {
         //PlayerPrefs.SetInt(Prefstype.C2Unlock, 0);
         line = this.GetComponent<DrawLine>();
         m_time = 0;
-        m_hp = -100;
+        m_hp = 100;
         m_achievenum = 0;
         m_ink = line.Max;
         m_hitCount = 0;
