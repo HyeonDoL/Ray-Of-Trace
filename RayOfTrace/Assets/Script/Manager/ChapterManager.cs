@@ -10,6 +10,7 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private RepeatLight repeatLight;
     [SerializeField] private MoveButtonScript m_Movebuttonscript;
     [SerializeField] private GameObject ChapterWindow;
+    [SerializeField] private GameObject ChapterButton;
     [SerializeField] private GameObject OptionWindow;
     [SerializeField] private GameObject ShopWindow;
     [SerializeField] private GameObject SoundWindow;
@@ -22,13 +23,16 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private Image fade;
     [SerializeField] private Slider Bgm;
     [SerializeField] private Slider Sound;
+    [SerializeField] private Button[] ChapterButtons;
     private int money;
-    private int pages;
+  
     private float fades= 1.0f;
 
+    private int pos = 0;
     public bool fadeOuttrue = false;
     public bool fadeIntrue = false;
     public int PageNum;
+    public int pages;
     private void Start()
     {
         
@@ -36,6 +40,12 @@ public class ChapterManager : MonoBehaviour {
         pages = 1;
         Money.text = "" + money;
         titlemanager = this.GetComponent<TitleManager>();
+        if (PlayerPrefs.GetInt(Prefstype.C2Unlock) == 1)
+            ChapterButtons[1].interactable = true;
+        if (PlayerPrefs.GetInt(Prefstype.C3Unlock) == 1)
+            ChapterButtons[2].interactable = true;
+       // if (PlayerPrefs.GetInt(Prefstype.C4Unlock) == 1)
+        //    ChapterButtons[3].interactable = true;
     }
     private void Update()
     {
@@ -43,13 +53,11 @@ public class ChapterManager : MonoBehaviour {
         PlayerPrefs.SetFloat(Prefstype.SoundVol, Sound.value);
         if (fadeIntrue)
         {
-           
             if (fades < 1.0f)
             {
                 fade.raycastTarget = true;
                 fades += 0.01f;
                 fade.color = new Color(0, 0, 0, fades);
-               
             }
             else if (fades >= 1.0f)
             {
@@ -185,12 +193,21 @@ public class ChapterManager : MonoBehaviour {
     {
         SoundManager.instance.PlaySound();
         if (pages > 1)
+        {
             pages--;
+            ChapterButton.transform.localPosition = new Vector3(-20 * (pages - 1), 0, 0);
+
+        }
     }
     public void RightButton()
     {
         SoundManager.instance.PlaySound();
         if (pages < PageNum)
+        {
             pages++;
+            ChapterButton.transform.localPosition = new Vector3(-20 * (pages - 1), 0, 0);
+
+      
+        }
     }
 }

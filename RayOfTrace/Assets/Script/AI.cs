@@ -33,7 +33,7 @@ public class AI : MonoBehaviour {
     private float playerx;
     private float monsterx;
     private float dis;
-
+    private bool isAttacked = false;
     public int Monster;
     // Use this for initialization
     void Start () {
@@ -55,9 +55,9 @@ public class AI : MonoBehaviour {
             if (dis <= 1.5) //공격
             {
                 ChangeLandAnimation(LandState.Attack);
-
+                isAttacked = true;
             }
-            else if (dis <= 7) // 추적
+            else if (dis <= 7 && isAttacked == false) // 추적
             {
                 if (playerx > monsterx)
                 {
@@ -72,7 +72,7 @@ public class AI : MonoBehaviour {
                     this.transform.localScale = new Vector3(1, 1, 1);
                 }
             }
-            else
+            else if(isAttacked == false)
             {
 
                 ChangeLandAnimation(LandState.Idle);
@@ -84,9 +84,9 @@ public class AI : MonoBehaviour {
             if (dis <= 3) //공격
             {
                 ChangeSkyAnimation(SkyState.Attack);
-
+                isAttacked = true;
             }
-            else if (dis <= 7) // 추적
+            else if (dis <= 7 && isAttacked == false) // 추적
             {
                 if (playerx > monsterx)
                 {
@@ -101,7 +101,7 @@ public class AI : MonoBehaviour {
                     this.transform.localScale = new Vector3(1, 1, 1);
                 }
             }
-            else
+            else if(isAttacked == false)
             {
 
                 ChangeSkyAnimation(SkyState.Walk);
@@ -117,7 +117,42 @@ public class AI : MonoBehaviour {
   
     }
 
+    public void Beta_LandAttack()
+    {
+        isAttacked = false;
+        if (dis <= 2) //공격
+        {
+          
+            PlayerPrefs.SetInt(Prefstype.PlayerHit,1);
+        }
+    }
+    public void Beta_SkyAttack()
+    {
+        isAttacked = false;
+        if (dis <= 3.5) //공격
+        {
 
+            PlayerPrefs.SetInt(Prefstype.PlayerHit, 1);
+        }
+    }
+    public void Alpha_LandAttack()
+    {
+        isAttacked = false;
+        if (dis <= 2) //공격
+        {
+            
+            PlayerPrefs.SetInt(Prefstype.PlayerHit, 1);
+
+        }
+    }
+    public void Alpha_SkyAttack()
+    {
+        isAttacked = false;
+        if (dis <= 3.5) //공격
+        {
+            PlayerPrefs.SetInt(Prefstype.PlayerHit, 1);
+        }
+    }
 
     public void ChangeLandAnimation(LandState state)
     {

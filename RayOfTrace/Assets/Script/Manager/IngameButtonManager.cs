@@ -33,6 +33,8 @@ public class IngameButtonManager : MonoBehaviour
     [SerializeField]
     private GameObject PauseWindow;
     [SerializeField]
+    private GameObject clearWindow;
+    [SerializeField]
     private GameObject Buttons;
     [SerializeField]
     private GameObject JumpActionButton;
@@ -46,11 +48,12 @@ public class IngameButtonManager : MonoBehaviour
     private GameObject LeftHand;
     [SerializeField]
     private GameObject OptionButton;
+    
     [SerializeField]
     private Sprite Jump;
     [SerializeField]
     private Sprite Action;
-
+  
 
     public Vector3 playerposition;
     public int Itemusenum;
@@ -104,6 +107,12 @@ public class IngameButtonManager : MonoBehaviour
     private void Update()
     {
         playerposition = playerManager.gameObject.transform.position;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Ison_pausebutton();
+           
+        }
+
     }
     void Start()
     {
@@ -240,11 +249,11 @@ public class IngameButtonManager : MonoBehaviour
         if (m_whatitem !=0)
         {
         
-           // m_isitemUse = ItemRange_script.ison;
+    
             //item1
             if (m_whatitem == 1 && m_isitemUse)  //item1 use
             {
-            
+                ItemUsed();
             }
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
@@ -277,7 +286,6 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void Ison_jumpaction()
     {
-        SoundManager.instance.PlaySound();
         m_JumpActionButton = true;
         m_istouchbutton = true;
     }
@@ -323,6 +331,13 @@ public class IngameButtonManager : MonoBehaviour
         PlayerPrefs.SetInt(Prefstype.IsToMain, 1);
         SceneChange.Change(SceneType.Loading);
     }
+    public void ClearWindow()
+    {
+        Time.timeScale = 0;
+        
+        clearWindow.SetActive(true);
+        Buttons.SetActive(false);
+    }
     private void init_buttonPos()
     {
         Joystick.transform.localPosition = 
@@ -338,6 +353,7 @@ public class IngameButtonManager : MonoBehaviour
             new Vector3(PlayerPrefs.GetInt(Prefstype.Item2xPos, 629),
                         PlayerPrefs.GetInt(Prefstype.Item2yPos, -61), 0.0f);
     }
+   
 
 
 }

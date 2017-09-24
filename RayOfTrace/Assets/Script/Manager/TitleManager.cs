@@ -48,6 +48,10 @@ public class TitleManager : MonoBehaviour
             fadetrue = true;
             StartCoroutine(ChangeScene());
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         if (fadetrue) // fadein
         {
             if (fades < 1.0f)

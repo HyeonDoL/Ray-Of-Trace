@@ -16,7 +16,7 @@ public class DrawLine : MonoBehaviour {
     private int ison;
     private int linenum;
     private float time;
-   
+    private int LastPos;
     [SerializeField]
     private ClearConditionScript clearcondition;
     void Start () {
@@ -31,6 +31,7 @@ public class DrawLine : MonoBehaviour {
     void Update () {
         ison = PlayerPrefs.GetInt(Prefstype.Item2Use);
         time += Time.deltaTime;
+        
         if(time > 15)
         {
             Destroy(GameObject.Find("Line" + (linenum-1)));
@@ -108,6 +109,7 @@ public class DrawLine : MonoBehaviour {
         line.startColor = Color.white;
         line.useWorldSpace = false;
         rid.simulated = false;
+        rid.mass = 200;
     
     }
 
