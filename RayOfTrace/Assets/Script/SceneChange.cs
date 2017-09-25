@@ -11,6 +11,6 @@ public static class SceneChange
 public struct SceneType
 {
     public static string Title = "Title";
-    public static string InGame = "InGame";
+    public static string InGame = "Stage1";
     public static string Loading = "Loading";
 }
