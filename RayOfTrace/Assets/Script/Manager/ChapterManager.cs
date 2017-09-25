@@ -9,6 +9,7 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private NormalLight normalLight;
     [SerializeField] private RepeatLight repeatLight;
     [SerializeField] private MoveButtonScript m_Movebuttonscript;
+    [SerializeField] private GameObject BackGround;
     [SerializeField] private GameObject ChapterWindow;
     [SerializeField] private GameObject ChapterButton;
     [SerializeField] private GameObject OptionWindow;
@@ -33,6 +34,7 @@ public class ChapterManager : MonoBehaviour {
     public bool fadeIntrue = false;
     public int PageNum;
     public int pages;
+    public int speed;
     private void Start()
     {
         
@@ -51,6 +53,7 @@ public class ChapterManager : MonoBehaviour {
     {
         PlayerPrefs.SetFloat(Prefstype.BgmVol, Bgm.value);
         PlayerPrefs.SetFloat(Prefstype.SoundVol, Sound.value);
+        ChapterButton.transform.localPosition = Vector3.MoveTowards(ChapterButton.transform.localPosition, new Vector3(-20 * (pages - 1), 0, 0), speed * Time.deltaTime);
         if (fadeIntrue)
         {
             if (fades < 1.0f)
@@ -106,6 +109,7 @@ public class ChapterManager : MonoBehaviour {
         SoundManager.instance.PlaySound();
         ChapterWindow.SetActive(false);
         MainWindow.SetActive(true);
+        BackGround.SetActive(true);
     }
     public void ShopButton()
     {
@@ -157,6 +161,7 @@ public class ChapterManager : MonoBehaviour {
     public void StartButton()
     {
         SoundManager.instance.PlaySound();
+        BackGround.SetActive(false);
         MainWindow.SetActive(false);
         ChapterWindow.SetActive(true);
     }
@@ -195,9 +200,7 @@ public class ChapterManager : MonoBehaviour {
         if (pages > 1)
         {
             pages--;
-            ChapterButton.transform.localPosition = new Vector3(-20 * (pages - 1), 0, 0);
-
-        }
+          }
     }
     public void RightButton()
     {
@@ -205,9 +208,7 @@ public class ChapterManager : MonoBehaviour {
         if (pages < PageNum)
         {
             pages++;
-            ChapterButton.transform.localPosition = new Vector3(-20 * (pages - 1), 0, 0);
-
-      
+         
         }
     }
 }
