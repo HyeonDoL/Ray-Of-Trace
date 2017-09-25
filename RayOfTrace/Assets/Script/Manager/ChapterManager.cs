@@ -9,7 +9,9 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private NormalLight normalLight;
     [SerializeField] private RepeatLight repeatLight;
     [SerializeField] private MoveButtonScript m_Movebuttonscript;
+    [SerializeField] private GameObject BackGround;
     [SerializeField] private GameObject ChapterWindow;
+    [SerializeField] private GameObject ChapterButton;
     [SerializeField] private GameObject OptionWindow;
     [SerializeField] private GameObject ShopWindow;
     [SerializeField] private GameObject SoundWindow;
@@ -22,13 +24,17 @@ public class ChapterManager : MonoBehaviour {
     [SerializeField] private Image fade;
     [SerializeField] private Slider Bgm;
     [SerializeField] private Slider Sound;
+    [SerializeField] private Button[] ChapterButtons;
     private int money;
-    private int pages;
+  
     private float fades= 1.0f;
 
+    private int pos = 0;
     public bool fadeOuttrue = false;
     public bool fadeIntrue = false;
     public int PageNum;
+    public int pages;
+    public int speed;
     private void Start()
     {
         
@@ -36,20 +42,25 @@ public class ChapterManager : MonoBehaviour {
         pages = 1;
         Money.text = "" + money;
         titlemanager = this.GetComponent<TitleManager>();
+        if (PlayerPrefs.GetInt(Prefstype.C2Unlock) == 1)
+            ChapterButtons[1].interactable = true;
+        if (PlayerPrefs.GetInt(Prefstype.C3Unlock) == 1)
+            ChapterButtons[2].interactable = true;
+       // if (PlayerPrefs.GetInt(Prefstype.C4Unlock) == 1)
+        //    ChapterButtons[3].interactable = true;
     }
     private void Update()
     {
         PlayerPrefs.SetFloat(Prefstype.BgmVol, Bgm.value);
         PlayerPrefs.SetFloat(Prefstype.SoundVol, Sound.value);
+        ChapterButton.transform.localPosition = Vector3.MoveTowards(ChapterButton.transform.localPosition, new Vector3(-20 * (pages - 1), 0, 0), speed * Time.deltaTime);
         if (fadeIntrue)
         {
-           
             if (fades < 1.0f)
             {
                 fade.raycastTarget = true;
                 fades += 0.01f;
                 fade.color = new Color(0, 0, 0, fades);
-               
             }
             else if (fades >= 1.0f)
             {
@@ -98,6 +109,7 @@ public class ChapterManager : MonoBehaviour {
         SoundManager.instance.PlaySound();
         ChapterWindow.SetActive(false);
         MainWindow.SetActive(true);
+        BackGround.SetActive(true);
     }
     public void ShopButton()
     {
@@ -149,6 +161,7 @@ public class ChapterManager : MonoBehaviour {
     public void StartButton()
     {
         SoundManager.instance.PlaySound();
+        BackGround.SetActive(false);
         MainWindow.SetActive(false);
         ChapterWindow.SetActive(true);
     }
@@ -185,12 +198,17 @@ public class ChapterManager : MonoBehaviour {
     {
         SoundManager.instance.PlaySound();
         if (pages > 1)
+        {
             pages--;
+          }
     }
     public void RightButton()
     {
         SoundManager.instance.PlaySound();
         if (pages < PageNum)
+        {
             pages++;
+         
+        }
     }
 }
