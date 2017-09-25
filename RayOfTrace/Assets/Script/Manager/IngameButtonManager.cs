@@ -57,6 +57,8 @@ public class IngameButtonManager : MonoBehaviour
 
     public Vector3 playerposition;
     public int Itemusenum;
+    public int Inkusenum;
+    public int Blackusenum;
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
     private bool m_ItemButton1 = false;
@@ -117,6 +119,8 @@ public class IngameButtonManager : MonoBehaviour
     void Start()
     {
         Itemusenum = 0;
+        Inkusenum = 0;
+        Blackusenum = 0;
         playerstatus = playerManager.GetComponent<PlayerAnimation>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
@@ -253,11 +257,12 @@ public class IngameButtonManager : MonoBehaviour
             //item1
             if (m_whatitem == 1 && m_isitemUse)  //item1 use
             {
+               
                 ItemUsed();
             }
             else if (m_whatitem == 2 && m_isitemUse) // item2 use
             {
-   
+                Inkusenum++;
                 ItemUsed();
             }
             else if (!m_isitemUse)

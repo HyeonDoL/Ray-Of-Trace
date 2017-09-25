@@ -35,6 +35,7 @@ public class TeleportEntrance : InteractionObject, Interactive
 
     void Interactive.Interaction()
     {
+        InGameManager.Instance.GetComponent<IngameButtonManager>().Blackusenum++;
         playerTrans.position = GetNearTeleportExit().position;
     }
 }

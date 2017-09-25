@@ -52,9 +52,7 @@ public class ClearConditionScript : MonoBehaviour {
         m_ink = line.Max;
         m_hitCount = 0;
         m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
-        chat[0].color = Color.gray;
-        chat[1].color = Color.gray;
-        chat[2].color = Color.gray;
+      
         PlayerPrefs.SetInt(Prefstype.PlayerHit,0);
         if(m_chapternum == 1)
         {
@@ -146,19 +144,19 @@ public class ClearConditionScript : MonoBehaviour {
             m_achievenum = PlayerPrefs.GetInt(Prefstype.C1_1, 0) +
                PlayerPrefs.GetInt(Prefstype.C1_2, 0) +
                PlayerPrefs.GetInt(Prefstype.C1_3, 0);
-            if (m_hitCount == 0)
+            if (m_hitCount == 0)  //한번도 맞지마라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_1, 1);
                 chat[0].color = Color.white;
               
             }
-            if (button.Itemusenum < 10)
+            if (button.Itemusenum <= 10) // 아이템 10 번만 사용해라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_2, 1);
                 chat[1].color = Color.white;
          
             }
-            if (m_time <= 180)
+            if (m_time <= 180) // 3분이내에 깨라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_3, 1);
                 chat[2].color = Color.white;
@@ -170,24 +168,24 @@ public class ClearConditionScript : MonoBehaviour {
                 PlayerPrefs.SetInt(Prefstype.C2Unlock, 1);
             }
         }
-        else if (m_chapternum == 2)
+        else if (m_chapternum == 2) 
         {
             m_achievenum = PlayerPrefs.GetInt(Prefstype.C2_1, 0) +
                PlayerPrefs.GetInt(Prefstype.C2_2, 0) +
                PlayerPrefs.GetInt(Prefstype.C2_3, 0);
-            if (m_hit == 0)
+            if (button.Inkusenum <= 10) // 잉크아이템 10번만 사용해라
             {
                 PlayerPrefs.SetInt(Prefstype.C2_1, 1);
                 chat[0].color = Color.white;
            
             }
-            if (button.Itemusenum < 10)
+            if (m_time < 360) //6분 안에 통과해라
             {
                 PlayerPrefs.SetInt(Prefstype.C2_2, 1);
                 chat[1].color = Color.white;
              
             }
-            if (m_time <= 180)
+            if (button.Blackusenum >= 20) //블랙홀 20번 통과해라
             {
                 PlayerPrefs.SetInt(Prefstype.C2_3, 1);
                 chat[2].color = Color.white;
@@ -203,19 +201,19 @@ public class ClearConditionScript : MonoBehaviour {
             m_achievenum = PlayerPrefs.GetInt(Prefstype.C3_1, 0) +
                PlayerPrefs.GetInt(Prefstype.C3_2, 0) +
                PlayerPrefs.GetInt(Prefstype.C3_3, 0);
-            if (m_hit == 0)
+            if (button.Itemusenum <= 15) // 아이템 15번만 사용해라
             {
                 PlayerPrefs.SetInt(Prefstype.C3_1, 1);
                 chat[0].color = Color.white;
                
             }
-            if (button.Itemusenum < 10)
+            if (m_time < 180) //3분안에 클리어해라
             {
                 PlayerPrefs.SetInt(Prefstype.C3_2, 1);
                 chat[1].color = Color.white;
                
             }
-            if (m_time <= 180)
+            if (button.Blackusenum >= 300) // 블랙홀 30번 통과
             {
                 PlayerPrefs.SetInt(Prefstype.C3_3, 1);
                 chat[2].color = Color.white;
