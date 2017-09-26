@@ -32,7 +32,8 @@ public class InGameManager : MonoBehaviour
     }
 
     private void Update()
-    {       
+    {
+
         if (PlayerPrefs.GetInt(Prefstype.Item1Use, 1) == 1)// 포탈담는 버튼 눌렀는지 체크
         {
             if (Input.GetMouseButtonDown(0))
@@ -42,6 +43,7 @@ public class InGameManager : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100f);
                 Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousepos.z = 0;
+            
                 if (hit)
                 {
                     if (hit.transform.CompareTag("TeleportExit")&&!ingameButtonManager.IshaveWhite&& HavingWhite == null)
@@ -51,6 +53,7 @@ public class InGameManager : MonoBehaviour
                         HavingWhite.SetActive(false);
                         ingameButtonManager.IshaveWhite = true;
                         PlayerPrefs.SetInt(Prefstype.Item1Use, 0);
+                        ingameButtonManager.ItemUsed();
                     }
                     else if(hit.transform.CompareTag("Crack") && ingameButtonManager.IshaveWhite&& candeletecrash)
                     {
@@ -59,19 +62,26 @@ public class InGameManager : MonoBehaviour
                         ingameButtonManager.IshaveWhite = false;
                         ingameButtonManager.crashnum++;
                         PlayerPrefs.SetInt(Prefstype.Item1Use, 0);
+                        ingameButtonManager.ItemUsed();
                     }
+                    else if (hit.transform.CompareTag("Ground") && ingameButtonManager.IshaveWhite)
+                    {
                  
-                    
+                        PlayerPrefs.SetInt(Prefstype.Item1Use, 0);
+                        ingameButtonManager.ItemUsed();
+                    }
+
                 }
-                else if (ingameButtonManager.IshaveWhite == true)
+                else if (ingameButtonManager.IshaveWhite)
                 {
                     HavingWhite.transform.position = mousepos;
                     HavingWhite.SetActive(true);
                     HavingWhite = null;
                     ingameButtonManager.IshaveWhite = false;
                     PlayerPrefs.SetInt(Prefstype.Item1Use, 0);
+                    ingameButtonManager.ItemUsed();
                 }
-                ingameButtonManager.ItemUsed();
+              
             }
         }
     }

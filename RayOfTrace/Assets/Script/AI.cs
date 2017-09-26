@@ -33,6 +33,8 @@ public class AI : MonoBehaviour {
     private float playerx;
     private float monsterx;
     private float dis;
+    [SerializeField]
+    private float ydis;
     private bool isAttacked = false;
     public int Monster;
     // Use this for initialization
@@ -50,6 +52,9 @@ public class AI : MonoBehaviour {
         playerx = PlayerPos.x;
         monsterx = this.transform.position.x;
         dis = Vector3.Distance(PlayerPos, this.transform.position);
+        ydis = PlayerPos.y - this.transform.position.y;
+        if (ydis < 0)
+            ydis *= -1;
         if (Monster == 1)
         {
             if (dis <= 1.5) //공격
@@ -81,12 +86,12 @@ public class AI : MonoBehaviour {
         }
         else if(Monster == 2)
         {
-            if (dis <= 3) //공격
+            if (dis <= 4) //공격
             {
                 ChangeSkyAnimation(SkyState.Attack);
                 isAttacked = true;
             }
-            else if (dis <= 7 && isAttacked == false) // 추적
+            else if (dis <= 8 && isAttacked == false && ydis <= 4) // 추적
             {
                 if (playerx > monsterx)
                 {

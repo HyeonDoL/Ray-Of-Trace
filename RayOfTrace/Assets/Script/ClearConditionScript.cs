@@ -27,6 +27,7 @@ public class ClearConditionScript : MonoBehaviour {
     private int m_ink;
     private int m_min;
     private int m_sec;
+    [SerializeField]
     private int m_chapternum;
     private int m_hit;
     private int m_hitCount;

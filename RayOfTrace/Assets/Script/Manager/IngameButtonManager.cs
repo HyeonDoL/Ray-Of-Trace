@@ -123,7 +123,19 @@ public class IngameButtonManager : MonoBehaviour
         Inkusenum = 0;
         Blackusenum = 0;
         crashnum = 0;
-        playerstatus = playerManager.GetComponent<PlayerAnimation>();
+        m_whatitem = 0;
+        m_JumpActionButton = false;
+        m_ItemButton1 = false;
+        m_ItemButton2 = false;
+        m_PauseButton = false;
+        m_istouchbutton = false;
+        m_isaction = false;
+        m_ItemButton1active = false;
+        m_ItemButton2active = false;
+        m_isitemUse = false;
+        m_isitemUsed = false;
+        m_isHavewhite = false;
+        playerstatus = playerManager.gameObject.GetComponent<PlayerAnimation>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()
                 .Where(_ => (Input.GetMouseButtonUp(0)|| Input.GetMouseButtonUp(1)) && 
@@ -278,6 +290,7 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void ItemUsed()
     {
+        Debug.Log(1);
         SoundManager.instance.PlaySound();
         m_isitemUse = false;
         m_ItemButton1active = false;
