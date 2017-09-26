@@ -1,23 +1,30 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-public class Npc : InteractionObject, Interactive
+public class TutorialNpc : InteractionObject, Interactive
 {
-    [SerializeField]
-    private string name;
-
     [SerializeField]
     private TextMesh chat;
 
     [SerializeField]
     private NpcSheet npcSheet;
 
+    [SerializeField]
+    private SpriteRenderer spriteRender;
+
     private int npcIndex;
 
     private int count;
+    private int typeCount;
+
+    private string name;
 
     void Awake()
     {
+        name = "TutorialNPC";
+
         count = 0;
+        typeCount = 0;
 
         for (npcIndex = 0; npcIndex < npcSheet.m_data.Count; npcIndex++)
         {
@@ -36,15 +43,15 @@ public class Npc : InteractionObject, Interactive
         }
     }
 
-    void SetupMessageBox(bool isSetup)
+    public void SetupMessageBox(bool isSetup)
     {
         if (isSetup)
         {
             chat.gameObject.SetActive(true);
 
-            chat.text = npcSheet.m_data[npcIndex].chat[count];
+            chat.text = npcSheet.m_data[npcIndex + typeCount].chat[count];
 
-            if (count < npcSheet.m_data[npcIndex].chat.Count - 1)
+            if (count < npcSheet.m_data[npcIndex + typeCount].chat.Count - 1)
                 count++;
         }
         else
@@ -58,5 +65,15 @@ public class Npc : InteractionObject, Interactive
     void Interactive.Interaction()
     {
         SetupMessageBox(true);
+    }
+
+    public void AddTypeCount()
+    {
+        typeCount += 1;
+    }
+
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        return spriteRender;
     }
 }

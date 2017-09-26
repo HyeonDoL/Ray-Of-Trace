@@ -114,12 +114,12 @@ public class ClearConditionScript : MonoBehaviour {
                 cleartime.text = "" + m_min + " : " + 0 + m_sec;
             else
                 cleartime.text = "" + m_min + " : " + m_sec;
-            chat[0].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[0].content;
-            chat[1].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[1].content;
-            chat[2].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[2].content;
+            chat[0].text = stageSheet.m_data[m_chapternum ].achievementTextList[0].content;
+            chat[1].text = stageSheet.m_data[m_chapternum ].achievementTextList[1].content;
+            chat[2].text = stageSheet.m_data[m_chapternum ].achievementTextList[2].content;
             this.enabled = false;
         }
-        else if (crashnum[m_chapternum-1] == m_havecrashnum)
+        else if (crashnum[m_chapternum] == m_havecrashnum)
         {
             clearText.text = "Clear!";
             this.GetComponent<IngameButtonManager>().ClearWindow();
@@ -128,9 +128,9 @@ public class ClearConditionScript : MonoBehaviour {
                 cleartime.text = "" + m_min + " : " + 0 + m_sec;
             else
                 cleartime.text = "" + m_min + " : " + m_sec;
-            chat[0].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[0].content;
-            chat[1].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[1].content;
-            chat[2].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[2].content;
+            chat[0].text = stageSheet.m_data[m_chapternum ].achievementTextList[0].content;
+            chat[1].text = stageSheet.m_data[m_chapternum ].achievementTextList[1].content;
+            chat[2].text = stageSheet.m_data[m_chapternum ].achievementTextList[2].content;
             this.enabled = false;
         }
         

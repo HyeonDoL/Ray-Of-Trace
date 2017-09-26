@@ -34,7 +34,7 @@ public class LoadingScript : MonoBehaviour
         m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain);
         if (m_istomain == 0)
         {
-            if (m_chapternum == 4)
+            if (m_chapternum == 0)
                 StartCoroutine(StartLoad("Tutorial"));
             else
                 StartCoroutine(StartLoad("Stage" + m_chapternum));
