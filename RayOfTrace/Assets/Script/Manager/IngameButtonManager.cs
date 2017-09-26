@@ -290,7 +290,7 @@ public class IngameButtonManager : MonoBehaviour
     }
     public void ItemUsed()
     {
-        Debug.Log(1);
+
         SoundManager.instance.PlaySound();
         m_isitemUse = false;
         m_ItemButton1active = false;
