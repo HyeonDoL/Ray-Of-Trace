@@ -47,6 +47,8 @@ public class Npc : InteractionObject, Interactive
         }
         else
         {
+            chat.gameObject.SetActive(false);
+
             count = 0;
         }
     }
