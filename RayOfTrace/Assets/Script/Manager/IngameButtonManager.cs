@@ -59,6 +59,7 @@ public class IngameButtonManager : MonoBehaviour
     public int Itemusenum;
     public int Inkusenum;
     public int Blackusenum;
+    public int crashnum;
     private int m_whatitem = 0;
     private bool m_JumpActionButton = false;
     private bool m_ItemButton1 = false;
@@ -121,6 +122,7 @@ public class IngameButtonManager : MonoBehaviour
         Itemusenum = 0;
         Inkusenum = 0;
         Blackusenum = 0;
+        crashnum = 0;
         playerstatus = playerManager.GetComponent<PlayerAnimation>();
         init_buttonPos();
         var itemStream = Observable.EveryUpdate()

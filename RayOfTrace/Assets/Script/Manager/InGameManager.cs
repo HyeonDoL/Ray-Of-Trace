@@ -57,6 +57,7 @@ public class InGameManager : MonoBehaviour
                         HavingWhite = null;
                         NowCrash.SetActive(false);
                         ingameButtonManager.IshaveWhite = false;
+                        ingameButtonManager.crashnum++;
                         PlayerPrefs.SetInt(Prefstype.Item1Use, 0);
                     }
                  

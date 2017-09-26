@@ -30,8 +30,7 @@ public class ClearConditionScript : MonoBehaviour {
     private int m_chapternum;
     private int m_hit;
     private int m_hitCount;
-    [SerializeField]
-    private int m_achievenum;
+ 
     private float m_time;
 
     [SerializeField]
@@ -48,11 +47,11 @@ public class ClearConditionScript : MonoBehaviour {
         line = this.GetComponent<DrawLine>();
         m_time = 0;
         m_hp = 100;
-        m_achievenum = 0;
+
         m_ink = line.Max;
         m_hitCount = 0;
         m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
-      
+     
         PlayerPrefs.SetInt(Prefstype.PlayerHit,0);
         if(m_chapternum == 1)
         {
@@ -85,6 +84,7 @@ public class ClearConditionScript : MonoBehaviour {
     }
 
 	void Update () {
+        m_havecrashnum = button.crashnum;
         m_hit = PlayerPrefs.GetInt(Prefstype.PlayerHit);
         m_ink = line.Max - line.n;
         m_time += Time.deltaTime;
@@ -118,7 +118,7 @@ public class ClearConditionScript : MonoBehaviour {
             chat[2].text = stageSheet.m_data[m_chapternum - 1].achievementTextList[2].content;
             this.enabled = false;
         }
-        else if (crashnum[m_chapternum] == m_havecrashnum)
+        else if (crashnum[m_chapternum-1] == m_havecrashnum)
         {
             clearText.text = "Clear!";
             this.GetComponent<IngameButtonManager>().ClearWindow();
@@ -141,38 +141,31 @@ public class ClearConditionScript : MonoBehaviour {
 
         if (m_chapternum == 1)
         {
-            m_achievenum = PlayerPrefs.GetInt(Prefstype.C1_1, 0) +
-               PlayerPrefs.GetInt(Prefstype.C1_2, 0) +
-               PlayerPrefs.GetInt(Prefstype.C1_3, 0);
+        
             if (m_hitCount == 0)  //한번도 맞지마라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_1, 1);
                 chat[0].color = Color.white;
-              
+            
             }
             if (button.Itemusenum <= 10) // 아이템 10 번만 사용해라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_2, 1);
                 chat[1].color = Color.white;
-         
+           
             }
             if (m_time <= 180) // 3분이내에 깨라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_3, 1);
                 chat[2].color = Color.white;
-            
+               
 
             }
-            if (m_achievenum == 3)
-            {
-                PlayerPrefs.SetInt(Prefstype.C2Unlock, 1);
-            }
+   
         }
         else if (m_chapternum == 2) 
         {
-            m_achievenum = PlayerPrefs.GetInt(Prefstype.C2_1, 0) +
-               PlayerPrefs.GetInt(Prefstype.C2_2, 0) +
-               PlayerPrefs.GetInt(Prefstype.C2_3, 0);
+       
             if (button.Inkusenum <= 10) // 잉크아이템 10번만 사용해라
             {
                 PlayerPrefs.SetInt(Prefstype.C2_1, 1);
@@ -191,16 +184,11 @@ public class ClearConditionScript : MonoBehaviour {
                 chat[2].color = Color.white;
 
             }
-            if (m_achievenum == 3)
-            {
-                PlayerPrefs.SetInt(Prefstype.C3Unlock, 1);
-            }
+      
         }
         else if (m_chapternum == 3)
         {
-            m_achievenum = PlayerPrefs.GetInt(Prefstype.C3_1, 0) +
-               PlayerPrefs.GetInt(Prefstype.C3_2, 0) +
-               PlayerPrefs.GetInt(Prefstype.C3_3, 0);
+        
             if (button.Itemusenum <= 15) // 아이템 15번만 사용해라
             {
                 PlayerPrefs.SetInt(Prefstype.C3_1, 1);
@@ -219,10 +207,7 @@ public class ClearConditionScript : MonoBehaviour {
                 chat[2].color = Color.white;
               
             }
-            if (m_achievenum == 3)
-            {
-                PlayerPrefs.SetInt(Prefstype.C4Unlock, 1);
-            }
+      
         }
        
     }
