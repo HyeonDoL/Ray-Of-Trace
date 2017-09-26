@@ -37,15 +37,15 @@ public class ChapterManager : MonoBehaviour {
     public int speed;
     private void Start()
     {
-        
+     
         money = PlayerPrefs.GetInt(Prefstype.Money,999999999);
         pages = 1;
         Money.text = "" + money;
         titlemanager = this.GetComponent<TitleManager>();
         if (PlayerPrefs.GetInt(Prefstype.C2Unlock) == 1)
-            ChapterButtons[1].interactable = true;
+            ChapterButtons[0].interactable = true;
         if (PlayerPrefs.GetInt(Prefstype.C3Unlock) == 1)
-            ChapterButtons[2].interactable = true;
+            ChapterButtons[1].interactable = true;
        // if (PlayerPrefs.GetInt(Prefstype.C4Unlock) == 1)
         //    ChapterButtons[3].interactable = true;
     }

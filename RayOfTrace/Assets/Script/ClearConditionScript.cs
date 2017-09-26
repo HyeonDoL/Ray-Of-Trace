@@ -155,7 +155,7 @@ public class ClearConditionScript : MonoBehaviour {
                 chat[1].color = Color.white;
            
             }
-            if (m_time <= 180) // 3분이내에 깨라
+            if (m_time <= 600) // 10분이내에 깨라
             {
                 PlayerPrefs.SetInt(Prefstype.C1_3, 1);
                 chat[2].color = Color.white;
@@ -173,7 +173,7 @@ public class ClearConditionScript : MonoBehaviour {
                 chat[0].color = Color.white;
            
             }
-            if (m_time < 360) //6분 안에 통과해라
+            if (m_time < 900) //15분 안에 통과해라
             {
                 PlayerPrefs.SetInt(Prefstype.C2_2, 1);
                 chat[1].color = Color.white;
@@ -196,7 +196,7 @@ public class ClearConditionScript : MonoBehaviour {
                 chat[0].color = Color.white;
                
             }
-            if (m_time < 180) //3분안에 클리어해라
+            if (m_time < 1200) //20분안에 클리어해라
             {
                 PlayerPrefs.SetInt(Prefstype.C3_2, 1);
                 chat[1].color = Color.white;

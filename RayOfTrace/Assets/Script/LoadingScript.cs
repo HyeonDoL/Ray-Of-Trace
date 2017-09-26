@@ -32,8 +32,13 @@ public class LoadingScript : MonoBehaviour
         fadeOuttrue = true;
         m_chapternum = PlayerPrefs.GetInt(Prefstype.ChapterNum);
         m_istomain = PlayerPrefs.GetInt(Prefstype.IsToMain);
-        if(m_istomain == 0)
-            StartCoroutine(StartLoad("Stage"+m_chapternum));
+        if (m_istomain == 0)
+        {
+            if (m_chapternum == 4)
+                StartCoroutine(StartLoad("Tutorial"));
+            else
+                StartCoroutine(StartLoad("Stage" + m_chapternum));
+        }
         else if (m_istomain == 1)
             StartCoroutine(StartLoad(SceneType.Title));
 
