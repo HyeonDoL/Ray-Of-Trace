@@ -38,7 +38,7 @@ public class AchievementWindow : MonoBehaviour {
     }
     private void Update()
     {
-        StageLv = chaptermanager.pages - 1;
+        StageLv = chaptermanager.pages-1;
         if (chaptermanager.pages == 1)
         {
             if (acheivearr[0] == 1)
