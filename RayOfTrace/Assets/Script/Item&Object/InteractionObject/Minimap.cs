@@ -15,5 +15,7 @@ public class Minimap : InteractionObject, Interactive
     void Interactive.Interaction()
     {
         minimap.SetActive(true);
+
+        IngameButtonManager.Instance.canAction = false;
     }
 }

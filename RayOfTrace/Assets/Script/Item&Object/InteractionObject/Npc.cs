@@ -46,6 +46,9 @@ public class Npc : InteractionObject, Interactive
 
             if (count < npcSheet.m_data[npcIndex].chat.Count - 1)
                 count++;
+
+            else
+                count = 0;
         }
         else
         {

@@ -53,6 +53,9 @@ public class TutorialNpc : InteractionObject, Interactive
 
             if (count < npcSheet.m_data[npcIndex + typeCount].chat.Count - 1)
                 count++;
+
+            else
+                count = 0;
         }
         else
         {
