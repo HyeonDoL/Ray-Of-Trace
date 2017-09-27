@@ -25,8 +25,17 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private PlayerInteraction playerInteraction;
 
+    [SerializeField]
+    private PlayerStatus playerStatus;
+
     private BoxCollider2D m_playerBoxcollider;
-  
+
+    private void Awake()
+    {
+        IsDie = false;
+    }
+
+    public bool IsDie { get; private set; }
     public bool IsGround { get { return playerJump.IsGround; } }
 
     public void Idle()
@@ -55,5 +64,27 @@ public class PlayerManager : MonoBehaviour
     public void Interaction()
     {
         playerInteraction.Interaction();
+    }
+
+    public void Damage(int value)
+    {
+        playerStatus.Hp = playerStatus.Hp - value;
+
+        playerAni.ChangeAni(PlayerState.Damage);
+
+        if (playerStatus.Hp <= 0)
+            Die();
+
+        Invoke("Idle", 0.5f);
+    }
+    private void Die()
+    {
+        playerAni.ChangeAni(PlayerState.Die);
+
+        Invoke("CheckDie", 1.1f);
+    }
+    private void CheckDie()
+    {
+        IsDie = true;
     }
 }
