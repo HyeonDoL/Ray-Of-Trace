@@ -137,6 +137,7 @@ public class ClearConditionScript : MonoBehaviour {
     
        
     }
+    
     private void Cleared()
     {
 
