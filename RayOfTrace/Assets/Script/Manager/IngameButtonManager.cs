@@ -182,10 +182,12 @@ public class IngameButtonManager : MonoBehaviour
                 else if(playerstatus.status == PlayerState.Move && playerManager.IsGround == true)
                 {
                     playerManager.Jump();
+                 
                 }
                 else if (playerstatus.status == PlayerState.Idle && playerManager.IsGround == true)
                 {
                     playerManager.Jump();
+                  
                 }
                 m_JumpActionButton = false;
                 m_istouchbutton = false;

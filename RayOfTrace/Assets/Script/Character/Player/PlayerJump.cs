@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerJump : MonoBehaviour
 {
+   
     [SerializeField]
     private float jumpSpeed;
 
@@ -13,7 +15,8 @@ public class PlayerJump : MonoBehaviour
     private Rigidbody2D playerRigid;
 
     private PlayerManager playerManager;
-    
+    [SerializeField]
+    private Button jumpbutton;
     public bool IsGround { set; get; }
 
     private void Awake()
@@ -37,7 +40,7 @@ public class PlayerJump : MonoBehaviour
         if (!IsGround)
         {
             fallingTime += Time.deltaTime;
-
+            jumpbutton.interactable = false;
             if (fallingTime < checkWaitTime)
                 return;
 
@@ -48,6 +51,8 @@ public class PlayerJump : MonoBehaviour
                 if (IsGround)
                 {
                     IsGround = true;
+
+                    jumpbutton.interactable = true;
 
                     fallingTime = 0f;
 
