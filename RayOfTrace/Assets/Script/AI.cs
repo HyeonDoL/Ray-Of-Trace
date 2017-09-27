@@ -62,7 +62,7 @@ public class AI : MonoBehaviour {
                 ChangeLandAnimation(LandState.Attack);
                 isAttacked = true;
             }
-            else if (dis <= 7 && isAttacked == false) // 추적
+            else if (dis <= 14 && isAttacked == false) // 추적
             {
                 if (playerx > monsterx)
                 {

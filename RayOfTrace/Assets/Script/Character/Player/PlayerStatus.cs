@@ -4,20 +4,12 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    //public bool IsWhite
-    //{
-    //    set
-    //    {
-    //        IngameButtonManager.Instance.IshaveWhite = value;            
-    //    }
-    //    get
-    //    {
-    //        return IngameButtonManager.Instance.IshaveWhite;
-    //    }
-    //}
+    private const int maxHp = 100;
 
-    //private void Awake()
-    //{
-    //    IsWhite = false;
-    //}
+    public int Hp { get; set; }
+
+    private void Awake()
+    {
+        Hp = maxHp;
+    }
 }

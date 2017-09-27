@@ -40,6 +40,12 @@ public class ClearConditionScript : MonoBehaviour {
     private IngameButtonManager button;
     [SerializeField]
     private Camera mapcamera;
+
+    [SerializeField]
+    private PlayerManager playerManager;
+
+    private const int enemyAttackPower = 15;
+
 	void Start () {
         //PlayerPrefs.SetInt(Prefstype.C1_1, 0);
         //PlayerPrefs.SetInt(Prefstype.C1_2, 0);
@@ -101,11 +107,14 @@ public class ClearConditionScript : MonoBehaviour {
         mapcamera.orthographicSize = 6f + (mapslider.value * 10f);
         if(m_hit == 1)
         {
-            //TODO : 쳐맞은거 여기서 하면 될듯
+            playerManager.Damage(enemyAttackPower);
+
+            m_hp -= enemyAttackPower;
+
             m_hitCount++;
             PlayerPrefs.SetInt(Prefstype.PlayerHit,0);
         }
-        if(m_hp <0)
+        if(playerManager.IsDie)
         {
             clearText.text = "Fail...";
             this.GetComponent<IngameButtonManager>().ClearWindow();
