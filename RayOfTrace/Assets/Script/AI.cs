@@ -57,7 +57,7 @@ public class AI : MonoBehaviour {
             ydis *= -1;
         if (Monster == 1)
         {
-            if (dis <= 1.5) //공격
+            if (dis <= 2.3) //공격
             {
                 ChangeLandAnimation(LandState.Attack);
                 isAttacked = true;
@@ -86,7 +86,7 @@ public class AI : MonoBehaviour {
         }
         else if(Monster == 2)
         {
-            if (dis <= 4) //공격
+            if (dis <= 3.5) //공격
             {
                 ChangeSkyAnimation(SkyState.Attack);
                 isAttacked = true;
@@ -125,7 +125,7 @@ public class AI : MonoBehaviour {
     public void Beta_LandAttack()
     {
         isAttacked = false;
-        if (dis <= 2) //공격
+        if (dis <= 2.5) //공격
         {
           
             PlayerPrefs.SetInt(Prefstype.PlayerHit,1);
@@ -134,7 +134,7 @@ public class AI : MonoBehaviour {
     public void Beta_SkyAttack()
     {
         isAttacked = false;
-        if (dis <= 3.5) //공격
+        if (dis <= 4) //공격
         {
 
             PlayerPrefs.SetInt(Prefstype.PlayerHit, 1);
@@ -143,7 +143,7 @@ public class AI : MonoBehaviour {
     public void Alpha_LandAttack()
     {
         isAttacked = false;
-        if (dis <= 2) //공격
+        if (dis <= 2.5) //공격
         {
             
             PlayerPrefs.SetInt(Prefstype.PlayerHit, 1);
@@ -153,7 +153,7 @@ public class AI : MonoBehaviour {
     public void Alpha_SkyAttack()
     {
         isAttacked = false;
-        if (dis <= 3.5) //공격
+        if (dis <= 4) //공격
         {
             PlayerPrefs.SetInt(Prefstype.PlayerHit, 1);
         }
