@@ -119,7 +119,7 @@ public class ClearConditionScript : MonoBehaviour {
             chat[2].text = stageSheet.m_data[m_chapternum ].achievementTextList[2].content;
             this.enabled = false;
         }
-        else if (crashnum[m_chapternum-1] == m_havecrashnum)
+        else if (crashnum[m_chapternum] == m_havecrashnum)
         {
             clearText.text = "Clear!";
             this.GetComponent<IngameButtonManager>().ClearWindow();
