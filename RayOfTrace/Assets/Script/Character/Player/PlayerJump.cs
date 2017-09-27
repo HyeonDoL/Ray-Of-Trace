@@ -12,6 +12,7 @@ public class PlayerJump : MonoBehaviour
 
     private float fallingTime;
 
+    private float jumptime;
     private Rigidbody2D playerRigid;
 
     private PlayerManager playerManager;
@@ -26,33 +27,39 @@ public class PlayerJump : MonoBehaviour
         playerManager = InGameManager.Instance.PlayerDataContainer_readonly._PlayerManager;
 
         fallingTime = 0f;
+        jumptime = 0f;
     }
 
     public void Jump()
     {
         IsGround = false;
-
+        jumptime = 0;
         playerRigid.AddForce(this.transform.up * jumpSpeed, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
     {
+        jumptime += Time.deltaTime;
+        if (jumptime < 0.8f)
+            jumpbutton.interactable = false;
+        else
+            jumpbutton.interactable = true;
         if (!IsGround)
         {
             fallingTime += Time.deltaTime;
-            jumpbutton.interactable = false;
+         
+
             if (fallingTime < checkWaitTime)
                 return;
 
             if (!IsGround)
             {
                 IsGround = Physics2D.OverlapCircle(this.transform.position - new Vector3(0, 0.1f), 0.1f, LayerMask.GetMask("Ground"));
-
+                
                 if (IsGround)
                 {
                     IsGround = true;
 
-                    jumpbutton.interactable = true;
 
                     fallingTime = 0f;
 
